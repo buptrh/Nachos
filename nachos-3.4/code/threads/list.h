@@ -65,7 +65,7 @@ class List {
     List * RemoveAllButKey(int key);
     void * GetPtrToKey(int key);
     void MapKar98(VoidFunctionPtr func, void * v);
-    
+    void MapcarInt(VoidFunctionPtr func, param);
   private:
     ListElement *first;  	// Head of the list, NULL if list is empty
     ListElement *last;		// Last element of list

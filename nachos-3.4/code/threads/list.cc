@@ -149,6 +149,16 @@ List::Mapcar(VoidFunctionPtr func)
 
 
 void
+List::MapcarInt(VoidFunctionPtr func, param)
+{
+    for (ListElement *ptr = first; ptr != NULL; ptr = ptr->next) {
+       DEBUG('l', "In mapcar, about to invoke %x(%x)\n", func, ptr->item);
+       // printf("In mapcar, about to invoke %x (%d)\n", func, (int) ptr->item);
+       (*func)((int)ptr->item, param);
+    }
+}
+
+void
 List::MapKar98(VoidFunctionPtr func, void * v)
 {
     for (ListElement *ptr = first; ptr != NULL; ptr = ptr->next) {

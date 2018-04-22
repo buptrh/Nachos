@@ -626,7 +626,7 @@ static void
 RemoveFromShared(int entryPointer)
 {
   TranslationEntry* entry = (TranslationEntry*)entryPointer;
-  sRemoveFromSharedList(entry);
+  RemoveFromSharedList(entry);
 }
 
 void AddrSpace::RemoveFromSharedList(TranslationEntry* entry) {
@@ -645,6 +645,16 @@ void AddrSpace::RemoveFromSharedList(TranslationEntry* entry) {
   entry->readOnly = FALSE;
 }
 
-void AddrSpace::SendSharedToMem(int vAddr) {
 
+static void
+SharePhysPage(int entryPointer, int physicalPage)
+{
+  TranslationEntry* entry = (TranslationEntry*)entryPointer;
+  entry->physicalPage = physicalPage;
+  entry->valid = TRUE;
+  entry->inMem = TRUE;
+}
+
+void AddrSpace::SendSharedToMem(int vAddr) {
+  pageTable[i].sharedEntry->sharedList->mapcarInt(SharePhysPage, pageTable[i].physicalPage);
 }
