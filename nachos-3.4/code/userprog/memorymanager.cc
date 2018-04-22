@@ -161,7 +161,6 @@ MemoryManager::sendToSwap(int vPageNum, void * ad)
 
   printf("!@#@#@%Before if we are trying to translate vpn %d\n", vPageNum);
   if (a->Translate(offset, &physAddr)) {
-<<<<<<< HEAD
     int i = 0;
     for ( ; i < NumPhysPages ; i++) {
       if (coreRecord[i] != NULL)
@@ -169,19 +168,12 @@ MemoryManager::sendToSwap(int vPageNum, void * ad)
 	    && coreRecord[i]->stackOffset != -1) 
 	  offset = coreRecord[i]->stackOffset;
     }
-=======
->>>>>>> master
     
 
     bcopy (machine->mainMemory + physAddr, buf, PageSize);
     a->invalidateByVPage(vPageNum);    
     a->swapFile->WriteAt(buf, PageSize, offset);
     a->swapFile->ReadAt(buf, PageSize, offset);
-<<<<<<< HEAD
-=======
-
-    printf("&&&&&&&&\n");
->>>>>>> master
   }
     pageMap->Clear(physAddr / PageSize);
     delete coreRecord[physAddr / PageSize];
