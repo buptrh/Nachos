@@ -63,6 +63,7 @@ SwapHeader (NoffHeader *noffH)
 //	"executable" is the file containing the object code to load into memory
 //----------------------------------------------------------------------
 
+<<<<<<< HEAD
 AddrSpace::AddrSpace(PCB * p) {
   numPages = -1;
   pcb = p;
@@ -76,6 +77,11 @@ AddrSpace::AddrSpace(OpenFile *executable, bool createPCB, char * fileName, PCB 
 {
   unsigned int i, size;
   child = false;
+=======
+AddrSpace::AddrSpace(OpenFile *executable, bool createPCB, char * fileName, PCB * p)
+{
+  unsigned int i, size;
+>>>>>>> master
   
   executable->ReadAt((char *)&noffH, sizeof(noffH), 0);
   if ((noffH.noffMagic != NOFFMAGIC) && 
@@ -122,11 +128,17 @@ AddrSpace::AddrSpace(OpenFile *executable, bool createPCB, char * fileName, PCB 
     pageTable[i].stackOffset = -1;
   }
 
+<<<<<<< HEAD
   // if (createPCB) 
   //   bzero(machine->mainMemory, NumPhysPages * PageSize);
   inSwapStackAddr = noffH.code.size + noffH.initData.size
     + noffH.uninitData.size;
   
+=======
+  if (createPCB) 
+    bzero(machine->mainMemory, NumPhysPages * PageSize);
+
+>>>>>>> master
   if (p != NULL)
     pcb = p;
 
@@ -175,8 +187,13 @@ AddrSpace::~AddrSpace()
   if (pcb != NULL)
     processManager->clearPid(pcb->getMyPid());  
   
+<<<<<<< HEAD
   delete exec;
   fileSystem->Remove(name);
+=======
+  //delete exec;
+  //  fileSystem->Remove(name);
+>>>>>>> master
   delete swapFile;
 
 }
@@ -259,6 +276,7 @@ AddrSpace::sendToMem(int virtAddr)
 
   inSwapFileAddr = ptIndex * PageSize;
 
+<<<<<<< HEAD
 
   if (virtAddr > noffH.code.size
       + noffH.initData.size + noffH.uninitData.size) {
@@ -296,6 +314,19 @@ AddrSpace::sendToMem(int virtAddr)
       printf("L [%d]: [%d] -> [%d]\n", pcb->getMyPid(),
 	     pageTable[ptIndex].virtualPage, pageTable[ptIndex].physicalPage); 
     }
+=======
+  printf ("^^ We are putting data in %d ^^ \n", ptIndex);
+  pageTable[ptIndex].physicalPage
+    =  memoryManager->getPage(pageTable[ptIndex].virtualPage);
+  pageTable[ptIndex].valid = TRUE;
+  pageTable[ptIndex].inMem = TRUE;
+
+  int readSize = min (totalSize - inSwapFileAddr, PageSize);
+  ReadFile(inSwapFileAddr, swapFile, readSize, inSwapFileAddr);
+  
+  printf("L [%d]: [%d] -> [%d]\n", pcb->getMyPid(),
+	 pageTable[ptIndex].virtualPage, pageTable[ptIndex].physicalPage); 
+>>>>>>> master
 
     delete emptyStack;
   } else {
@@ -342,6 +373,11 @@ AddrSpace::invalidateByPhysPage(int i)
 bool
 AddrSpace::Translate(int virtAddr, int * physAddr)
 {
+
+  // printf("\n\n#### PID: [%d] invoked %s\n\n\n\n",
+  //  currentThread->space->pcb->getMyPid()
+  // 	 , "TRANSLATING");
+  // printf("The virtAddr is %d", virtAddr);
   unsigned int ptIndex, pOffset;
   ptIndex = (unsigned) virtAddr / PageSize;
   pOffset = (unsigned) virtAddr % PageSize;
@@ -401,8 +437,19 @@ AddrSpace::initSwap(OpenFile * file, OpenFile ** swap, bool empty, int offset)
   if (empty)
     bzero (emptyStack, UserStackSize*2);
 
+<<<<<<< HEAD
   
   sprintf(swapName, "swap_%d_%d", pcb->getMyPid(), r);
+=======
+  //  if (empty)
+  sprintf(swapName, "swap_%d_%d", pcb->getMyPid(), r);
+
+  int size = noffH.code.size + noffH.initData.size + noffH.uninitData.size 
+    + UserStackSize;	// we need to increase the size
+  
+  numPages  = divRoundUp(size, PageSize);  
+  size = numPages * PageSize;
+>>>>>>> master
   
   int size = noffH.code.size + noffH.initData.size
     + noffH.uninitData.size;
@@ -418,24 +465,32 @@ AddrSpace::initSwap(OpenFile * file, OpenFile ** swap, bool empty, int offset)
     offset += size;
     /*
     if(empty) {
+<<<<<<< HEAD
       int stacksize = size + UserStackSize;
       numPages  = divRoundUp(stacksize, PageSize);  
       size = numPages * PageSize - size;
 
       (*swap)->WriteAt(emptyStack, size, writeAddr);
       writeAddr += size;
+=======
+      (*swap)->WriteAt(emptyStack, UserStackSize, writeAddr);
+      writeAddr += UserStackSize;
+>>>>>>> master
 
     } else {
        writeAddr = mkSwap(file, *swap, UserStackSize,
 			  offset, writeAddr);
 
 
+<<<<<<< HEAD
       int stacksize = size + UserStackSize;
       numPages  = divRoundUp(stacksize, PageSize);  
       size = numPages * PageSize - size;
       (*swap)->WriteAt(emptyStack, size - UserStackSize, writeAddr);
       writeAddr += size;
 
+=======
+>>>>>>> master
     }
     */
   }
@@ -496,6 +551,15 @@ AddrSpace::ReadFile(int virtAddr, OpenFile * file, int size, int fileAddr)
   return bytesRemaining;
 }
 
+<<<<<<< HEAD
+=======
+AddrSpace::AddrSpace(PCB * p) {
+  numPages = -1;
+  pcb = p;
+  pageTable = NULL;
+}
+
+>>>>>>> master
 void
 AddrSpace::Fork(AddrSpace * a)
 {

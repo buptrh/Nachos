@@ -20,12 +20,20 @@
 
 #include "copyright.h"
 #include "utility.h"
+#include "list.h"
 
 // The following class defines an entry in a translation table -- either
 // in a page table or a TLB.  Each entry defines a mapping from one 
 // virtual page to one physical page.
 // In addition, there are some extra bits for access control (valid and 
 // read-only) and some bits for usage information (use and dirty).
+
+
+class SharedTranslationEntry {
+public:
+    int physicalPage;
+    List *sharedList;
+};
 
 class TranslationEntry {
   public:
@@ -42,6 +50,7 @@ class TranslationEntry {
 			// page is modified.
     bool inMem;         // Is the page in physical memory? - Nick 
     int stackOffset;
+    SharedTranslationEntry* sharedEntry;
 };
 
 #endif

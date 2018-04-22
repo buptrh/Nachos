@@ -56,6 +56,7 @@ struct argE {
 // as a couple of other places.
 
 typedef void (*VoidFunctionPtr)(int arg); 
+typedef void (*IntFunctionPtr)(int arg, int param); 
 typedef void (*VoidNoArgFunctionPtr)(); 
 
 

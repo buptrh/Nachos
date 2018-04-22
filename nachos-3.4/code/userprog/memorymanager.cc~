@@ -60,6 +60,13 @@ MemoryManager::getPage(int vPgNum)
 
     
     /* Clear entry */
+<<<<<<< HEAD
+=======
+    pageMap->Clear(victim);
+    //    delete coreRecord[victim];
+    coreRecord[victim] = NULL;
+
+>>>>>>> master
     /* Load entry */
     pageMap->Mark(victim);
     coreRecord[victim] = entry;
@@ -135,6 +142,7 @@ MemoryManager::writeToSwap(int vPageNum, void * ad)
   int physAddr = -1;
   AddrSpace * a = (AddrSpace *) ad;
 
+<<<<<<< HEAD
   if (a->Translate(offset, &physAddr)) {
 
     if(vPageNum == 11) {
@@ -144,6 +152,10 @@ MemoryManager::writeToSwap(int vPageNum, void * ad)
       }
       printf("\n");
     }
+=======
+
+  if (a->Translate(offset, &physAddr)) {
+>>>>>>> master
     a->swapFile->WriteAt(buf, PageSize, offset);
     
   }

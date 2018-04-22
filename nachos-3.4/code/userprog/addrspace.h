@@ -48,8 +48,7 @@ class AddrSpace {
     char name[255];
     OpenFile * swapFile;
     bool child;
-    int userReadWrite(char * buf, int virtAddr,
-		      int size, bool reading);
+    int userReadWrite(char * buf, int virtAddr, int size, bool reading);
     void sendToMem(int vAddr);
     void cpySwap(OpenFile * file, OpenFile * swap, int size, int fileAddr);
     void invalidateByVPage(int i);
@@ -59,6 +58,11 @@ class AddrSpace {
     NoffHeader noffH;
     OpenFile * exec;
     
+    void ShareVPage(AddrSpace * currentSpace, TranslationEntry& current, AddrSpace * otherSpace, TranslationEntry& other);
+    SharedTranslationEntry* CreateShareEntry();
+    static void RemoveFromSharedList(TranslationEntry* entry) ;
+    void SendSharedToMem(int vAddr);
+    void SeperateFromShared(int vAddr);
   private:
     TranslationEntry *pageTable;	// Assume linear page table translation
 					// for now!
@@ -67,5 +71,8 @@ class AddrSpace {
     bool initial;
     int inSwapFileAddr;
     int inSwapStackAddr;
+    NoffHeader noffH;
+    int pageCount;
+    OpenFile * exec;
 };
 #endif // ADDRSPACE_H
