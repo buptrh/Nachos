@@ -63,10 +63,9 @@ SwapHeader (NoffHeader *noffH)
 //	"executable" is the file containing the object code to load into memory
 //----------------------------------------------------------------------
 
-AddrSpace::AddrSpace(OpenFile *executable, bool createPCB, char * fileName)
+AddrSpace::AddrSpace(OpenFile *executable, bool createPCB, char * fileName, PCB * p)
 {
   unsigned int i, size;
-
   
   executable->ReadAt((char *)&noffH, sizeof(noffH), 0);
   if ((noffH.noffMagic != NOFFMAGIC) && 
@@ -93,16 +92,16 @@ AddrSpace::AddrSpace(OpenFile *executable, bool createPCB, char * fileName)
   DEBUG('a', "Initializing address space, num pages %d, size %d\n", 
 	numPages, size);
 
-  if(memoryManager->availablePages() < numPages) {
-    printf("Not Enough Memory\n");
-    DEBUG('a',"Over allocation has occured. Cleaning up!\n");
-    printf("Lets try swapping!\n");
-  }
+  // if(memoryManager->availablePages() < numPages) {
+  //   printf("Not Enough Memory\n");
+  //   DEBUG('a',"Over allocation has occured. Cleaning up!\n");
+  //   printf("Lets try swapping!\n");
+  // }
+  
   pageTable = new TranslationEntry[numPages];
   for (i = 0; i < numPages; i++) {
-    //printf("index is [%d]", i);
     pageTable[i].virtualPage = i;	// for now, virtual page # = phys page #
-    pageTable[i].physicalPage = -2;
+    pageTable[i].physicalPage = NOT_IN_MEM;
     
     /* With valid set to false we can now create a page fault */
     pageTable[i].valid = FALSE;
@@ -112,11 +111,11 @@ AddrSpace::AddrSpace(OpenFile *executable, bool createPCB, char * fileName)
     pageTable[i].inMem = FALSE;
   }
 
-  // printf("Loaded Program: [%d] code | [%d] data | [%d] bss\n",
-  // 	 noffH.code.size, noffH.initData.size, noffH.uninitData.size);	
-  
-  //  if (createPCB) 
-    //    bzero(machine->mainMemory, size);
+  if (createPCB) 
+    bzero(machine->mainMemory, NumPhysPages * PageSize);
+
+  if (p != NULL)
+    pcb = p;
 
   if (fileName != NULL) {
     // printf ("File is %s\n", fileName);
@@ -138,7 +137,12 @@ AddrSpace::AddrSpace(OpenFile *executable, bool createPCB, char * fileName)
 
 AddrSpace::~AddrSpace()
 {
+
   unsigned int i;
+
+  // printf("pageTable %d\n", pageTable);
+  // printf(">>>>>>>>>>>>>>>>>>>>>> Space being deallocated belongs to %d\n",
+  // 	 currentThread->space->pcb->getMyPid(), i);
 
   if (pageTable != NULL) {
     for (i = 0; i < numPages; i++) {
@@ -147,23 +151,34 @@ AddrSpace::~AddrSpace()
       if (pageTable[i].inMem == true) {
 	memoryManager->clearPage(pageTable[i].physicalPage);
       }
-      //delete pageTable[i];
-    }    
-    for (i = 0; i < numPages; i++) {
-      printf("vpn %d is %d\n", i, pageTable[i].virtualPage);
-    }  
-    if (pageTable != NULL) 
-      ;//delete pageTable;
+    }
+
+    RestoreState();
+    delete pageTable;
+    pageTable = NULL;
   }
-  //    RestoreState();
   
   if (pcb != NULL)
-    processManager->clearPid(pcb->getMyPid());
+    processManager->clearPid(pcb->getMyPid());  
   
   //delete exec;
-  //fileSystem->Remove(name);
+  //  fileSystem->Remove(name);
   delete swapFile;
 
+}
+
+void
+AddrSpace::evictPages() {
+
+  unsigned int k;
+  for (k = 0; k < numPages; k++) 
+    if (pageTable[k].inMem == true)  {
+      memoryManager->writeToSwap(pageTable[k].virtualPage, this);
+      memoryManager->clearPage(pageTable[k].physicalPage);
+    }
+	
+  delete pageTable;
+  pageTable = NULL;
 }
 
 //----------------------------------------------------------------------
@@ -225,23 +240,22 @@ void AddrSpace::RestoreState()
 void
 AddrSpace::sendToMem(int virtAddr)
 {
-  unsigned int ptIndex, pOffset;
+  unsigned int ptIndex;//, pOffset;
   ptIndex = (unsigned) virtAddr / PageSize; 
 
   inSwapFileAddr = ptIndex * PageSize;
   int totalSize = noffH.code.size + noffH.initData.size
     + noffH.uninitData.size + UserStackSize;
 
+  printf ("^^ We are putting data in %d ^^ \n", ptIndex);
   pageTable[ptIndex].physicalPage
     =  memoryManager->getPage(pageTable[ptIndex].virtualPage);
   pageTable[ptIndex].valid = TRUE;
   pageTable[ptIndex].inMem = TRUE;
 
-  int readSize;
-  int size = noffH.code.size;
-
-  readSize = min (totalSize - inSwapFileAddr, PageSize);
+  int readSize = min (totalSize - inSwapFileAddr, PageSize);
   ReadFile(inSwapFileAddr, swapFile, readSize, inSwapFileAddr);
+  
   printf("L [%d]: [%d] -> [%d]\n", pcb->getMyPid(),
 	 pageTable[ptIndex].virtualPage, pageTable[ptIndex].physicalPage); 
 
@@ -249,21 +263,39 @@ AddrSpace::sendToMem(int virtAddr)
 }
 
 void
-AddrSpace::invalidatePage(int i)
+AddrSpace::invalidateByVPage(int i)
 {
-  pageTable[i].physicalPage = -2;
-  
+  pageTable[i].physicalPage = NOT_IN_MEM;
+      
   /* With valid set to false we can now create a page fault */
   pageTable[i].valid = FALSE;
-  // pageTable[i].use = FALSE;
-  // pageTable[i].dirty = FALSE;
   pageTable[i].readOnly = FALSE; 
-  pageTable[i].inMem = FALSE;
+  pageTable[i].inMem = FALSE; 
+}
+
+void
+AddrSpace::invalidateByPhysPage(int i)
+{
+  unsigned int k ;
+  for (k = 0; k < numPages; k++) {
+    if (pageTable[k].physicalPage == i) {
+      pageTable[k].physicalPage = NOT_IN_MEM;   
+      /* With valid set to false we can now create a page fault */
+      pageTable[k].valid = FALSE;
+      pageTable[k].readOnly = FALSE; 
+      pageTable[k].inMem = FALSE;      
+    }
+  }
 }
 
 bool
 AddrSpace::Translate(int virtAddr, int * physAddr)
 {
+
+  // printf("\n\n#### PID: [%d] invoked %s\n\n\n\n",
+  //  currentThread->space->pcb->getMyPid()
+  // 	 , "TRANSLATING");
+  // printf("The virtAddr is %d", virtAddr);
   unsigned int ptIndex, pOffset;
   ptIndex = (unsigned) virtAddr / PageSize;
   pOffset = (unsigned) virtAddr % PageSize;
@@ -279,18 +311,28 @@ AddrSpace::Translate(int virtAddr, int * physAddr)
     return false;
   } else if (pageTable[ptIndex].valid == false &&  pageTable[ptIndex].inMem == true) {
     DEBUG('a', " Attempting to translate invalid page!\n");
-    printf( " Attempting to translate invalid page!\n");)
+    printf( " Attempting to translate invalid page!\n");
     return false;
   } else if (pageTable[ptIndex].physicalPage == -1) {
     DEBUG('a', "Attempting to translate when there is no frame!\n");
     printf ("Attempting to translate when there is no frame!\n");
     return false;
   }
+
+  // printf("Value of physical page is %d\n", pageTable[ptIndex].physicalPage);
+  // printf("Value of physical page offset is %d\n", pOffset);
+  //printf("phys addr = %d\n", (int) physAddr);
+
+  
   
   * physAddr = (pageTable[ptIndex].physicalPage * PageSize) + pOffset;
-  
+
+  printf("Value of physical page is %d\n", pageTable[ptIndex].physicalPage);
+  printf("Value of physical page offset is %d\n", pOffset);
+  printf("phys addr value = %d\n", (pageTable[ptIndex].physicalPage * PageSize) + pOffset);
   DEBUG('a', "phys addr = 0x%x\n",     physAddr);
   DEBUG('a', "phys addr = %d\n", (int) physAddr);
+  // printf("phys frame = %d\n", ((int) physAddr ) / PageSize);
   
   if( ((int)*physAddr < 0) || (int)*physAddr > MemorySize ) {
     DEBUG('a', "Translation results in a location outside of memory!\n");
@@ -309,10 +351,13 @@ AddrSpace::initSwap(OpenFile * file, OpenFile ** swap, bool empty, int offset)
   int r = Random();
   int writeAddr = 0;
   char * emptyStack = new char[UserStackSize*2];
+  
   if (empty)
     bzero (emptyStack, UserStackSize*2);
-  
-  sprintf(swapName, "swap_%d", r);
+
+  //  if (empty)
+  sprintf(swapName, "swap_%d_%d", pcb->getMyPid(), r);
+
   int size = noffH.code.size + noffH.initData.size + noffH.uninitData.size 
     + UserStackSize;	// we need to increase the size
   
@@ -346,15 +391,12 @@ AddrSpace::initSwap(OpenFile * file, OpenFile ** swap, bool empty, int offset)
     if(empty) {
       (*swap)->WriteAt(emptyStack, UserStackSize, writeAddr);
       writeAddr += UserStackSize;
-      (*swap)->WriteAt(emptyStack, (size - writeAddr), writeAddr);
-      writeAddr += (size - writeAddr);
+
     } else {
        writeAddr = mkSwap(file, *swap, UserStackSize,
 			  offset, writeAddr);
 
-       writeAddr = mkSwap(file, *swap, (size - writeAddr),
-			  offset, writeAddr);
-       writeAddr += UserStackSize;
+
     }
   }
 
@@ -424,9 +466,9 @@ AddrSpace::ReadFile(int virtAddr, OpenFile * file, int size, int fileAddr)
   return bytesRemaining;
 }
 
-AddrSpace::AddrSpace() {
+AddrSpace::AddrSpace(PCB * p) {
   numPages = -1;
-  pcb = NULL;
+  pcb = p;
   pageTable = NULL;
 }
 
@@ -452,7 +494,7 @@ AddrSpace::Fork(AddrSpace * a)
   
   for (i = 0; i < numPages; i++) {
     fpageTable[i].virtualPage  = i;	
-    fpageTable[i].physicalPage = -1;
+    fpageTable[i].physicalPage = NOT_IN_MEM;
     fpageTable[i].valid    = FALSE;
     fpageTable[i].use      = pageTable[i].use; //FALSE;
     fpageTable[i].dirty    = pageTable[i].dirty; //FALSE;
@@ -463,8 +505,8 @@ AddrSpace::Fork(AddrSpace * a)
     DEBUG('a', "POPULATE ATTRIBUTES HERE\n");
   }
 
-  int totalSize = noffH.code.size + noffH.initData.size
-    + noffH.uninitData.size + UserStackSize;
+  // int totalSize = noffH.code.size + noffH.initData.size
+  //   + noffH.uninitData.size + UserStackSize;
   
   
   a->pageTable = fpageTable;
@@ -472,7 +514,6 @@ AddrSpace::Fork(AddrSpace * a)
   //  a->swapFile = swapFile;
   a->noffH = noffH;
   a->initSwap(swapFile, &a->swapFile, false, 0);
-
 }
 
 int
