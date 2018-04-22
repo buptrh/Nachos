@@ -170,7 +170,7 @@ ExceptionHandler(ExceptionType which)
       DEBUG('a', "PageFaultException, begin to rectify fault!\n");
       // //      printf("PageFaultException, begin to rectify fault!\n");
       // printf("Addrspace %s caused the fault!\n", currentThread->space->name);
-      // printf("BadVAddr was %d\n", vAddr);
+      printf("++++++++++++++ BadVAddr was %d\n", vAddr);
       
       // OpenFile * swapFile = NULL;
       // swapFile = fileSystem->Open(currentThread->space->name);

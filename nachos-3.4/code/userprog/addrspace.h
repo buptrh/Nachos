@@ -47,6 +47,7 @@ class AddrSpace {
     PCB* pcb;
     char name[255];
     OpenFile * swapFile;
+    bool child;
     int userReadWrite(char * buf, int virtAddr,
 		      int size, bool reading);
     void sendToMem(int vAddr);
@@ -54,15 +55,17 @@ class AddrSpace {
     void invalidateByVPage(int i);
     void invalidateByPhysPage(int i);
     void evictPages();
+    void appendSwap(int virtAddr);
+    NoffHeader noffH;
+    OpenFile * exec;
     
   private:
     TranslationEntry *pageTable;	// Assume linear page table translation
 					// for now!
     unsigned int numPages;		// Number of pages in the virtual 
 					// address space
-    NoffHeader noffH;
-    int pageCount;
+    bool initial;
     int inSwapFileAddr;
-    OpenFile * exec;
+    int inSwapStackAddr;
 };
 #endif // ADDRSPACE_H

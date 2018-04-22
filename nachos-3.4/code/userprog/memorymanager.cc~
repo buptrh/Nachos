@@ -34,13 +34,9 @@ MemoryManager::getPage(int vPgNum)
   entry->allocated = true;
   entry->vPageNum = vPgNum; // Need to get virt page num here
   entry->a = (void *) currentThread->space;
-  // bcopy(currentThread->space->name, entry->addrName, 255);
   entry->fifoNum = fifoTracker; 
 
   /* Increment the tracker for the next page */
-  //  fifoTracker++;
-
-  
   if (candidatePage != NO_FREE_PAGE) {
     
     if (coreRecord[candidatePage] == NULL) 
@@ -50,8 +46,6 @@ MemoryManager::getPage(int vPgNum)
 
     bzero(machine->mainMemory + (candidatePage * PageSize), PageSize);   
   } else {
-    // Open a backing store (consider addrName-backingstore-pid[NUM])
-    //int victim = findOldestEntry();
     if (fifoTracker == NumPhysPages) 
            fifoTracker = 0;
           
@@ -66,9 +60,6 @@ MemoryManager::getPage(int vPgNum)
 
     
     /* Clear entry */
-    pageMap->Clear(victim);
-    coreRecord[victim] = NULL;
-
     /* Load entry */
     pageMap->Mark(victim);
     coreRecord[victim] = entry;
@@ -115,10 +106,10 @@ MemoryManager::clearPage(int i)
   IntStatus oldLevel = interrupt->SetLevel(IntOff);
   if(pageMap->Test(i) && coreRecord[i] != NULL) {
     printf("E [%d]: [%d]\n",
-	   currentThread->space->pcb->getMyPid(), i);
+    	   currentThread->space->pcb->getMyPid(), i);
     
     pageMap->Clear(i);
-    ((AddrSpace *) coreRecord[i]->a)->invalidatePage(i);    
+    ((AddrSpace *) coreRecord[i]->a)->invalidateByPhysPage(i);    
     coreRecord[i] = NULL;
     bzero(machine->mainMemory + (i * PageSize), PageSize);
     
@@ -135,6 +126,31 @@ MemoryManager::availablePages()
 }
 
 void
+MemoryManager::writeToSwap(int vPageNum, void * ad)
+{
+  IntStatus oldLevel = interrupt->SetLevel(IntOff);
+  
+  int offset = vPageNum * PageSize;
+  char * buf = new char[PageSize];
+  int physAddr = -1;
+  AddrSpace * a = (AddrSpace *) ad;
+
+  if (a->Translate(offset, &physAddr)) {
+
+    if(vPageNum == 11) {
+      printf("writeToSwap.  write to page 11. OpenFile Pointer %d:\n", (int)a->swapFile);
+      for(int i = 0; i < 128; i += 4) {
+        printf("%d ", machine->mainMemory[physAddr+i]);
+      }
+      printf("\n");
+    }
+    a->swapFile->WriteAt(buf, PageSize, offset);
+    
+  }
+  (void) interrupt->SetLevel(oldLevel);
+}
+
+void
 MemoryManager::sendToSwap(int vPageNum, void * ad)
 {
   IntStatus oldLevel = interrupt->SetLevel(IntOff);
@@ -143,17 +159,40 @@ MemoryManager::sendToSwap(int vPageNum, void * ad)
   char * buf = new char[PageSize];
   int physAddr = -1;
   AddrSpace * a = (AddrSpace *) ad;
-  
+
+  printf("!@#@#@%Before if we are trying to translate vpn %d\n", vPageNum);
   if (a->Translate(offset, &physAddr)) {
     printf("Swapping out %d\n", physAddr / PageSize);
 
+    if(vPageNum == 11) {
+      printf("sendToSwap.  write to page 11. OpenFile Pointer %d:\n", (int)a->swapFile);
+      for(int i = 0; i < 128; i += 4) {
+        printf("%d ", machine->mainMemory[physAddr+i]);
+      }
+      printf("\n");
+    }
     
     bcopy (machine->mainMemory + physAddr, buf, PageSize);
-    a->invalidatePage(vPageNum);    
+    a->invalidateByVPage(vPageNum);    
     a->swapFile->WriteAt(buf, PageSize, offset);
+
+
+    a->swapFile->ReadAt(buf, PageSize, offset);
+
+    if(vPageNum == 11) {
+      printf("!!!sendToSwap.  READ to page 11. OpenFile Pointer %d:\n", (int)a->swapFile);
+      for(int i = 0; i < 128; i += 4) {
+        printf("%d ", buf[i]);
+      }
+      printf("\n");
+    }
     
     printf("&&&&&&&&\n");
   }
+    pageMap->Clear(physAddr / PageSize);
+    //    delete coreRecord[victim];
+    coreRecord[physAddr / PageSize] = NULL;
+
 
   (void) interrupt->SetLevel(oldLevel);
 }

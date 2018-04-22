@@ -156,7 +156,13 @@ int
 OpenForWrite(char *name)
 {
     int fd = open(name, O_RDWR|O_CREAT|O_TRUNC, 0666);
-
+    
+    if(fd < 0) {
+      printf("open file failed: %s", name);
+    }
+    if(fd < 0) {
+      printf("Open file failed code = %d\n", fd);
+    }
     ASSERT(fd >= 0); 
     return fd;
 }
@@ -173,6 +179,9 @@ int
 OpenForReadWrite(char *name, bool crashOnError)
 {
     int fd = open(name, O_RDWR, 0);
+    if(fd < 0) {
+      printf("open file failed: %s", name);
+    }
 
     ASSERT(!crashOnError || fd >= 0);
     return fd;

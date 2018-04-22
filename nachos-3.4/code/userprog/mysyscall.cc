@@ -12,8 +12,8 @@ void ForkThreadToRun(int param) {
 void MyFork()
 {
   printf("System Call: [%d] invoked %s\n",
-   currentThread->space->pcb->getMyPid()
-   , "Fork");
+	 currentThread->space->pcb->getMyPid()
+	 , "Fork");
   // 1.
   //  return;
 
@@ -21,7 +21,7 @@ void MyFork()
   Thread * child =  new Thread("myFork");
   child->space = new AddrSpace(processManager
     ->createPCB(currentThread->space->pcb->
-    getMyPid(), child, true));
+		getMyPid(), child, true));
   currentThread->space->Fork(child->space);
 
   // if (child->space->GetNumPages() == -1) {
@@ -44,7 +44,7 @@ void MyFork()
   child->SaveUserState();
 
   printf("Process [%d] Fork: start at address [0x%04X] with [%d] pages memory\n",
-   currentThread->space->pcb->getMyPid(), func, child->space->GetNumPages());
+	 currentThread->space->pcb->getMyPid(), func, child->space->GetNumPages());
   
   // 7.  
   child->Fork(ForkThreadToRun, 0);
@@ -60,18 +60,18 @@ void MyFork()
 
 void MyYield() {
   printf("System Call: [%d] invoked %s\n",
-     currentThread->space->pcb->getMyPid() , "Yield");
+  	 currentThread->space->pcb->getMyPid() , "Yield");
   currentThread->Yield();
 }
 
 void MyExit() {
   printf("System Call: [%d] invoked %s\n",
-   currentThread->space->pcb->getMyPid()
-   , "Exit");
+	 currentThread->space->pcb->getMyPid()
+	 , "Exit");
   int exitCode = machine->ReadRegister(4);
   printf("Process [%d] exits with [%d]\n",
-   currentThread->space->pcb->getMyPid()
-   , exitCode );
+	 currentThread->space->pcb->getMyPid()
+	 , exitCode );
 
   
   //processManager->endProcess(currentThread->space->pcb->getMyPid());
@@ -81,7 +81,7 @@ void MyExit() {
 
 void MyJoin() {
   printf("System Call: [%d] invoked %s\n",
-     currentThread->space->pcb->getMyPid() , "Join");
+  	 currentThread->space->pcb->getMyPid() , "Join");
   int pid = machine->ReadRegister(4);
   // printf("B4 while\n");
   
@@ -98,16 +98,16 @@ void MyJoin() {
 
 void MyKill() {
   printf("System Call: [%d] invoked %s\n",
-     currentThread->space->pcb->getMyPid() , "Kill");
+  	 currentThread->space->pcb->getMyPid() , "Kill");
   int pid = machine->ReadRegister(4);
 
   if(processManager->getPCB(pid) == NULL) {
     printf("Process [%d] cannont kill process [%d]: doesn't exist\n"
-     ,currentThread->space->pcb->getMyPid(), pid);
+	   ,currentThread->space->pcb->getMyPid(), pid);
     return;
   }
   printf("Process [%d] killed process [%d]\n"
-     ,currentThread->space->pcb->getMyPid(), pid);
+	   ,currentThread->space->pcb->getMyPid(), pid);
   if(pid == currentThread->space->pcb->getMyPid()) {
     MyExit();
     return;
@@ -126,7 +126,7 @@ void LoadExecFromMem (int addr, int size, int *value, AddrSpace * a)
   int physAddr = -1;
   // if( a->Translate(addr, &physAddr) ) {
   //   DEBUG ('a', " addr is %d with physAddr %d\n"
-  //     , addr, physAddr);
+  // 	   , addr, physAddr);
   //     data = machine->mainMemory[physAddr];
   //     *value = data;
   //   }
@@ -150,7 +150,7 @@ void MyExec() {
   int i = 0;
   for (i = 0 ; true ; i++) {
     LoadExecFromMem(addr + i, 1, (int*)(fileName + i),
-        currentThread->space);
+		    currentThread->space);
     printf("filename i %d is %c\n", i, fileName[i]);
     if(fileName[i] == '\0') 
       break;
@@ -174,7 +174,7 @@ void MyExec() {
 
   //currentThread->space->swapFile = temp;
   printf("Exec Program: [%d] loading [%s]\n",
-   currentThread->space->pcb->getMyPid(), fileName);
+	 currentThread->space->pcb->getMyPid(), fileName);
 
 
   
@@ -200,7 +200,7 @@ void MyCreate()
   int i = 0;
   for (i = 0 ; true ; i++) {
     LoadExecFromMem(addr + i, 1, (int*)(fileName + i),
-        currentThread->space);
+		    currentThread->space);
     if(fileName[i] == '\0') 
       break;
   }
@@ -209,7 +209,7 @@ void MyCreate()
   success = fileSystem->Create(fileName, 0);
 
   DEBUG('a', "Creation of file %s was a %s", fileName
-   , success ? "Success!\n" : "Failure!\n");
+	 , success ? "Success!\n" : "Failure!\n");
 }
 
 void MyOpen()
@@ -250,7 +250,7 @@ void MyOpen()
   }
 
   DEBUG('a', "Opening of file %s was a %s", fileName
-   , fileId != -1 ? "Success!\n" : "Failure!\n");
+	 , fileId != -1 ? "Success!\n" : "Failure!\n");
 }
 
 void MyWrite()
@@ -271,7 +271,7 @@ void MyWrite()
   int i = 0;
   for (i = 0 ; true ; i++) {
     LoadExecFromMem(bufAddr + i, 0, (int*)(suppliedBuf + i),
-        currentThread->space);
+		    currentThread->space);
     if(suppliedBuf[i] == '\0') 
       break;
   }
@@ -326,10 +326,10 @@ void MyRead()
       myOwnBuf[i] = getchar();
 
     DEBUG('a', "Read this from consoleInput %s\n"
-     , myOwnBuf);
+	   , myOwnBuf);
     int k = currentThread
       ->space->userReadWrite(myOwnBuf, bufAddr, size, true);
-    // printf("Contents read are %s\n", myOwnBuf);          
+    // printf("Contents read are %s\n", myOwnBuf);					
     machine->WriteRegister(2, k);  
     return;
   }
@@ -383,5 +383,5 @@ void MyClose()
   int ret = processManager->rmFile(pid, fId);
 
   DEBUG('a', "Closing of file %d was a %s", fId 
-   , ret != -1 ? "Success!\n" : "Failure!\n");
+	 , ret != -1 ? "Success!\n" : "Failure!\n");
 }

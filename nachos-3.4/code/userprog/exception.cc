@@ -162,24 +162,11 @@ ExceptionHandler(ExceptionType which)
       
       incProgCounter();
     } else if (which == PageFaultException) {
-      /* Stage 3: */
-      /* Save the faulting virtual address in reg to be used by 
-	 kernel to handle the exception */
-      /* This is done in RaiseException BadVAddrReg */
       int vAddr = machine->ReadRegister(BadVAddrReg);
       DEBUG('a', "PageFaultException, begin to rectify fault!\n");
-      // //      printf("PageFaultException, begin to rectify fault!\n");
-      // printf("Addrspace %s caused the fault!\n", currentThread->space->name);
       printf("++++++++++++++ BadVAddr was %d\n", vAddr);
       
-      // OpenFile * swapFile = NULL;
-      // swapFile = fileSystem->Open(currentThread->space->name);
-      // if (swapFile != NULL) {
-
-      // }
       currentThread->space->sendToMem(vAddr);
-
-      //      decProgCounter();
     } else {
       printf("Unexpected user mode exception %d %d\n", which, type);
       ASSERT(FALSE);
