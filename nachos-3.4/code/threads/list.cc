@@ -289,6 +289,9 @@ List::RemoveByKey(int key)
        if (key == (int) ptr->next->item) {
 
     	 tmp = ptr->next;
+       if(last == ptr->next) {
+          last = ptr;
+       }
     	 ptr->next = ptr->next->next;
     	 return tmp->item;
 
@@ -302,7 +305,7 @@ List::RemoveByKey(int key)
 void
 List::PrintList()
 {
-  printf("START PrintList\n");
+  printf("START PrintList: %d\n", (int)this);
 
    ListElement * ptr;
   for (ptr = first; ptr != NULL; ptr = ptr->next) {

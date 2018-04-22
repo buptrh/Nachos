@@ -155,7 +155,7 @@ AddrSpace::~AddrSpace()
     for (i = 0; i < numPages; i++) {
       //      pageTable[i].valid = FALSE;
       if(pageTable[i].sharedEntry != NULL) {
-         RemoveFromSharedList(&pageTable[i]);
+        RemoveFromSharedList(&pageTable[i]);
       } else if (pageTable[i].inMem == true) {
 	       memoryManager->clearPage(pageTable[i].physicalPage);
       }
@@ -181,7 +181,7 @@ AddrSpace::evictPages() {
   unsigned int k;
   for (k = 0; k < numPages; k++) 
     if(pageTable[k].sharedEntry != NULL) {
-         RemoveFromSharedList(&pageTable[k]);
+        RemoveFromSharedList(&pageTable[k]);
     } else if (pageTable[k].inMem == true)  {
       memoryManager->writeToSwap(pageTable[k].virtualPage, this);
       memoryManager->clearPage(pageTable[k].physicalPage);
@@ -270,16 +270,8 @@ AddrSpace::sendToMem(int virtAddr)
   printf("L [%d]: [%d] -> [%d]\n", pcb->getMyPid(),
 	 pageTable[ptIndex].virtualPage, pageTable[ptIndex].physicalPage); 
 
-
-  if(ptIndex == 11) {
-    printf("sendToMem.  read to page 11. OpenFile Pointer %d:\n", (int)swapFile);
-    for(int i = 0; i < 128; i += 4) {
-      printf("%d ", machine->mainMemory[pageTable[ptIndex].physicalPage*PageSize+i]);
-    }
-    printf("\n");
-  }
-
   if(pageTable[ptIndex].sharedEntry != NULL) {
+    pageTable[ptIndex].sharedEntry->physicalPage = pageTable[ptIndex].physicalPage;
     pageTable[ptIndex].readOnly = TRUE;
     SendSharedToMem(ptIndex);
   }
@@ -308,7 +300,7 @@ AddrSpace::invalidateByPhysPage(int i)
   for (k = 0; k < numPages; k++) {
     if (pageTable[k].physicalPage == i) {
       if(pageTable[i].sharedEntry != NULL) {
-         RemoveFromSharedList(&pageTable[i]);
+         continue;
       }
       pageTable[k].physicalPage = NOT_IN_MEM;   
       /* With valid set to false we can now create a page fault */
@@ -611,13 +603,17 @@ int AddrSpace::GetNumPages() {
 void AddrSpace::ShareVPage(AddrSpace * currentSpace, TranslationEntry& current, AddrSpace * otherSpace, TranslationEntry& other) {
   if(other.sharedEntry == NULL) {
     other.sharedEntry = CreateShareEntry();
+    printf("CreateShareEntry append: trans: %d, shared: %d\n", (int)&other, (int)other.sharedEntry);
     other.sharedEntry->sharedList->Append((void *) &other);
     other.readOnly = TRUE; 
   }
 
   current.sharedEntry = other.sharedEntry;
   current.sharedEntry->sharedList->Append((void *) &current);
+  printf("ShareVPage append: trans: %d, shared: %d\n", (int)&current, (int)current.sharedEntry);
   current.readOnly = TRUE;
+
+  current.sharedEntry->sharedList->PrintList();
 
 }
 
@@ -635,6 +631,7 @@ RemoveFromShared(int entryPointer)
 }
 
 void AddrSpace::RemoveFromSharedList(TranslationEntry* entry) {
+    printf("RemoveFromSharedList. shared: %d, entry: %d\n", (int)entry->sharedEntry, (int)entry);
   if(entry->sharedEntry == NULL) {
     printf("Error in SeperateFromShared: sharedEntry empty");
     ASSERT(FALSE);
@@ -643,12 +640,16 @@ void AddrSpace::RemoveFromSharedList(TranslationEntry* entry) {
   entry->sharedEntry->sharedList->PrintList();
   TranslationEntry* deleted = (TranslationEntry*) entry->sharedEntry->sharedList->RemoveByKey((int)entry);
   if(deleted != entry) {
-    printf("!!error: RemoveFromSharedList  removed wrong space. entry: %d, deleted: %d\n", (int)entry, (int)deleted);
-    // ASSERT(FALSE);
+    printf("!!error: RemoveFromSharedList  removed wrong space. shared: %d, entry: %d, deleted: %d\n", (int)entry->sharedEntry, (int)entry, (int)deleted);
+    ASSERT(FALSE);
 
     return;
   }
   if(entry->sharedEntry->sharedList->IsEmpty()) {
+    printf("delete sharedEntry: %d\n", entry->sharedEntry);
+    if(entry->sharedEntry->physicalPage >= 0) {
+      memoryManager->clearPage(entry->sharedEntry->physicalPage);
+    }
     delete entry->sharedEntry;
   } else if(entry->sharedEntry->sharedList->isSingleton()) {
     //delete shared entry
@@ -656,6 +657,12 @@ void AddrSpace::RemoveFromSharedList(TranslationEntry* entry) {
   }
   entry->sharedEntry = NULL;
   entry->readOnly = FALSE;
+  entry->physicalPage = NOT_IN_MEM;
+      
+  /* With valid set to false we can now create a page fault */
+  entry->valid = FALSE;
+  entry->readOnly = FALSE; 
+  entry->inMem = FALSE; 
 }
 
 
