@@ -41,6 +41,14 @@ class TranslationEntry {
     bool dirty;         // This bit is set by the hardware every time the
 			// page is modified.
     bool inMem;         // Is the page in physical memory? - Nick 
+    SharedTranslationEntry* sharedEntry;
 };
+
+
+class SharedTranslationEntry {
+public:
+    int physicalPage;
+    List *sharedList;
+}
 
 #endif

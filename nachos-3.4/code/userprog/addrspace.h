@@ -62,7 +62,6 @@ class AddrSpace {
 					// address space
     NoffHeader noffH;
     int pageCount;
-    int inSwapFileAddr;
     OpenFile * exec;
 };
 #endif // ADDRSPACE_H
