@@ -90,8 +90,8 @@ AddrSpace::AddrSpace(OpenFile *executable, bool createPCB, char * fileName, PCB 
   numPages  = divRoundUp(size, PageSize);  
   size = numPages * PageSize;
 
-  printf("The size is [%d]\n", size);
-  printf("Pages needed [%d]\n", numPages);
+  // printf("The size is [%d]\n", size);
+  // printf("Pages needed [%d]\n", numPages);
 
 
   if (createPCB)
@@ -268,29 +268,29 @@ AddrSpace::appendSwap(int virtAddr) {
   char * emptyStack = new char[PageSize];
   bzero(emptyStack, PageSize);
   
-  printf("+=+ code + data size %d\n",  noffH.code.size
-	 + noffH.initData.size + noffH.uninitData.size);
-  printf("______ inSwapStackAddr %d \n", inSwapStackAddr);
+  // printf("+=+ code + data size %d\n",  noffH.code.size
+	 // + noffH.initData.size + noffH.uninitData.size);
+  // printf("______ inSwapStackAddr %d \n", inSwapStackAddr);
   if ( (inSwapStackAddr + PageSize) > totalSize) 
     fixAlign = totalSize - inSwapStackAddr;
   
   if (pageTable[ptIndex].stackOffset == -1) {
 
     if (child) {
-      printf("CHILD addr we write at for stack %d\n", inSwapStackAddr);
-      printf("CHILD Writing this many %d\n", PageSize - fixAlign);
+      // printf("CHILD addr we write at for stack %d\n", inSwapStackAddr);
+      // printf("CHILD Writing this many %d\n", PageSize - fixAlign);
       inSwapStackAddr = mkSwap(exec, swapFile, PageSize - fixAlign,
 			       inSwapStackAddr, inSwapStackAddr);
     } else {
       
-      printf("addr we write at for stack %d\n", inSwapStackAddr);
-      printf("Writing this many %d\n", PageSize - fixAlign);
-      printf("fixAlign %d \n", fixAlign);
-      printf("Total page size %d \n", totalSize);
+      // printf("addr we write at for stack %d\n", inSwapStackAddr);
+      // printf("Writing this many %d\n", PageSize - fixAlign);
+      // printf("fixAlign %d \n", fixAlign);
+      // printf("Total page size %d \n", totalSize);
       
       swapFile->WriteAt(emptyStack, PageSize - fixAlign, inSwapStackAddr);
       inSwapStackAddr += PageSize - fixAlign;
-      printf("inSwapStackAddr %d \n", inSwapStackAddr);
+      // printf("inSwapStackAddr %d \n", inSwapStackAddr);
     }
   }
   delete emptyStack;
@@ -309,8 +309,8 @@ AddrSpace::sendToMem(int virtAddr)
     + noffH.uninitData.size + UserStackSize;
 
 
-  printf("Process [%d] inSwapFileAddr is %d\n",
-	 currentThread->space->pcb->getMyPid(), inSwapFileAddr);
+  // printf("Process [%d] inSwapFileAddr is %d\n",
+	 // currentThread->space->pcb->getMyPid(), inSwapFileAddr);
   
   if (virtAddr >= noffH.code.size
       + noffH.initData.size + noffH.uninitData.size) {
@@ -324,7 +324,7 @@ AddrSpace::sendToMem(int virtAddr)
     if (temp == -1 || initial) {
       appendSwap(virtAddr); 
       pageTable[ptIndex].stackOffset = inSwapStackAddr;
-      printf("stackOffset saved is %d\n",  pageTable[ptIndex].stackOffset); 
+      // printf("stackOffset saved is %d\n",  pageTable[ptIndex].stackOffset); 
       
       printf("Z [%d]: [%d]\n",
 	     pcb->getMyPid(), pageTable[ptIndex].virtualPage); 
@@ -337,7 +337,7 @@ AddrSpace::sendToMem(int virtAddr)
     pageTable[ptIndex].inMem = TRUE;
 
     if (temp != -1 && !initial) {
-      printf("(((((((((GetPage is %d\n ", pageTable[ptIndex].physicalPage);
+      // printf("(((((((((GetPage is %d\n ", pageTable[ptIndex].physicalPage);
       
       ReadFile(inSwapFileAddr, swapFile, PageSize - fixAlign, inSwapStackAddr);
       //      printf("ERROR ERROR EXECUTION FLOWS HERE ON PARENT\n");
@@ -363,7 +363,7 @@ AddrSpace::sendToMem(int virtAddr)
   }
 
     ReadFile(inSwapFileAddr, swapFile, PageSize, inSwapFileAddr);
-    printf("GetPage assigned %d\n",  pageTable[ptIndex].physicalPage);
+    // printf("GetPage assigned %d\n",  pageTable[ptIndex].physicalPage);
     
     printf("L [%d]: [%d] -> [%d]\n", pcb->getMyPid(),
 	 pageTable[ptIndex].virtualPage, pageTable[ptIndex].physicalPage); 
@@ -416,7 +416,7 @@ AddrSpace::Translate(int virtAddr, int * physAddr)
   if (ptIndex >= numPages) {
     DEBUG('a', "Virtual Page # %d too large for page table size %d!\n",
 	  virtAddr, numPages);
-    printf( "Virtual Page # %d too large for page table size %d!\n",
+    printf( "Virtual Page # %d tofo large for page table size %d!\n",
 	  virtAddr, numPages);
     return false;
   } else if (pageTable[ptIndex].valid == false &&  pageTable[ptIndex].inMem == true) {
@@ -430,11 +430,11 @@ AddrSpace::Translate(int virtAddr, int * physAddr)
   }
   
   * physAddr = (pageTable[ptIndex].physicalPage * PageSize) + pOffset;
-  printf("ptIndex is %d\n", ptIndex);
+  // printf("ptIndex is %d\n", ptIndex);
   
-  printf("Value of physical page is %d\n", pageTable[ptIndex].physicalPage);
-  printf("Value of physical page offset is %d\n", pOffset);
-  printf("phys addr value = %d\n", (pageTable[ptIndex].physicalPage * PageSize) + pOffset);
+  // printf("Value of physical page is %d\n", pageTable[ptIndex].physicalPage);
+  // printf("Value of physical page offset is %d\n", pOffset);
+  // printf("phys addr value = %d\n", (pageTable[ptIndex].physicalPage * PageSize) + pOffset);
   DEBUG('a', "phys addr = 0x%x\n",     physAddr);
   DEBUG('a', "phys addr = %d\n", (int) physAddr);
   // printf("phys frame = %d\n", ((int) physAddr ) / PageSize);
@@ -656,17 +656,17 @@ int AddrSpace::GetNumPages() {
 void AddrSpace::ShareVPage(AddrSpace * currentSpace, TranslationEntry& current, AddrSpace * otherSpace, TranslationEntry& other) {
   if(other.sharedEntry == NULL) {
     other.sharedEntry = CreateShareEntry();
-    printf("CreateShareEntry append: trans: %d, shared: %d\n", (int)&other, (int)other.sharedEntry);
+    // printf("CreateShareEntry append: trans: %d, shared: %d\n", (int)&other, (int)other.sharedEntry);
     other.sharedEntry->sharedList->Append((void *) &other);
     other.readOnly = TRUE; 
   }
 
   current.sharedEntry = other.sharedEntry;
   current.sharedEntry->sharedList->Append((void *) &current);
-  printf("ShareVPage append: trans: %d, shared: %d\n", (int)&current, (int)current.sharedEntry);
+  // printf("ShareVPage append: trans: %d, shared: %d\n", (int)&current, (int)current.sharedEntry);
   current.readOnly = TRUE;
 
-  current.sharedEntry->sharedList->PrintList();
+  // current.sharedEntry->sharedList->PrintList();
 
 }
 
@@ -684,25 +684,21 @@ RemoveFromShared(int entryPointer)
 }
 
 void AddrSpace::RemoveFromSharedList(TranslationEntry* entry) {
-    printf("RemoveFromSharedList. shared: %d, entry: %d\n", (int)entry->sharedEntry, (int)entry);
+    // printf("RemoveFromSharedList. shared: %d, entry: %d\n", (int)entry->sharedEntry, (int)entry);
   if(entry->sharedEntry == NULL) {
-    printf("Error in SeperateFromShared: sharedEntry empty");
-    ASSERT(FALSE);
+    // printf("Error in SeperateFromShared: sharedEntry empty");
+    // ASSERT(FALSE);
     return;
   }
-  entry->sharedEntry->sharedList->PrintList();
+  // entry->sharedEntry->sharedList->PrintList();
   TranslationEntry* deleted = (TranslationEntry*) entry->sharedEntry->sharedList->RemoveByKey((int)entry);
   if(deleted != entry) {
-    printf("!!error: RemoveFromSharedList  removed wrong space. shared: %d, entry: %d, deleted: %d\n", (int)entry->sharedEntry, (int)entry, (int)deleted);
-    ASSERT(FALSE);
+    // printf("!!error: RemoveFromSharedList  removed wrong space. shared: %d, entry: %d, deleted: %d\n", (int)entry->sharedEntry, (int)entry, (int)deleted);
+    // ASSERT(FALSE);
 
     return;
   }
   if(entry->sharedEntry->sharedList->IsEmpty()) {
-    printf("delete sharedEntry: %d\n", entry->sharedEntry);
-    // if(entry->sharedEntry->physicalPage >= 0 && entry->inMem && entry->valid ) {
-      // memoryManager->clearPage(entry->sharedEntry->physicalPage);
-    // }
     delete entry->sharedEntry;
   } else if(entry->sharedEntry->sharedList->isSingleton()) {
     //delete shared entry
@@ -737,8 +733,8 @@ void AddrSpace::SeperateFromShared(int vAddr) {
 
   int vPage = vAddr / PageSize;
   if(pageTable[vPage].sharedEntry == NULL) {
-    printf("Error in SeperateFromShared: sharedEntry empty");
-    ASSERT(FALSE);
+    // printf("Error in SeperateFromShared: sharedEntry empty");
+    // ASSERT(FALSE);
     return;
   }
   RemoveFromSharedList(&pageTable[vPage]);

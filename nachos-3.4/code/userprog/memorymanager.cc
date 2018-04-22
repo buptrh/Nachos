@@ -159,7 +159,7 @@ MemoryManager::sendToSwap(int vPageNum, void * ad)
   int physAddr = -1;
   AddrSpace * a = (AddrSpace *) ad;
 
-  printf("!@#@#@%Before if we are trying to translate vpn %d\n", vPageNum);
+  // printf("!@#@#@%Before if we are trying to translate vpn %d\n", vPageNum);
   if (a->Translate(offset, &physAddr)) {
     int i = 0;
     for ( ; i < NumPhysPages ; i++) {

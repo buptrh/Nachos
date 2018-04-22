@@ -262,16 +262,13 @@ List::SortedRemove(int *keyPtr)
 void *
 List::RemoveByKey(int key)
 {
-      printf("START RemoveByKey. key: %d\n", key);
   ListElement * ptr;
   ListElement * tmp;
 
    if (IsEmpty()) 	{// if list is empty, put
-      printf("empty list\n");
      return NULL;
    }
    else if (key == (int) first->item) {
-      printf("RemoveByKey. key: %d, first: %d, last: %d\n", key, first->item, last->item);
 
      if (first == last) {
        tmp = first;
@@ -285,7 +282,6 @@ List::RemoveByKey(int key)
      }
    } else {
      for (ptr = first; ptr->next != NULL; ptr = ptr->next) {
-      printf("RemoveByKey. key: %d, try: %d\n", key, ptr->next->item);
        if (key == (int) ptr->next->item) {
 
     	 tmp = ptr->next;
@@ -298,7 +294,6 @@ List::RemoveByKey(int key)
        }
      }
    }
-      printf("END RemoveByKey\n");
   return NULL;
 }
 

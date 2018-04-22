@@ -164,7 +164,8 @@ ExceptionHandler(ExceptionType which)
     } else if (which == PageFaultException) {
       int vAddr = machine->ReadRegister(BadVAddrReg);
       DEBUG('a', "PageFaultException, begin to rectify fault!\n");
-      printf("++++++++++++++ BadVAddr was %d\n", vAddr);
+      // printf("++++++++++++++ BadVAddr was %d\n", vAddr);
+      // printf("PageFaultException, Invoked!\n");
       
       currentThread->space->sendToMem(vAddr);
 
@@ -175,10 +176,10 @@ ExceptionHandler(ExceptionType which)
    kernel to handle the exception */
       /* This is done in RaiseException BadVAddrReg */
       int vAddr = machine->ReadRegister(BadVAddrReg);
-      printf("ReadOnlyException, Invoke!\n");
+      // printf("ReadOnlyException, Invoked!\n");
       // //      printf("PageFaultException, begin to rectify fault!\n");
       // printf("Addrspace %s caused the fault!\n", currentThread->space->name);
-      printf("++++++++++++++ BadVAddr was %d\n", vAddr);
+      // printf("++++++++++++++ BadVAddr was %d\n", vAddr);
       
       // OpenFile * swapFile = NULL;
       // swapFile = fileSystem->Open(currentThread->space->name);
