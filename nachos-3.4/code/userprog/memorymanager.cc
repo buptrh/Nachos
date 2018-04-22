@@ -136,14 +136,6 @@ MemoryManager::writeToSwap(int vPageNum, void * ad)
   AddrSpace * a = (AddrSpace *) ad;
 
   if (a->Translate(offset, &physAddr)) {
-
-    if(vPageNum == 11) {
-      printf("writeToSwap.  write to page 11. OpenFile Pointer %d:\n", (int)a->swapFile);
-      for(int i = 0; i < 128; i += 4) {
-        printf("%d ", machine->mainMemory[physAddr+i]);
-      }
-      printf("\n");
-    }
     a->swapFile->WriteAt(buf, PageSize, offset);
     
   }
@@ -162,31 +154,12 @@ MemoryManager::sendToSwap(int vPageNum, void * ad)
 
   printf("!@#@#@%Before if we are trying to translate vpn %d\n", vPageNum);
   if (a->Translate(offset, &physAddr)) {
-    printf("Swapping out %d\n", physAddr / PageSize);
-
-    if(vPageNum == 11) {
-      printf("sendToSwap.  write to page 11. OpenFile Pointer %d:\n", (int)a->swapFile);
-      for(int i = 0; i < 128; i += 4) {
-        printf("%d ", machine->mainMemory[physAddr+i]);
-      }
-      printf("\n");
-    }
     
     bcopy (machine->mainMemory + physAddr, buf, PageSize);
     a->invalidateByVPage(vPageNum);    
     a->swapFile->WriteAt(buf, PageSize, offset);
-
-
     a->swapFile->ReadAt(buf, PageSize, offset);
 
-    if(vPageNum == 11) {
-      printf("!!!sendToSwap.  READ to page 11. OpenFile Pointer %d:\n", (int)a->swapFile);
-      for(int i = 0; i < 128; i += 4) {
-        printf("%d ", buf[i]);
-      }
-      printf("\n");
-    }
-    
     printf("&&&&&&&&\n");
   }
     pageMap->Clear(physAddr / PageSize);

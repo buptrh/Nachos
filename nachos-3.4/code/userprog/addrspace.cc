@@ -64,7 +64,7 @@ SwapHeader (NoffHeader *noffH)
 //----------------------------------------------------------------------
 
 AddrSpace::AddrSpace(PCB * p) {
-  numPages = -1;
+  numPages = 0;
   pcb = p;
   pageTable = NULL;
 }
@@ -155,7 +155,7 @@ AddrSpace::~AddrSpace()
     for (i = 0; i < numPages; i++) {
       //      pageTable[i].valid = FALSE;
       if(pageTable[i].sharedEntry != NULL) {
-         RemoveFromSharedList(i);
+         RemoveFromSharedList(&pageTable[i]);
       } else if (pageTable[i].inMem == true) {
 	       memoryManager->clearPage(pageTable[i].physicalPage);
       }
@@ -180,8 +180,8 @@ AddrSpace::evictPages() {
 
   unsigned int k;
   for (k = 0; k < numPages; k++) 
-    if(pageTable[i].sharedEntry != NULL) {
-         RemoveFromSharedList(i);
+    if(pageTable[k].sharedEntry != NULL) {
+         RemoveFromSharedList(&pageTable[k]);
     } else if (pageTable[k].inMem == true)  {
       memoryManager->writeToSwap(pageTable[k].virtualPage, this);
       memoryManager->clearPage(pageTable[k].physicalPage);
@@ -280,6 +280,7 @@ AddrSpace::sendToMem(int virtAddr)
   }
 
   if(pageTable[ptIndex].sharedEntry != NULL) {
+    pageTable[ptIndex].readOnly = TRUE;
     SendSharedToMem(ptIndex);
   }
 
@@ -289,7 +290,9 @@ AddrSpace::sendToMem(int virtAddr)
 void
 AddrSpace::invalidateByVPage(int i)
 {
-  RemoveFromSharedList(i);
+  if(pageTable[i].sharedEntry != NULL) {
+         RemoveFromSharedList(&pageTable[i]);
+  }
   pageTable[i].physicalPage = NOT_IN_MEM;
       
   /* With valid set to false we can now create a page fault */
@@ -304,7 +307,9 @@ AddrSpace::invalidateByPhysPage(int i)
   unsigned int k ;
   for (k = 0; k < numPages; k++) {
     if (pageTable[k].physicalPage == i) {
-      RemoveFromSharedList(k);
+      if(pageTable[i].sharedEntry != NULL) {
+         RemoveFromSharedList(&pageTable[i]);
+      }
       pageTable[k].physicalPage = NOT_IN_MEM;   
       /* With valid set to false we can now create a page fault */
       pageTable[k].valid = FALSE;
@@ -603,7 +608,7 @@ int AddrSpace::GetNumPages() {
   return numPages;
 }
 
-void AddrSpace::ShareVPage(Addrspace * currentSpace, TranslationEntry& current, Addrspace * otherSpace, TranslationEntry& other) {
+void AddrSpace::ShareVPage(AddrSpace * currentSpace, TranslationEntry& current, AddrSpace * otherSpace, TranslationEntry& other) {
   if(other.sharedEntry == NULL) {
     other.sharedEntry = CreateShareEntry();
     other.sharedEntry->sharedList->Append((void *) &other);
@@ -617,8 +622,8 @@ void AddrSpace::ShareVPage(Addrspace * currentSpace, TranslationEntry& current, 
 }
 
 SharedTranslationEntry* AddrSpace::CreateShareEntry() {
-    SharedTranslationEntry* entry = new SharedTranslationEntry*();
-    entry->sharedEntry->sharedList = new List;
+    SharedTranslationEntry* entry = new SharedTranslationEntry();
+    entry->sharedList = new List;
     return entry;
 }
 
@@ -626,20 +631,28 @@ static void
 RemoveFromShared(int entryPointer)
 {
   TranslationEntry* entry = (TranslationEntry*)entryPointer;
-  RemoveFromSharedList(entry);
+  AddrSpace::RemoveFromSharedList(entry);
 }
 
 void AddrSpace::RemoveFromSharedList(TranslationEntry* entry) {
-  TranslationEntry* deleted = (TranslationEntry*) entry->sharedEntry->sharedList->RemoveByKey((int)entry);
-  if(deleted != entry) {
-    printf("!!error: RemoveFromSharedList  removed wrong space");
+  if(entry->sharedEntry == NULL) {
+    printf("Error in SeperateFromShared: sharedEntry empty");
+    ASSERT(FALSE);
     return;
   }
-  if(entry->IsEmpty()) {
+  entry->sharedEntry->sharedList->PrintList();
+  TranslationEntry* deleted = (TranslationEntry*) entry->sharedEntry->sharedList->RemoveByKey((int)entry);
+  if(deleted != entry) {
+    printf("!!error: RemoveFromSharedList  removed wrong space. entry: %d, deleted: %d\n", (int)entry, (int)deleted);
+    // ASSERT(FALSE);
+
+    return;
+  }
+  if(entry->sharedEntry->sharedList->IsEmpty()) {
     delete entry->sharedEntry;
-  } else if(entry->sharedEntry->isSingleton()) {
+  } else if(entry->sharedEntry->sharedList->isSingleton()) {
     //delete shared entry
-    entry->sharedEntry->Mapcar(RemoveFromShared);
+    entry->sharedEntry->sharedList->Mapcar(RemoveFromShared);
   }
   entry->sharedEntry = NULL;
   entry->readOnly = FALSE;
@@ -652,9 +665,31 @@ SharePhysPage(int entryPointer, int physicalPage)
   TranslationEntry* entry = (TranslationEntry*)entryPointer;
   entry->physicalPage = physicalPage;
   entry->valid = TRUE;
+  entry->readOnly = TRUE;
   entry->inMem = TRUE;
 }
 
-void AddrSpace::SendSharedToMem(int vAddr) {
-  pageTable[i].sharedEntry->sharedList->mapcarInt(SharePhysPage, pageTable[i].physicalPage);
+void AddrSpace::SendSharedToMem(int vPage) {
+  pageTable[vPage].sharedEntry->sharedList->MapcarInt(SharePhysPage, pageTable[vPage].physicalPage);
+}
+
+void AddrSpace::SeperateFromShared(int vAddr) {
+
+  int vPage = vAddr / PageSize;
+  if(pageTable[vPage].sharedEntry == NULL) {
+    printf("Error in SeperateFromShared: sharedEntry empty");
+    ASSERT(FALSE);
+    return;
+  }
+  RemoveFromSharedList(&pageTable[vPage]);
+
+  int oldPage = pageTable[vPage].physicalPage;
+  pageTable[vPage].physicalPage
+    =  memoryManager->getPage(pageTable[vPage].virtualPage);
+  pageTable[vPage].valid = TRUE;
+  pageTable[vPage].inMem = TRUE;
+
+  bcopy(machine->mainMemory + oldPage * PageSize, machine->mainMemory + pageTable[vPage].physicalPage * PageSize, PageSize);
+
+
 }

@@ -54,10 +54,11 @@ class AddrSpace {
     void invalidateByVPage(int i);
     void invalidateByPhysPage(int i);
     void evictPages();
-    void ShareVPage(Addrspace * currentSpace, TranslationEntry& current, Addrspace * otherSpace, TranslationEntry& other);
+    void ShareVPage(AddrSpace * currentSpace, TranslationEntry& current, AddrSpace * otherSpace, TranslationEntry& other);
     SharedTranslationEntry* CreateShareEntry();
-    void RemoveFromSharedList(TranslationEntry* entry) ;
+    static void RemoveFromSharedList(TranslationEntry* entry) ;
     void SendSharedToMem(int vAddr);
+    void SeperateFromShared(int vAddr);
   private:
     TranslationEntry *pageTable;	// Assume linear page table translation
 					// for now!
