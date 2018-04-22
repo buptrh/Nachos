@@ -1,0 +1,42 @@
+#include "useropenfile.h"
+#include "system.h"
+
+UserOpenFile::UserOpenFile(char * name, int offsetIn, int id)
+{
+  fileName = name;
+  offset = offsetIn;
+  fileId = id;
+}
+
+UserOpenFile::~UserOpenFile()
+{
+  fileManager->decOrClearFile(fileId);
+  delete fileName;
+  offset = -1;
+  fileId = -1;
+}
+
+char *
+UserOpenFile::getName()
+{
+  return fileName;
+}
+
+void 
+UserOpenFile::setOffset(int i)
+{
+  offset = i;
+}
+
+int
+UserOpenFile::getCurOffset()
+{
+  return offset;
+}
+
+int
+UserOpenFile::getFileId()
+{
+  return fileId;
+}
+

@@ -1,0 +1,2417 @@
+cd threads; gmake depend
+gmake[1]: Entering directory `/a/bear.cs.fiu.edu./disk/bear-b/users/ntorr054/NACHOSTESTING/nachosdir/nachos-3.4/code/threads'
+g++ -I../threads -I../machine -DTHREADS -DHOST_i386 -DCHANGED -M ../threads/main.cc ../threads/list.cc ../threads/scheduler.cc ../threads/synch.cc ../threads/synchlist.cc ../threads/thread.cc ../threads/system.cc ../threads/utility.cc ../threads/threadtest.cc ../machine/interrupt.cc ../machine/sysdep.cc ../machine/stats.cc ../machine/timer.cc > makedep
+echo '/^# DO NOT DELETE THIS LINE/+2,$d' >eddep
+echo '$r makedep' >>eddep
+echo 'w' >>eddep
+ed - Makefile < eddep
+rm eddep makedep 
+echo '# DEPENDENCIES MUST END AT END OF FILE' >> Makefile
+echo '# IF YOU PUT STUFF HERE IT WILL GO AWAY' >> Makefile
+echo '# see make depend above' >> Makefile
+gmake[1]: Leaving directory `/a/bear.cs.fiu.edu./disk/bear-b/users/ntorr054/NACHOSTESTING/nachosdir/nachos-3.4/code/threads'
+cd threads; gmake nachos
+gmake[1]: Entering directory `/a/bear.cs.fiu.edu./disk/bear-b/users/ntorr054/NACHOSTESTING/nachosdir/nachos-3.4/code/threads'
+g++ -g -Wall -Wshadow -fwritable-strings -I../threads -I../machine -DTHREADS -DHOST_i386 -DCHANGED -DEBUG -c ../threads/main.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+g++ -g -Wall -Wshadow -fwritable-strings -I../threads -I../machine -DTHREADS -DHOST_i386 -DCHANGED -DEBUG -c ../threads/list.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+../threads/list.cc: In member function `void* List::RemoveByKey(int)':
+../threads/list.cc:284: warning: control reaches end of non-void function
+../threads/list.cc: In member function `List* List::RemoveAllButKey(int)':
+../threads/list.cc:308: warning: control reaches end of non-void function
+g++ -g -Wall -Wshadow -fwritable-strings -I../threads -I../machine -DTHREADS -DHOST_i386 -DCHANGED -DEBUG -c ../threads/scheduler.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+g++ -g -Wall -Wshadow -fwritable-strings -I../threads -I../machine -DTHREADS -DHOST_i386 -DCHANGED -DEBUG -c ../threads/synch.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+g++ -g -Wall -Wshadow -fwritable-strings -I../threads -I../machine -DTHREADS -DHOST_i386 -DCHANGED -DEBUG -c ../threads/synchlist.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+g++ -g -Wall -Wshadow -fwritable-strings -I../threads -I../machine -DTHREADS -DHOST_i386 -DCHANGED -DEBUG -c ../threads/system.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+g++ -g -Wall -Wshadow -fwritable-strings -I../threads -I../machine -DTHREADS -DHOST_i386 -DCHANGED -DEBUG -c ../threads/thread.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+g++ -g -Wall -Wshadow -fwritable-strings -I../threads -I../machine -DTHREADS -DHOST_i386 -DCHANGED -DEBUG -c ../threads/utility.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+g++ -g -Wall -Wshadow -fwritable-strings -I../threads -I../machine -DTHREADS -DHOST_i386 -DCHANGED -DEBUG -c ../threads/threadtest.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+g++ -g -Wall -Wshadow -fwritable-strings -I../threads -I../machine -DTHREADS -DHOST_i386 -DCHANGED -DEBUG -c ../machine/interrupt.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+../machine/interrupt.cc: In destructor `Interrupt::~Interrupt()':
+../machine/interrupt.cc:77: warning: deleting `void*' is undefined
+g++ -g -Wall -Wshadow -fwritable-strings -I../threads -I../machine -DTHREADS -DHOST_i386 -DCHANGED -DEBUG -c ../machine/stats.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+g++ -g -Wall -Wshadow -fwritable-strings -I../threads -I../machine -DTHREADS -DHOST_i386 -DCHANGED -DEBUG -c ../machine/sysdep.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+g++ -g -Wall -Wshadow -fwritable-strings -I../threads -I../machine -DTHREADS -DHOST_i386 -DCHANGED -DEBUG -c ../machine/timer.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+gcc -E -P -I../threads -I../machine -DHOST_i386 ../threads/switch.c > swtch.s
+../threads/switch.c:109:8: warning: extra tokens at end of #endif directive
+../threads/switch.c:185:8: warning: extra tokens at end of #endif directive
+as -o switch.o swtch.s
+g++ main.o list.o scheduler.o synch.o synchlist.o system.o thread.o utility.o threadtest.o interrupt.o stats.o sysdep.o timer.o switch.o  -o nachos
+gmake[1]: Leaving directory `/a/bear.cs.fiu.edu./disk/bear-b/users/ntorr054/NACHOSTESTING/nachosdir/nachos-3.4/code/threads'
+cd userprog; gmake depend 
+gmake[1]: Entering directory `/a/bear.cs.fiu.edu./disk/bear-b/users/ntorr054/NACHOSTESTING/nachosdir/nachos-3.4/code/userprog'
+g++ -I../bin -I../filesys -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DFILESYS_NEEDED -DFILESYS_STUB -DHOST_i386 -DCHANGED -M ../threads/main.cc ../threads/list.cc ../threads/scheduler.cc ../threads/synch.cc ../threads/synchlist.cc ../threads/thread.cc ../threads/system.cc ../threads/utility.cc ../threads/threadtest.cc ../machine/interrupt.cc ../machine/sysdep.cc ../machine/stats.cc ../machine/timer.cc ../userprog/addrspace.cc ../userprog/bitmap.cc ../userprog/pcb.cc ../userprog/memorymanager.cc ../userprog/processmanager.cc ../userprog/mysyscall.cc ../userprog/exception.cc ../userprog/progtest.cc ../machine/console.cc ../machine/machine.cc ../machine/mipssim.cc ../machine/translate.cc ../test/halt.c ../test/fork.c ../filesys/sysopenfile.cc ../filesys/filemanager.cc ../filesys/useropenfile.cc > makedep
+echo '/^# DO NOT DELETE THIS LINE/+2,$d' >eddep
+echo '$r makedep' >>eddep
+echo 'w' >>eddep
+ed - Makefile < eddep
+rm eddep makedep 
+echo '# DEPENDENCIES MUST END AT END OF FILE' >> Makefile
+echo '# IF YOU PUT STUFF HERE IT WILL GO AWAY' >> Makefile
+echo '# see make depend above' >> Makefile
+gmake[1]: Leaving directory `/a/bear.cs.fiu.edu./disk/bear-b/users/ntorr054/NACHOSTESTING/nachosdir/nachos-3.4/code/userprog'
+cd userprog; gmake nachos 
+gmake[1]: Entering directory `/a/bear.cs.fiu.edu./disk/bear-b/users/ntorr054/NACHOSTESTING/nachosdir/nachos-3.4/code/userprog'
+g++ -g -Wall -Wshadow -fwritable-strings -I../bin -I../filesys -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DFILESYS_NEEDED -DFILESYS_STUB -DHOST_i386 -DCHANGED -DEBUG -c ../threads/main.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../threads/main.cc:57:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../threads/main.cc:57:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../bin -I../filesys -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DFILESYS_NEEDED -DFILESYS_STUB -DHOST_i386 -DCHANGED -DEBUG -c ../threads/list.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+../threads/list.cc: In member function `void* List::RemoveByKey(int)':
+../threads/list.cc:284: warning: control reaches end of non-void function
+../threads/list.cc: In member function `List* List::RemoveAllButKey(int)':
+../threads/list.cc:308: warning: control reaches end of non-void function
+g++ -g -Wall -Wshadow -fwritable-strings -I../bin -I../filesys -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DFILESYS_NEEDED -DFILESYS_STUB -DHOST_i386 -DCHANGED -DEBUG -c ../threads/scheduler.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/scheduler.h:14,
+                 from ../threads/scheduler.cc:22:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/scheduler.h:14,
+                 from ../threads/scheduler.cc:22:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../bin -I../filesys -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DFILESYS_NEEDED -DFILESYS_STUB -DHOST_i386 -DCHANGED -DEBUG -c ../threads/synch.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/synch.h:21,
+                 from ../threads/synch.cc:25:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/synch.h:21,
+                 from ../threads/synch.cc:25:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../bin -I../filesys -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DFILESYS_NEEDED -DFILESYS_STUB -DHOST_i386 -DCHANGED -DEBUG -c ../threads/synchlist.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/synch.h:21,
+                 from ../threads/synchlist.h:16,
+                 from ../threads/synchlist.cc:16:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/synch.h:21,
+                 from ../threads/synchlist.h:16,
+                 from ../threads/synchlist.cc:16:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../bin -I../filesys -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DFILESYS_NEEDED -DFILESYS_STUB -DHOST_i386 -DCHANGED -DEBUG -c ../threads/system.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../threads/system.cc:9:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../threads/system.cc:9:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../bin -I../filesys -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DFILESYS_NEEDED -DFILESYS_STUB -DHOST_i386 -DCHANGED -DEBUG -c ../threads/thread.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/thread.cc:18:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/thread.cc:18:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../bin -I../filesys -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DFILESYS_NEEDED -DFILESYS_STUB -DHOST_i386 -DCHANGED -DEBUG -c ../threads/utility.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+g++ -g -Wall -Wshadow -fwritable-strings -I../bin -I../filesys -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DFILESYS_NEEDED -DFILESYS_STUB -DHOST_i386 -DCHANGED -DEBUG -c ../threads/threadtest.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../threads/threadtest.cc:13:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../threads/threadtest.cc:13:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../bin -I../filesys -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DFILESYS_NEEDED -DFILESYS_STUB -DHOST_i386 -DCHANGED -DEBUG -c ../machine/interrupt.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/interrupt.cc:25:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/interrupt.cc:25:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+../machine/interrupt.cc: In destructor `Interrupt::~Interrupt()':
+../machine/interrupt.cc:77: warning: deleting `void*' is undefined
+g++ -g -Wall -Wshadow -fwritable-strings -I../bin -I../filesys -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DFILESYS_NEEDED -DFILESYS_STUB -DHOST_i386 -DCHANGED -DEBUG -c ../machine/stats.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+g++ -g -Wall -Wshadow -fwritable-strings -I../bin -I../filesys -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DFILESYS_NEEDED -DFILESYS_STUB -DHOST_i386 -DCHANGED -DEBUG -c ../machine/sysdep.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/sysdep.cc:102:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/sysdep.cc:102:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../bin -I../filesys -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DFILESYS_NEEDED -DFILESYS_STUB -DHOST_i386 -DCHANGED -DEBUG -c ../machine/timer.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/timer.cc:24:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/timer.cc:24:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../bin -I../filesys -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DFILESYS_NEEDED -DFILESYS_STUB -DHOST_i386 -DCHANGED -DEBUG -c ../userprog/addrspace.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../userprog/addrspace.cc:19:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../userprog/addrspace.cc:19:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+../userprog/addrspace.cc: In constructor `AddrSpace::AddrSpace(OpenFile*, bool, char*)':
+../userprog/addrspace.cc:98: warning: comparison between signed and unsigned integer expressions
+../userprog/addrspace.cc: In member function `void AddrSpace::sendToMem(int)':
+../userprog/addrspace.cc:252: warning: unused variable 'pOffset'
+../userprog/addrspace.cc:270: warning: unused variable 'result'
+../userprog/addrspace.cc: In constructor `AddrSpace::AddrSpace()':
+../userprog/addrspace.cc:518: warning: converting of negative value `-0x000000001' to `unsigned int'
+../userprog/addrspace.cc: In member function `void AddrSpace::Fork(AddrSpace*)':
+../userprog/addrspace.cc:526: warning: comparison between signed and unsigned integer expressions
+../userprog/addrspace.cc:549: warning: unused variable 'totalSize'
+g++ -g -Wall -Wshadow -fwritable-strings -I../bin -I../filesys -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DFILESYS_NEEDED -DFILESYS_STUB -DHOST_i386 -DCHANGED -DEBUG -c ../userprog/bitmap.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+g++ -g -Wall -Wshadow -fwritable-strings -I../bin -I../filesys -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DFILESYS_NEEDED -DFILESYS_STUB -DHOST_i386 -DCHANGED -DEBUG -c ../userprog/pcb.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/pcb.cc:1:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/pcb.cc:1:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../bin -I../filesys -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DFILESYS_NEEDED -DFILESYS_STUB -DHOST_i386 -DCHANGED -DEBUG -c ../userprog/memorymanager.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../userprog/memorymanager.cc:2:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../userprog/memorymanager.cc:2:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../bin -I../filesys -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DFILESYS_NEEDED -DFILESYS_STUB -DHOST_i386 -DCHANGED -DEBUG -c ../userprog/processmanager.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/processmanager.h:7,
+                 from ../userprog/processmanager.cc:1:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/processmanager.h:7,
+                 from ../userprog/processmanager.cc:1:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../bin -I../filesys -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DFILESYS_NEEDED -DFILESYS_STUB -DHOST_i386 -DCHANGED -DEBUG -c ../userprog/exception.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../userprog/exception.cc:25:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../userprog/exception.cc:25:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../bin -I../filesys -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DFILESYS_NEEDED -DFILESYS_STUB -DHOST_i386 -DCHANGED -DEBUG -c ../userprog/progtest.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../userprog/progtest.cc:12:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../userprog/progtest.cc:12:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../bin -I../filesys -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DFILESYS_NEEDED -DFILESYS_STUB -DHOST_i386 -DCHANGED -DEBUG -c ../machine/console.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/console.cc:18:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/console.cc:18:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../bin -I../filesys -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DFILESYS_NEEDED -DFILESYS_STUB -DHOST_i386 -DCHANGED -DEBUG -c ../machine/machine.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/machine.cc:12:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/machine.cc:12:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../bin -I../filesys -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DFILESYS_NEEDED -DFILESYS_STUB -DHOST_i386 -DCHANGED -DEBUG -c ../machine/mipssim.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/mipssim.cc:17:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/mipssim.cc:17:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+../machine/mipssim.cc: In member function `void Machine::OneInstruction(Instruction*)':
+../machine/mipssim.cc:119: warning: array subscript has type `char'
+../machine/mipssim.cc:138: warning: array subscript has type `char'
+../machine/mipssim.cc:138: warning: array subscript has type `char'
+../machine/mipssim.cc:139: warning: array subscript has type `char'
+../machine/mipssim.cc:139: warning: array subscript has type `char'
+../machine/mipssim.cc:140: warning: array subscript has type `char'
+../machine/mipssim.cc:144: warning: array subscript has type `char'
+../machine/mipssim.cc:148: warning: array subscript has type `char'
+../machine/mipssim.cc:149: warning: array subscript has type `char'
+../machine/mipssim.cc:154: warning: array subscript has type `char'
+../machine/mipssim.cc:158: warning: array subscript has type `char'
+../machine/mipssim.cc:158: warning: array subscript has type `char'
+../machine/mipssim.cc:162: warning: array subscript has type `char'
+../machine/mipssim.cc:162: warning: array subscript has type `char'
+../machine/mipssim.cc:162: warning: array subscript has type `char'
+../machine/mipssim.cc:166: warning: array subscript has type `char'
+../machine/mipssim.cc:166: warning: array subscript has type `char'
+../machine/mipssim.cc:166: warning: array subscript has type `char'
+../machine/mipssim.cc:170: warning: array subscript has type `char'
+../machine/mipssim.cc:170: warning: array subscript has type `char'
+../machine/mipssim.cc:174: warning: array subscript has type `char'
+../machine/mipssim.cc:174: warning: array subscript has type `char'
+../machine/mipssim.cc:182: warning: array subscript has type `char'
+../machine/mipssim.cc:187: warning: array subscript has type `char'
+../machine/mipssim.cc:192: warning: array subscript has type `char'
+../machine/mipssim.cc:199: warning: array subscript has type `char'
+../machine/mipssim.cc:204: warning: array subscript has type `char'
+../machine/mipssim.cc:204: warning: array subscript has type `char'
+../machine/mipssim.cc:209: warning: array subscript has type `char'
+../machine/mipssim.cc:213: warning: array subscript has type `char'
+../machine/mipssim.cc:213: warning: array subscript has type `char'
+../machine/mipssim.cc:214: warning: array subscript has type `char'
+../machine/mipssim.cc:214: warning: array subscript has type `char'
+../machine/mipssim.cc:219: warning: array subscript has type `char'
+../machine/mipssim.cc:220: warning: array subscript has type `char'
+../machine/mipssim.cc:239: warning: array subscript has type `char'
+../machine/mipssim.cc:241: warning: array subscript has type `char'
+../machine/mipssim.cc:246: warning: array subscript has type `char'
+../machine/mipssim.cc:260: warning: array subscript has type `char'
+../machine/mipssim.cc:278: warning: array subscript has type `char'
+../machine/mipssim.cc:282: warning: array subscript has type `char'
+../machine/mipssim.cc:294: warning: array subscript has type `char'
+../machine/mipssim.cc:306: warning: array subscript has type `char'
+../machine/mipssim.cc:325: warning: array subscript has type `char'
+../machine/mipssim.cc:337: warning: array subscript has type `char'
+../machine/mipssim.cc:359: warning: array subscript has type `char'
+../machine/mipssim.cc:363: warning: array subscript has type `char'
+../machine/mipssim.cc:367: warning: array subscript has type `char'
+../machine/mipssim.cc:371: warning: array subscript has type `char'
+../machine/mipssim.cc:375: warning: array subscript has type `char'
+../machine/mipssim.cc:375: warning: array subscript has type `char'
+../machine/mipssim.cc:380: warning: array subscript has type `char'
+../machine/mipssim.cc:380: warning: array subscript has type `char'
+../machine/mipssim.cc:385: warning: array subscript has type `char'
+../machine/mipssim.cc:385: warning: array subscript has type `char'
+../machine/mipssim.cc:385: warning: array subscript has type `char'
+../machine/mipssim.cc:389: warning: array subscript has type `char'
+../machine/mipssim.cc:389: warning: array subscript has type `char'
+../machine/mipssim.cc:389: warning: array subscript has type `char'
+../machine/mipssim.cc:393: warning: array subscript has type `char'
+../machine/mipssim.cc:393: warning: array subscript has type `char'
+../machine/mipssim.cc:398: warning: array subscript has type `char'
+../machine/mipssim.cc:398: warning: array subscript has type `char'
+../machine/mipssim.cc:404: warning: array subscript has type `char'
+../machine/mipssim.cc:404: warning: array subscript has type `char'
+../machine/mipssim.cc:409: warning: array subscript has type `char'
+../machine/mipssim.cc:409: warning: array subscript has type `char'
+../machine/mipssim.cc:413: warning: array subscript has type `char'
+../machine/mipssim.cc:413: warning: array subscript has type `char'
+../machine/mipssim.cc:414: warning: array subscript has type `char'
+../machine/mipssim.cc:418: warning: array subscript has type `char'
+../machine/mipssim.cc:418: warning: array subscript has type `char'
+../machine/mipssim.cc:419: warning: array subscript has type `char'
+../machine/mipssim.cc:421: warning: array subscript has type `char'
+../machine/mipssim.cc:425: warning: array subscript has type `char'
+../machine/mipssim.cc:426: warning: array subscript has type `char'
+../machine/mipssim.cc:428: warning: array subscript has type `char'
+../machine/mipssim.cc:432: warning: array subscript has type `char'
+../machine/mipssim.cc:435: warning: array subscript has type `char'
+../machine/mipssim.cc:437: warning: array subscript has type `char'
+../machine/mipssim.cc:441: warning: array subscript has type `char'
+../machine/mipssim.cc:442: warning: array subscript has type `char'
+../machine/mipssim.cc:444: warning: array subscript has type `char'
+../machine/mipssim.cc:446: warning: array subscript has type `char'
+../machine/mipssim.cc:450: warning: array subscript has type `char'
+../machine/mipssim.cc:450: warning: array subscript has type `char'
+../machine/mipssim.cc:454: warning: array subscript has type `char'
+../machine/mipssim.cc:454: warning: array subscript has type `char'
+../machine/mipssim.cc:455: warning: array subscript has type `char'
+../machine/mipssim.cc:459: warning: array subscript has type `char'
+../machine/mipssim.cc:461: warning: array subscript has type `char'
+../machine/mipssim.cc:465: warning: array subscript has type `char'
+../machine/mipssim.cc:466: warning: array subscript has type `char'
+../machine/mipssim.cc:467: warning: array subscript has type `char'
+../machine/mipssim.cc:471: warning: array subscript has type `char'
+../machine/mipssim.cc:471: warning: array subscript has type `char'
+../machine/mipssim.cc:472: warning: array subscript has type `char'
+../machine/mipssim.cc:472: warning: array subscript has type `char'
+../machine/mipssim.cc:473: warning: array subscript has type `char'
+../machine/mipssim.cc:477: warning: array subscript has type `char'
+../machine/mipssim.cc:481: warning: array subscript has type `char'
+../machine/mipssim.cc:481: warning: array subscript has type `char'
+../machine/mipssim.cc:481: warning: array subscript has type `char'
+../machine/mipssim.cc:486: warning: array subscript has type `char'
+../machine/mipssim.cc:486: warning: array subscript has type `char'
+../machine/mipssim.cc:491: warning: array subscript has type `char'
+../machine/mipssim.cc:501: warning: array subscript has type `char'
+../machine/mipssim.cc:504: warning: array subscript has type `char'
+../machine/mipssim.cc:508: warning: array subscript has type `char'
+../machine/mipssim.cc:512: warning: array subscript has type `char'
+../machine/mipssim.cc:521: warning: array subscript has type `char'
+../machine/mipssim.cc:531: warning: array subscript has type `char'
+../machine/mipssim.cc:534: warning: array subscript has type `char'
+../machine/mipssim.cc:537: warning: array subscript has type `char'
+../machine/mipssim.cc:540: warning: array subscript has type `char'
+../machine/mipssim.cc:552: warning: array subscript has type `char'
+../machine/mipssim.cc:552: warning: array subscript has type `char'
+../machine/mipssim.cc:552: warning: array subscript has type `char'
+../machine/mipssim.cc:556: warning: array subscript has type `char'
+../machine/mipssim.cc:556: warning: array subscript has type `char'
+g++ -g -Wall -Wshadow -fwritable-strings -I../bin -I../filesys -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DFILESYS_NEEDED -DFILESYS_STUB -DHOST_i386 -DCHANGED -DEBUG -c ../machine/translate.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../machine/translate.cc:34:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../machine/translate.cc:34:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+../machine/translate.cc: In member function `ExceptionType Machine::Translate(int, int*, int, bool)':
+../machine/translate.cc:262: warning: comparison between signed and unsigned integer expressions
+g++ -g -Wall -Wshadow -fwritable-strings -I../bin -I../filesys -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DFILESYS_NEEDED -DFILESYS_STUB -DHOST_i386 -DCHANGED -DEBUG -c ../userprog/mysyscall.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../userprog/mysyscall.cc:2:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../userprog/mysyscall.cc:2:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+../userprog/mysyscall.cc: In function `void MyWrite()':
+../userprog/mysyscall.cc:285: warning: unused variable 'newOffset'
+g++ -g -Wall -Wshadow -fwritable-strings -I../bin -I../filesys -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DFILESYS_NEEDED -DFILESYS_STUB -DHOST_i386 -DCHANGED -DEBUG -c ../filesys/useropenfile.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/useropenfile.cc:1:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../filesys/useropenfile.cc:2:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../bin -I../filesys -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DFILESYS_NEEDED -DFILESYS_STUB -DHOST_i386 -DCHANGED -DEBUG -c ../filesys/sysopenfile.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../filesys/sysopenfile.cc:2:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../filesys/sysopenfile.cc:2:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../bin -I../filesys -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DFILESYS_NEEDED -DFILESYS_STUB -DHOST_i386 -DCHANGED -DEBUG -c ../filesys/filemanager.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../filesys/filemanager.cc:1:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../filesys/filemanager.cc:2:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+gcc -E -P -I../bin -I../filesys -I../userprog -I../threads -I../machine -DHOST_i386 ../threads/switch.c > swtch.s
+../threads/switch.c:109:8: warning: extra tokens at end of #endif directive
+../threads/switch.c:185:8: warning: extra tokens at end of #endif directive
+as -o switch.o swtch.s
+g++ main.o list.o scheduler.o synch.o synchlist.o system.o thread.o utility.o threadtest.o interrupt.o stats.o sysdep.o timer.o addrspace.o bitmap.o pcb.o memorymanager.o processmanager.o exception.o progtest.o console.o machine.o mipssim.o translate.o mysyscall.o useropenfile.o sysopenfile.o filemanager.o  switch.o  -o nachos
+gmake[1]: Leaving directory `/a/bear.cs.fiu.edu./disk/bear-b/users/ntorr054/NACHOSTESTING/nachosdir/nachos-3.4/code/userprog'
+cd vm; gmake depend
+gmake[1]: Entering directory `/a/bear.cs.fiu.edu./disk/bear-b/users/ntorr054/NACHOSTESTING/nachosdir/nachos-3.4/code/vm'
+g++ -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM  -DFILESYS_NEEDED -DFILESYS_STUB -DVM -DUSE_TLB -DHOST_i386 -DCHANGED -M ../threads/main.cc ../threads/list.cc ../threads/scheduler.cc ../threads/synch.cc ../threads/synchlist.cc ../threads/thread.cc ../threads/system.cc ../threads/utility.cc ../threads/threadtest.cc ../machine/interrupt.cc ../machine/sysdep.cc ../machine/stats.cc ../machine/timer.cc ../userprog/addrspace.cc ../userprog/bitmap.cc ../userprog/pcb.cc ../userprog/memorymanager.cc ../userprog/processmanager.cc ../userprog/mysyscall.cc ../userprog/exception.cc ../userprog/progtest.cc ../machine/console.cc ../machine/machine.cc ../machine/mipssim.cc ../machine/translate.cc ../test/halt.c ../test/fork.c ../filesys/sysopenfile.cc ../filesys/filemanager.cc ../filesys/useropenfile.cc  > makedep
+echo '/^# DO NOT DELETE THIS LINE/+2,$d' >eddep
+echo '$r makedep' >>eddep
+echo 'w' >>eddep
+ed - Makefile < eddep
+rm eddep makedep 
+echo '# DEPENDENCIES MUST END AT END OF FILE' >> Makefile
+echo '# IF YOU PUT STUFF HERE IT WILL GO AWAY' >> Makefile
+echo '# see make depend above' >> Makefile
+gmake[1]: Leaving directory `/a/bear.cs.fiu.edu./disk/bear-b/users/ntorr054/NACHOSTESTING/nachosdir/nachos-3.4/code/vm'
+cd vm; gmake nachos 
+gmake[1]: Entering directory `/a/bear.cs.fiu.edu./disk/bear-b/users/ntorr054/NACHOSTESTING/nachosdir/nachos-3.4/code/vm'
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM  -DFILESYS_NEEDED -DFILESYS_STUB -DVM -DUSE_TLB -DHOST_i386 -DCHANGED -DEBUG -c ../threads/main.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../threads/main.cc:57:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../threads/main.cc:57:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM  -DFILESYS_NEEDED -DFILESYS_STUB -DVM -DUSE_TLB -DHOST_i386 -DCHANGED -DEBUG -c ../threads/list.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+../threads/list.cc: In member function `void* List::RemoveByKey(int)':
+../threads/list.cc:284: warning: control reaches end of non-void function
+../threads/list.cc: In member function `List* List::RemoveAllButKey(int)':
+../threads/list.cc:308: warning: control reaches end of non-void function
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM  -DFILESYS_NEEDED -DFILESYS_STUB -DVM -DUSE_TLB -DHOST_i386 -DCHANGED -DEBUG -c ../threads/scheduler.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/scheduler.h:14,
+                 from ../threads/scheduler.cc:22:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/scheduler.h:14,
+                 from ../threads/scheduler.cc:22:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM  -DFILESYS_NEEDED -DFILESYS_STUB -DVM -DUSE_TLB -DHOST_i386 -DCHANGED -DEBUG -c ../threads/synch.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/synch.h:21,
+                 from ../threads/synch.cc:25:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/synch.h:21,
+                 from ../threads/synch.cc:25:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM  -DFILESYS_NEEDED -DFILESYS_STUB -DVM -DUSE_TLB -DHOST_i386 -DCHANGED -DEBUG -c ../threads/synchlist.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/synch.h:21,
+                 from ../threads/synchlist.h:16,
+                 from ../threads/synchlist.cc:16:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/synch.h:21,
+                 from ../threads/synchlist.h:16,
+                 from ../threads/synchlist.cc:16:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM  -DFILESYS_NEEDED -DFILESYS_STUB -DVM -DUSE_TLB -DHOST_i386 -DCHANGED -DEBUG -c ../threads/system.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../threads/system.cc:9:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../threads/system.cc:9:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM  -DFILESYS_NEEDED -DFILESYS_STUB -DVM -DUSE_TLB -DHOST_i386 -DCHANGED -DEBUG -c ../threads/thread.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/thread.cc:18:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/thread.cc:18:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM  -DFILESYS_NEEDED -DFILESYS_STUB -DVM -DUSE_TLB -DHOST_i386 -DCHANGED -DEBUG -c ../threads/utility.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM  -DFILESYS_NEEDED -DFILESYS_STUB -DVM -DUSE_TLB -DHOST_i386 -DCHANGED -DEBUG -c ../threads/threadtest.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../threads/threadtest.cc:13:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../threads/threadtest.cc:13:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM  -DFILESYS_NEEDED -DFILESYS_STUB -DVM -DUSE_TLB -DHOST_i386 -DCHANGED -DEBUG -c ../machine/interrupt.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/interrupt.cc:25:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/interrupt.cc:25:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+../machine/interrupt.cc: In destructor `Interrupt::~Interrupt()':
+../machine/interrupt.cc:77: warning: deleting `void*' is undefined
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM  -DFILESYS_NEEDED -DFILESYS_STUB -DVM -DUSE_TLB -DHOST_i386 -DCHANGED -DEBUG -c ../machine/stats.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM  -DFILESYS_NEEDED -DFILESYS_STUB -DVM -DUSE_TLB -DHOST_i386 -DCHANGED -DEBUG -c ../machine/sysdep.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/sysdep.cc:102:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/sysdep.cc:102:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM  -DFILESYS_NEEDED -DFILESYS_STUB -DVM -DUSE_TLB -DHOST_i386 -DCHANGED -DEBUG -c ../machine/timer.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/timer.cc:24:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/timer.cc:24:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM  -DFILESYS_NEEDED -DFILESYS_STUB -DVM -DUSE_TLB -DHOST_i386 -DCHANGED -DEBUG -c ../userprog/addrspace.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../userprog/addrspace.cc:19:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../userprog/addrspace.cc:19:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+../userprog/addrspace.cc: In constructor `AddrSpace::AddrSpace(OpenFile*, bool, char*)':
+../userprog/addrspace.cc:98: warning: comparison between signed and unsigned integer expressions
+../userprog/addrspace.cc: In member function `void AddrSpace::sendToMem(int)':
+../userprog/addrspace.cc:252: warning: unused variable 'pOffset'
+../userprog/addrspace.cc:270: warning: unused variable 'result'
+../userprog/addrspace.cc: In constructor `AddrSpace::AddrSpace()':
+../userprog/addrspace.cc:518: warning: converting of negative value `-0x000000001' to `unsigned int'
+../userprog/addrspace.cc: In member function `void AddrSpace::Fork(AddrSpace*)':
+../userprog/addrspace.cc:526: warning: comparison between signed and unsigned integer expressions
+../userprog/addrspace.cc:549: warning: unused variable 'totalSize'
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM  -DFILESYS_NEEDED -DFILESYS_STUB -DVM -DUSE_TLB -DHOST_i386 -DCHANGED -DEBUG -c ../userprog/bitmap.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM  -DFILESYS_NEEDED -DFILESYS_STUB -DVM -DUSE_TLB -DHOST_i386 -DCHANGED -DEBUG -c ../userprog/pcb.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/pcb.cc:1:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/pcb.cc:1:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM  -DFILESYS_NEEDED -DFILESYS_STUB -DVM -DUSE_TLB -DHOST_i386 -DCHANGED -DEBUG -c ../userprog/memorymanager.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../userprog/memorymanager.cc:2:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../userprog/memorymanager.cc:2:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM  -DFILESYS_NEEDED -DFILESYS_STUB -DVM -DUSE_TLB -DHOST_i386 -DCHANGED -DEBUG -c ../userprog/processmanager.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/processmanager.h:7,
+                 from ../userprog/processmanager.cc:1:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/processmanager.h:7,
+                 from ../userprog/processmanager.cc:1:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM  -DFILESYS_NEEDED -DFILESYS_STUB -DVM -DUSE_TLB -DHOST_i386 -DCHANGED -DEBUG -c ../userprog/exception.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../userprog/exception.cc:25:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../userprog/exception.cc:25:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM  -DFILESYS_NEEDED -DFILESYS_STUB -DVM -DUSE_TLB -DHOST_i386 -DCHANGED -DEBUG -c ../userprog/progtest.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../userprog/progtest.cc:12:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../userprog/progtest.cc:12:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM  -DFILESYS_NEEDED -DFILESYS_STUB -DVM -DUSE_TLB -DHOST_i386 -DCHANGED -DEBUG -c ../machine/console.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/console.cc:18:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/console.cc:18:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM  -DFILESYS_NEEDED -DFILESYS_STUB -DVM -DUSE_TLB -DHOST_i386 -DCHANGED -DEBUG -c ../machine/machine.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/machine.cc:12:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/machine.cc:12:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM  -DFILESYS_NEEDED -DFILESYS_STUB -DVM -DUSE_TLB -DHOST_i386 -DCHANGED -DEBUG -c ../machine/mipssim.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/mipssim.cc:17:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/mipssim.cc:17:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+../machine/mipssim.cc: In member function `void Machine::OneInstruction(Instruction*)':
+../machine/mipssim.cc:119: warning: array subscript has type `char'
+../machine/mipssim.cc:138: warning: array subscript has type `char'
+../machine/mipssim.cc:138: warning: array subscript has type `char'
+../machine/mipssim.cc:139: warning: array subscript has type `char'
+../machine/mipssim.cc:139: warning: array subscript has type `char'
+../machine/mipssim.cc:140: warning: array subscript has type `char'
+../machine/mipssim.cc:144: warning: array subscript has type `char'
+../machine/mipssim.cc:148: warning: array subscript has type `char'
+../machine/mipssim.cc:149: warning: array subscript has type `char'
+../machine/mipssim.cc:154: warning: array subscript has type `char'
+../machine/mipssim.cc:158: warning: array subscript has type `char'
+../machine/mipssim.cc:158: warning: array subscript has type `char'
+../machine/mipssim.cc:162: warning: array subscript has type `char'
+../machine/mipssim.cc:162: warning: array subscript has type `char'
+../machine/mipssim.cc:162: warning: array subscript has type `char'
+../machine/mipssim.cc:166: warning: array subscript has type `char'
+../machine/mipssim.cc:166: warning: array subscript has type `char'
+../machine/mipssim.cc:166: warning: array subscript has type `char'
+../machine/mipssim.cc:170: warning: array subscript has type `char'
+../machine/mipssim.cc:170: warning: array subscript has type `char'
+../machine/mipssim.cc:174: warning: array subscript has type `char'
+../machine/mipssim.cc:174: warning: array subscript has type `char'
+../machine/mipssim.cc:182: warning: array subscript has type `char'
+../machine/mipssim.cc:187: warning: array subscript has type `char'
+../machine/mipssim.cc:192: warning: array subscript has type `char'
+../machine/mipssim.cc:199: warning: array subscript has type `char'
+../machine/mipssim.cc:204: warning: array subscript has type `char'
+../machine/mipssim.cc:204: warning: array subscript has type `char'
+../machine/mipssim.cc:209: warning: array subscript has type `char'
+../machine/mipssim.cc:213: warning: array subscript has type `char'
+../machine/mipssim.cc:213: warning: array subscript has type `char'
+../machine/mipssim.cc:214: warning: array subscript has type `char'
+../machine/mipssim.cc:214: warning: array subscript has type `char'
+../machine/mipssim.cc:219: warning: array subscript has type `char'
+../machine/mipssim.cc:220: warning: array subscript has type `char'
+../machine/mipssim.cc:239: warning: array subscript has type `char'
+../machine/mipssim.cc:241: warning: array subscript has type `char'
+../machine/mipssim.cc:246: warning: array subscript has type `char'
+../machine/mipssim.cc:260: warning: array subscript has type `char'
+../machine/mipssim.cc:278: warning: array subscript has type `char'
+../machine/mipssim.cc:282: warning: array subscript has type `char'
+../machine/mipssim.cc:294: warning: array subscript has type `char'
+../machine/mipssim.cc:306: warning: array subscript has type `char'
+../machine/mipssim.cc:325: warning: array subscript has type `char'
+../machine/mipssim.cc:337: warning: array subscript has type `char'
+../machine/mipssim.cc:359: warning: array subscript has type `char'
+../machine/mipssim.cc:363: warning: array subscript has type `char'
+../machine/mipssim.cc:367: warning: array subscript has type `char'
+../machine/mipssim.cc:371: warning: array subscript has type `char'
+../machine/mipssim.cc:375: warning: array subscript has type `char'
+../machine/mipssim.cc:375: warning: array subscript has type `char'
+../machine/mipssim.cc:380: warning: array subscript has type `char'
+../machine/mipssim.cc:380: warning: array subscript has type `char'
+../machine/mipssim.cc:385: warning: array subscript has type `char'
+../machine/mipssim.cc:385: warning: array subscript has type `char'
+../machine/mipssim.cc:385: warning: array subscript has type `char'
+../machine/mipssim.cc:389: warning: array subscript has type `char'
+../machine/mipssim.cc:389: warning: array subscript has type `char'
+../machine/mipssim.cc:389: warning: array subscript has type `char'
+../machine/mipssim.cc:393: warning: array subscript has type `char'
+../machine/mipssim.cc:393: warning: array subscript has type `char'
+../machine/mipssim.cc:398: warning: array subscript has type `char'
+../machine/mipssim.cc:398: warning: array subscript has type `char'
+../machine/mipssim.cc:404: warning: array subscript has type `char'
+../machine/mipssim.cc:404: warning: array subscript has type `char'
+../machine/mipssim.cc:409: warning: array subscript has type `char'
+../machine/mipssim.cc:409: warning: array subscript has type `char'
+../machine/mipssim.cc:413: warning: array subscript has type `char'
+../machine/mipssim.cc:413: warning: array subscript has type `char'
+../machine/mipssim.cc:414: warning: array subscript has type `char'
+../machine/mipssim.cc:418: warning: array subscript has type `char'
+../machine/mipssim.cc:418: warning: array subscript has type `char'
+../machine/mipssim.cc:419: warning: array subscript has type `char'
+../machine/mipssim.cc:421: warning: array subscript has type `char'
+../machine/mipssim.cc:425: warning: array subscript has type `char'
+../machine/mipssim.cc:426: warning: array subscript has type `char'
+../machine/mipssim.cc:428: warning: array subscript has type `char'
+../machine/mipssim.cc:432: warning: array subscript has type `char'
+../machine/mipssim.cc:435: warning: array subscript has type `char'
+../machine/mipssim.cc:437: warning: array subscript has type `char'
+../machine/mipssim.cc:441: warning: array subscript has type `char'
+../machine/mipssim.cc:442: warning: array subscript has type `char'
+../machine/mipssim.cc:444: warning: array subscript has type `char'
+../machine/mipssim.cc:446: warning: array subscript has type `char'
+../machine/mipssim.cc:450: warning: array subscript has type `char'
+../machine/mipssim.cc:450: warning: array subscript has type `char'
+../machine/mipssim.cc:454: warning: array subscript has type `char'
+../machine/mipssim.cc:454: warning: array subscript has type `char'
+../machine/mipssim.cc:455: warning: array subscript has type `char'
+../machine/mipssim.cc:459: warning: array subscript has type `char'
+../machine/mipssim.cc:461: warning: array subscript has type `char'
+../machine/mipssim.cc:465: warning: array subscript has type `char'
+../machine/mipssim.cc:466: warning: array subscript has type `char'
+../machine/mipssim.cc:467: warning: array subscript has type `char'
+../machine/mipssim.cc:471: warning: array subscript has type `char'
+../machine/mipssim.cc:471: warning: array subscript has type `char'
+../machine/mipssim.cc:472: warning: array subscript has type `char'
+../machine/mipssim.cc:472: warning: array subscript has type `char'
+../machine/mipssim.cc:473: warning: array subscript has type `char'
+../machine/mipssim.cc:477: warning: array subscript has type `char'
+../machine/mipssim.cc:481: warning: array subscript has type `char'
+../machine/mipssim.cc:481: warning: array subscript has type `char'
+../machine/mipssim.cc:481: warning: array subscript has type `char'
+../machine/mipssim.cc:486: warning: array subscript has type `char'
+../machine/mipssim.cc:486: warning: array subscript has type `char'
+../machine/mipssim.cc:491: warning: array subscript has type `char'
+../machine/mipssim.cc:501: warning: array subscript has type `char'
+../machine/mipssim.cc:504: warning: array subscript has type `char'
+../machine/mipssim.cc:508: warning: array subscript has type `char'
+../machine/mipssim.cc:512: warning: array subscript has type `char'
+../machine/mipssim.cc:521: warning: array subscript has type `char'
+../machine/mipssim.cc:531: warning: array subscript has type `char'
+../machine/mipssim.cc:534: warning: array subscript has type `char'
+../machine/mipssim.cc:537: warning: array subscript has type `char'
+../machine/mipssim.cc:540: warning: array subscript has type `char'
+../machine/mipssim.cc:552: warning: array subscript has type `char'
+../machine/mipssim.cc:552: warning: array subscript has type `char'
+../machine/mipssim.cc:552: warning: array subscript has type `char'
+../machine/mipssim.cc:556: warning: array subscript has type `char'
+../machine/mipssim.cc:556: warning: array subscript has type `char'
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM  -DFILESYS_NEEDED -DFILESYS_STUB -DVM -DUSE_TLB -DHOST_i386 -DCHANGED -DEBUG -c ../machine/translate.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../machine/translate.cc:34:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../machine/translate.cc:34:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+../machine/translate.cc: In member function `ExceptionType Machine::Translate(int, int*, int, bool)':
+../machine/translate.cc:262: warning: comparison between signed and unsigned integer expressions
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM  -DFILESYS_NEEDED -DFILESYS_STUB -DVM -DUSE_TLB -DHOST_i386 -DCHANGED -DEBUG -c ../userprog/mysyscall.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../userprog/mysyscall.cc:2:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../userprog/mysyscall.cc:2:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+../userprog/mysyscall.cc: In function `void MyWrite()':
+../userprog/mysyscall.cc:285: warning: unused variable 'newOffset'
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM  -DFILESYS_NEEDED -DFILESYS_STUB -DVM -DUSE_TLB -DHOST_i386 -DCHANGED -DEBUG -c ../filesys/useropenfile.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/useropenfile.cc:1:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../filesys/useropenfile.cc:2:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM  -DFILESYS_NEEDED -DFILESYS_STUB -DVM -DUSE_TLB -DHOST_i386 -DCHANGED -DEBUG -c ../filesys/sysopenfile.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../filesys/sysopenfile.cc:2:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../filesys/sysopenfile.cc:2:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM  -DFILESYS_NEEDED -DFILESYS_STUB -DVM -DUSE_TLB -DHOST_i386 -DCHANGED -DEBUG -c ../filesys/filemanager.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../filesys/filemanager.cc:1:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../filesys/filemanager.cc:2:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+gcc -E -P -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DHOST_i386 ../threads/switch.c > swtch.s
+../threads/switch.c:109:8: warning: extra tokens at end of #endif directive
+../threads/switch.c:185:8: warning: extra tokens at end of #endif directive
+as -o switch.o swtch.s
+g++ main.o list.o scheduler.o synch.o synchlist.o system.o thread.o utility.o threadtest.o interrupt.o stats.o sysdep.o timer.o addrspace.o bitmap.o pcb.o memorymanager.o processmanager.o exception.o progtest.o console.o machine.o mipssim.o translate.o mysyscall.o useropenfile.o sysopenfile.o filemanager.o   switch.o  -o nachos
+gmake[1]: Leaving directory `/a/bear.cs.fiu.edu./disk/bear-b/users/ntorr054/NACHOSTESTING/nachosdir/nachos-3.4/code/vm'
+cd filesys; gmake depend
+gmake[1]: Entering directory `/a/bear.cs.fiu.edu./disk/bear-b/users/ntorr054/NACHOSTESTING/nachosdir/nachos-3.4/code/filesys'
+g++ -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DTHREADS -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DHOST_i386 -DCHANGED -M ../threads/main.cc ../threads/list.cc ../threads/scheduler.cc ../threads/synch.cc ../threads/synchlist.cc ../threads/thread.cc ../threads/system.cc ../threads/utility.cc ../threads/threadtest.cc ../machine/interrupt.cc ../machine/sysdep.cc ../machine/stats.cc ../machine/timer.cc ../userprog/addrspace.cc ../userprog/bitmap.cc ../userprog/pcb.cc ../userprog/memorymanager.cc ../userprog/processmanager.cc ../userprog/mysyscall.cc ../userprog/exception.cc ../userprog/progtest.cc ../machine/console.cc ../machine/machine.cc ../machine/mipssim.cc ../machine/translate.cc ../test/halt.c ../test/fork.c ../filesys/sysopenfile.cc ../filesys/filemanager.cc ../filesys/useropenfile.cc  ../filesys/directory.cc ../filesys/filehdr.cc ../filesys/filesys.cc ../filesys/fstest.cc ../filesys/openfile.cc ../filesys/synchdisk.cc ../machine/disk.cc > makedep
+echo '/^# DO NOT DELETE THIS LINE/+2,$d' >eddep
+echo '$r makedep' >>eddep
+echo 'w' >>eddep
+ed - Makefile < eddep
+rm eddep makedep 
+echo '# DEPENDENCIES MUST END AT END OF FILE' >> Makefile
+echo '# IF YOU PUT STUFF HERE IT WILL GO AWAY' >> Makefile
+echo '# see make depend above' >> Makefile
+gmake[1]: Leaving directory `/a/bear.cs.fiu.edu./disk/bear-b/users/ntorr054/NACHOSTESTING/nachosdir/nachos-3.4/code/filesys'
+cd filesys; gmake nachos 
+gmake[1]: Entering directory `/a/bear.cs.fiu.edu./disk/bear-b/users/ntorr054/NACHOSTESTING/nachosdir/nachos-3.4/code/filesys'
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DTHREADS -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DHOST_i386 -DCHANGED -DEBUG -c ../threads/main.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../threads/main.cc:57:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../threads/main.cc:57:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DTHREADS -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DHOST_i386 -DCHANGED -DEBUG -c ../threads/list.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+../threads/list.cc: In member function `void* List::RemoveByKey(int)':
+../threads/list.cc:284: warning: control reaches end of non-void function
+../threads/list.cc: In member function `List* List::RemoveAllButKey(int)':
+../threads/list.cc:308: warning: control reaches end of non-void function
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DTHREADS -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DHOST_i386 -DCHANGED -DEBUG -c ../threads/scheduler.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/scheduler.h:14,
+                 from ../threads/scheduler.cc:22:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/scheduler.h:14,
+                 from ../threads/scheduler.cc:22:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DTHREADS -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DHOST_i386 -DCHANGED -DEBUG -c ../threads/synch.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/synch.h:21,
+                 from ../threads/synch.cc:25:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/synch.h:21,
+                 from ../threads/synch.cc:25:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DTHREADS -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DHOST_i386 -DCHANGED -DEBUG -c ../threads/synchlist.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/synch.h:21,
+                 from ../threads/synchlist.h:16,
+                 from ../threads/synchlist.cc:16:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/synch.h:21,
+                 from ../threads/synchlist.h:16,
+                 from ../threads/synchlist.cc:16:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DTHREADS -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DHOST_i386 -DCHANGED -DEBUG -c ../threads/system.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../threads/system.cc:9:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../threads/system.cc:9:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DTHREADS -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DHOST_i386 -DCHANGED -DEBUG -c ../threads/thread.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/thread.cc:18:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/thread.cc:18:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DTHREADS -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DHOST_i386 -DCHANGED -DEBUG -c ../threads/utility.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DTHREADS -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DHOST_i386 -DCHANGED -DEBUG -c ../threads/threadtest.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../threads/threadtest.cc:13:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../threads/threadtest.cc:13:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DTHREADS -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DHOST_i386 -DCHANGED -DEBUG -c ../machine/interrupt.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/interrupt.cc:25:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/interrupt.cc:25:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+../machine/interrupt.cc: In destructor `Interrupt::~Interrupt()':
+../machine/interrupt.cc:77: warning: deleting `void*' is undefined
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DTHREADS -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DHOST_i386 -DCHANGED -DEBUG -c ../machine/stats.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DTHREADS -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DHOST_i386 -DCHANGED -DEBUG -c ../machine/sysdep.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/sysdep.cc:102:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/sysdep.cc:102:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DTHREADS -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DHOST_i386 -DCHANGED -DEBUG -c ../machine/timer.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/timer.cc:24:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/timer.cc:24:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DTHREADS -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DHOST_i386 -DCHANGED -DEBUG -c ../userprog/addrspace.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../userprog/addrspace.cc:19:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../userprog/addrspace.cc:19:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+../userprog/addrspace.cc: In constructor `AddrSpace::AddrSpace(OpenFile*, bool, char*)':
+../userprog/addrspace.cc:98: warning: comparison between signed and unsigned integer expressions
+../userprog/addrspace.cc: In member function `void AddrSpace::sendToMem(int)':
+../userprog/addrspace.cc:252: warning: unused variable 'pOffset'
+../userprog/addrspace.cc:270: warning: unused variable 'result'
+../userprog/addrspace.cc: In constructor `AddrSpace::AddrSpace()':
+../userprog/addrspace.cc:518: warning: converting of negative value `-0x000000001' to `unsigned int'
+../userprog/addrspace.cc: In member function `void AddrSpace::Fork(AddrSpace*)':
+../userprog/addrspace.cc:526: warning: comparison between signed and unsigned integer expressions
+../userprog/addrspace.cc:549: warning: unused variable 'totalSize'
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DTHREADS -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DHOST_i386 -DCHANGED -DEBUG -c ../userprog/bitmap.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DTHREADS -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DHOST_i386 -DCHANGED -DEBUG -c ../userprog/pcb.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/pcb.cc:1:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/pcb.cc:1:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DTHREADS -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DHOST_i386 -DCHANGED -DEBUG -c ../userprog/memorymanager.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../userprog/memorymanager.cc:2:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../userprog/memorymanager.cc:2:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DTHREADS -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DHOST_i386 -DCHANGED -DEBUG -c ../userprog/processmanager.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/processmanager.h:7,
+                 from ../userprog/processmanager.cc:1:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/processmanager.h:7,
+                 from ../userprog/processmanager.cc:1:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DTHREADS -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DHOST_i386 -DCHANGED -DEBUG -c ../userprog/exception.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../userprog/exception.cc:25:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../userprog/exception.cc:25:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DTHREADS -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DHOST_i386 -DCHANGED -DEBUG -c ../userprog/progtest.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../userprog/progtest.cc:12:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../userprog/progtest.cc:12:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DTHREADS -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DHOST_i386 -DCHANGED -DEBUG -c ../machine/console.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/console.cc:18:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/console.cc:18:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DTHREADS -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DHOST_i386 -DCHANGED -DEBUG -c ../machine/machine.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/machine.cc:12:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/machine.cc:12:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DTHREADS -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DHOST_i386 -DCHANGED -DEBUG -c ../machine/mipssim.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/mipssim.cc:17:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/mipssim.cc:17:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+../machine/mipssim.cc: In member function `void Machine::OneInstruction(Instruction*)':
+../machine/mipssim.cc:119: warning: array subscript has type `char'
+../machine/mipssim.cc:138: warning: array subscript has type `char'
+../machine/mipssim.cc:138: warning: array subscript has type `char'
+../machine/mipssim.cc:139: warning: array subscript has type `char'
+../machine/mipssim.cc:139: warning: array subscript has type `char'
+../machine/mipssim.cc:140: warning: array subscript has type `char'
+../machine/mipssim.cc:144: warning: array subscript has type `char'
+../machine/mipssim.cc:148: warning: array subscript has type `char'
+../machine/mipssim.cc:149: warning: array subscript has type `char'
+../machine/mipssim.cc:154: warning: array subscript has type `char'
+../machine/mipssim.cc:158: warning: array subscript has type `char'
+../machine/mipssim.cc:158: warning: array subscript has type `char'
+../machine/mipssim.cc:162: warning: array subscript has type `char'
+../machine/mipssim.cc:162: warning: array subscript has type `char'
+../machine/mipssim.cc:162: warning: array subscript has type `char'
+../machine/mipssim.cc:166: warning: array subscript has type `char'
+../machine/mipssim.cc:166: warning: array subscript has type `char'
+../machine/mipssim.cc:166: warning: array subscript has type `char'
+../machine/mipssim.cc:170: warning: array subscript has type `char'
+../machine/mipssim.cc:170: warning: array subscript has type `char'
+../machine/mipssim.cc:174: warning: array subscript has type `char'
+../machine/mipssim.cc:174: warning: array subscript has type `char'
+../machine/mipssim.cc:182: warning: array subscript has type `char'
+../machine/mipssim.cc:187: warning: array subscript has type `char'
+../machine/mipssim.cc:192: warning: array subscript has type `char'
+../machine/mipssim.cc:199: warning: array subscript has type `char'
+../machine/mipssim.cc:204: warning: array subscript has type `char'
+../machine/mipssim.cc:204: warning: array subscript has type `char'
+../machine/mipssim.cc:209: warning: array subscript has type `char'
+../machine/mipssim.cc:213: warning: array subscript has type `char'
+../machine/mipssim.cc:213: warning: array subscript has type `char'
+../machine/mipssim.cc:214: warning: array subscript has type `char'
+../machine/mipssim.cc:214: warning: array subscript has type `char'
+../machine/mipssim.cc:219: warning: array subscript has type `char'
+../machine/mipssim.cc:220: warning: array subscript has type `char'
+../machine/mipssim.cc:239: warning: array subscript has type `char'
+../machine/mipssim.cc:241: warning: array subscript has type `char'
+../machine/mipssim.cc:246: warning: array subscript has type `char'
+../machine/mipssim.cc:260: warning: array subscript has type `char'
+../machine/mipssim.cc:278: warning: array subscript has type `char'
+../machine/mipssim.cc:282: warning: array subscript has type `char'
+../machine/mipssim.cc:294: warning: array subscript has type `char'
+../machine/mipssim.cc:306: warning: array subscript has type `char'
+../machine/mipssim.cc:325: warning: array subscript has type `char'
+../machine/mipssim.cc:337: warning: array subscript has type `char'
+../machine/mipssim.cc:359: warning: array subscript has type `char'
+../machine/mipssim.cc:363: warning: array subscript has type `char'
+../machine/mipssim.cc:367: warning: array subscript has type `char'
+../machine/mipssim.cc:371: warning: array subscript has type `char'
+../machine/mipssim.cc:375: warning: array subscript has type `char'
+../machine/mipssim.cc:375: warning: array subscript has type `char'
+../machine/mipssim.cc:380: warning: array subscript has type `char'
+../machine/mipssim.cc:380: warning: array subscript has type `char'
+../machine/mipssim.cc:385: warning: array subscript has type `char'
+../machine/mipssim.cc:385: warning: array subscript has type `char'
+../machine/mipssim.cc:385: warning: array subscript has type `char'
+../machine/mipssim.cc:389: warning: array subscript has type `char'
+../machine/mipssim.cc:389: warning: array subscript has type `char'
+../machine/mipssim.cc:389: warning: array subscript has type `char'
+../machine/mipssim.cc:393: warning: array subscript has type `char'
+../machine/mipssim.cc:393: warning: array subscript has type `char'
+../machine/mipssim.cc:398: warning: array subscript has type `char'
+../machine/mipssim.cc:398: warning: array subscript has type `char'
+../machine/mipssim.cc:404: warning: array subscript has type `char'
+../machine/mipssim.cc:404: warning: array subscript has type `char'
+../machine/mipssim.cc:409: warning: array subscript has type `char'
+../machine/mipssim.cc:409: warning: array subscript has type `char'
+../machine/mipssim.cc:413: warning: array subscript has type `char'
+../machine/mipssim.cc:413: warning: array subscript has type `char'
+../machine/mipssim.cc:414: warning: array subscript has type `char'
+../machine/mipssim.cc:418: warning: array subscript has type `char'
+../machine/mipssim.cc:418: warning: array subscript has type `char'
+../machine/mipssim.cc:419: warning: array subscript has type `char'
+../machine/mipssim.cc:421: warning: array subscript has type `char'
+../machine/mipssim.cc:425: warning: array subscript has type `char'
+../machine/mipssim.cc:426: warning: array subscript has type `char'
+../machine/mipssim.cc:428: warning: array subscript has type `char'
+../machine/mipssim.cc:432: warning: array subscript has type `char'
+../machine/mipssim.cc:435: warning: array subscript has type `char'
+../machine/mipssim.cc:437: warning: array subscript has type `char'
+../machine/mipssim.cc:441: warning: array subscript has type `char'
+../machine/mipssim.cc:442: warning: array subscript has type `char'
+../machine/mipssim.cc:444: warning: array subscript has type `char'
+../machine/mipssim.cc:446: warning: array subscript has type `char'
+../machine/mipssim.cc:450: warning: array subscript has type `char'
+../machine/mipssim.cc:450: warning: array subscript has type `char'
+../machine/mipssim.cc:454: warning: array subscript has type `char'
+../machine/mipssim.cc:454: warning: array subscript has type `char'
+../machine/mipssim.cc:455: warning: array subscript has type `char'
+../machine/mipssim.cc:459: warning: array subscript has type `char'
+../machine/mipssim.cc:461: warning: array subscript has type `char'
+../machine/mipssim.cc:465: warning: array subscript has type `char'
+../machine/mipssim.cc:466: warning: array subscript has type `char'
+../machine/mipssim.cc:467: warning: array subscript has type `char'
+../machine/mipssim.cc:471: warning: array subscript has type `char'
+../machine/mipssim.cc:471: warning: array subscript has type `char'
+../machine/mipssim.cc:472: warning: array subscript has type `char'
+../machine/mipssim.cc:472: warning: array subscript has type `char'
+../machine/mipssim.cc:473: warning: array subscript has type `char'
+../machine/mipssim.cc:477: warning: array subscript has type `char'
+../machine/mipssim.cc:481: warning: array subscript has type `char'
+../machine/mipssim.cc:481: warning: array subscript has type `char'
+../machine/mipssim.cc:481: warning: array subscript has type `char'
+../machine/mipssim.cc:486: warning: array subscript has type `char'
+../machine/mipssim.cc:486: warning: array subscript has type `char'
+../machine/mipssim.cc:491: warning: array subscript has type `char'
+../machine/mipssim.cc:501: warning: array subscript has type `char'
+../machine/mipssim.cc:504: warning: array subscript has type `char'
+../machine/mipssim.cc:508: warning: array subscript has type `char'
+../machine/mipssim.cc:512: warning: array subscript has type `char'
+../machine/mipssim.cc:521: warning: array subscript has type `char'
+../machine/mipssim.cc:531: warning: array subscript has type `char'
+../machine/mipssim.cc:534: warning: array subscript has type `char'
+../machine/mipssim.cc:537: warning: array subscript has type `char'
+../machine/mipssim.cc:540: warning: array subscript has type `char'
+../machine/mipssim.cc:552: warning: array subscript has type `char'
+../machine/mipssim.cc:552: warning: array subscript has type `char'
+../machine/mipssim.cc:552: warning: array subscript has type `char'
+../machine/mipssim.cc:556: warning: array subscript has type `char'
+../machine/mipssim.cc:556: warning: array subscript has type `char'
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DTHREADS -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DHOST_i386 -DCHANGED -DEBUG -c ../machine/translate.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../machine/translate.cc:34:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../machine/translate.cc:34:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+../machine/translate.cc: In member function `ExceptionType Machine::Translate(int, int*, int, bool)':
+../machine/translate.cc:262: warning: comparison between signed and unsigned integer expressions
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DTHREADS -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DHOST_i386 -DCHANGED -DEBUG -c ../userprog/mysyscall.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../userprog/mysyscall.cc:2:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../userprog/mysyscall.cc:2:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+../userprog/mysyscall.cc: In function `void MyWrite()':
+../userprog/mysyscall.cc:285: warning: unused variable 'newOffset'
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DTHREADS -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DHOST_i386 -DCHANGED -DEBUG -c ../filesys/useropenfile.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/useropenfile.cc:1:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../filesys/useropenfile.cc:2:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DTHREADS -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DHOST_i386 -DCHANGED -DEBUG -c ../filesys/sysopenfile.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../filesys/sysopenfile.cc:2:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../filesys/sysopenfile.cc:2:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DTHREADS -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DHOST_i386 -DCHANGED -DEBUG -c ../filesys/filemanager.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../filesys/filemanager.cc:1:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../filesys/filemanager.cc:2:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DTHREADS -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DHOST_i386 -DCHANGED -DEBUG -c ../filesys/directory.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DTHREADS -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DHOST_i386 -DCHANGED -DEBUG -c ../filesys/filehdr.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../filesys/filehdr.cc:27:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../filesys/filehdr.cc:27:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DTHREADS -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DHOST_i386 -DCHANGED -DEBUG -c ../filesys/filesys.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DTHREADS -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DHOST_i386 -DCHANGED -DEBUG -c ../filesys/fstest.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../filesys/fstest.cc:19:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../filesys/fstest.cc:19:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DTHREADS -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DHOST_i386 -DCHANGED -DEBUG -c ../filesys/openfile.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../filesys/openfile.cc:17:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../filesys/openfile.cc:17:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DTHREADS -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DHOST_i386 -DCHANGED -DEBUG -c ../filesys/synchdisk.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/synch.h:21,
+                 from ../filesys/synchdisk.h:15,
+                 from ../filesys/synchdisk.cc:18:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/synch.h:21,
+                 from ../filesys/synchdisk.h:15,
+                 from ../filesys/synchdisk.cc:18:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DTHREADS -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DHOST_i386 -DCHANGED -DEBUG -c ../machine/disk.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/disk.cc:18:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/disk.cc:18:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+gcc -E -P -I../filesys -I../bin -I../vm -I../userprog -I../threads -I../machine -DHOST_i386 ../threads/switch.c > swtch.s
+../threads/switch.c:109:8: warning: extra tokens at end of #endif directive
+../threads/switch.c:185:8: warning: extra tokens at end of #endif directive
+as -o switch.o swtch.s
+g++ main.o list.o scheduler.o synch.o synchlist.o system.o thread.o utility.o threadtest.o interrupt.o stats.o sysdep.o timer.o addrspace.o bitmap.o pcb.o memorymanager.o processmanager.o exception.o progtest.o console.o machine.o mipssim.o translate.o mysyscall.o useropenfile.o sysopenfile.o filemanager.o   directory.o filehdr.o filesys.o fstest.o openfile.o synchdisk.o disk.o switch.o  -o nachos
+gmake[1]: Leaving directory `/a/bear.cs.fiu.edu./disk/bear-b/users/ntorr054/NACHOSTESTING/nachosdir/nachos-3.4/code/filesys'
+cd network; gmake depend
+gmake[1]: Entering directory `/a/bear.cs.fiu.edu./disk/bear-b/users/ntorr054/NACHOSTESTING/nachosdir/nachos-3.4/code/network'
+g++ -I../network -I../bin -I../filesys -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DNETWORK -DHOST_i386 -DCHANGED -M ../threads/main.cc ../threads/list.cc ../threads/scheduler.cc ../threads/synch.cc ../threads/synchlist.cc ../threads/thread.cc ../threads/system.cc ../threads/utility.cc ../threads/threadtest.cc ../machine/interrupt.cc ../machine/sysdep.cc ../machine/stats.cc ../machine/timer.cc ../userprog/addrspace.cc ../userprog/bitmap.cc ../userprog/pcb.cc ../userprog/memorymanager.cc ../userprog/processmanager.cc ../userprog/mysyscall.cc ../userprog/exception.cc ../userprog/progtest.cc ../machine/console.cc ../machine/machine.cc ../machine/mipssim.cc ../machine/translate.cc ../test/halt.c ../test/fork.c ../filesys/sysopenfile.cc ../filesys/filemanager.cc ../filesys/useropenfile.cc  ../filesys/directory.cc ../filesys/filehdr.cc ../filesys/filesys.cc ../filesys/fstest.cc ../filesys/openfile.cc ../filesys/synchdisk.cc ../machine/disk.cc ../network/nettest.cc ../network/post.cc ../machine/network.cc > makedep
+echo '/^# DO NOT DELETE THIS LINE/+2,$d' >eddep
+echo '$r makedep' >>eddep
+echo 'w' >>eddep
+ed - Makefile < eddep
+rm eddep makedep 
+echo '# DEPENDENCIES MUST END AT END OF FILE' >> Makefile
+echo '# IF YOU PUT STUFF HERE IT WILL GO AWAY' >> Makefile
+echo '# see make depend above' >> Makefile
+gmake[1]: Leaving directory `/a/bear.cs.fiu.edu./disk/bear-b/users/ntorr054/NACHOSTESTING/nachosdir/nachos-3.4/code/network'
+cd network; gmake nachos 
+gmake[1]: Entering directory `/a/bear.cs.fiu.edu./disk/bear-b/users/ntorr054/NACHOSTESTING/nachosdir/nachos-3.4/code/network'
+g++ -g -Wall -Wshadow -fwritable-strings -I../network -I../bin -I../filesys -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DNETWORK -DHOST_i386 -DCHANGED -DEBUG -c ../threads/main.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../threads/main.cc:57:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../threads/main.cc:57:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../network -I../bin -I../filesys -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DNETWORK -DHOST_i386 -DCHANGED -DEBUG -c ../threads/list.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+../threads/list.cc: In member function `void* List::RemoveByKey(int)':
+../threads/list.cc:284: warning: control reaches end of non-void function
+../threads/list.cc: In member function `List* List::RemoveAllButKey(int)':
+../threads/list.cc:308: warning: control reaches end of non-void function
+g++ -g -Wall -Wshadow -fwritable-strings -I../network -I../bin -I../filesys -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DNETWORK -DHOST_i386 -DCHANGED -DEBUG -c ../threads/scheduler.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/scheduler.h:14,
+                 from ../threads/scheduler.cc:22:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/scheduler.h:14,
+                 from ../threads/scheduler.cc:22:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../network -I../bin -I../filesys -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DNETWORK -DHOST_i386 -DCHANGED -DEBUG -c ../threads/synch.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/synch.h:21,
+                 from ../threads/synch.cc:25:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/synch.h:21,
+                 from ../threads/synch.cc:25:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../network -I../bin -I../filesys -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DNETWORK -DHOST_i386 -DCHANGED -DEBUG -c ../threads/synchlist.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/synch.h:21,
+                 from ../threads/synchlist.h:16,
+                 from ../threads/synchlist.cc:16:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/synch.h:21,
+                 from ../threads/synchlist.h:16,
+                 from ../threads/synchlist.cc:16:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../network -I../bin -I../filesys -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DNETWORK -DHOST_i386 -DCHANGED -DEBUG -c ../threads/system.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../threads/system.cc:9:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../threads/system.cc:9:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../network -I../bin -I../filesys -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DNETWORK -DHOST_i386 -DCHANGED -DEBUG -c ../threads/thread.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/thread.cc:18:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/thread.cc:18:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../network -I../bin -I../filesys -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DNETWORK -DHOST_i386 -DCHANGED -DEBUG -c ../threads/utility.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+g++ -g -Wall -Wshadow -fwritable-strings -I../network -I../bin -I../filesys -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DNETWORK -DHOST_i386 -DCHANGED -DEBUG -c ../threads/threadtest.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../threads/threadtest.cc:13:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../threads/threadtest.cc:13:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../network -I../bin -I../filesys -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DNETWORK -DHOST_i386 -DCHANGED -DEBUG -c ../machine/interrupt.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/interrupt.cc:25:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/interrupt.cc:25:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+../machine/interrupt.cc: In destructor `Interrupt::~Interrupt()':
+../machine/interrupt.cc:77: warning: deleting `void*' is undefined
+g++ -g -Wall -Wshadow -fwritable-strings -I../network -I../bin -I../filesys -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DNETWORK -DHOST_i386 -DCHANGED -DEBUG -c ../machine/stats.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+g++ -g -Wall -Wshadow -fwritable-strings -I../network -I../bin -I../filesys -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DNETWORK -DHOST_i386 -DCHANGED -DEBUG -c ../machine/sysdep.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/sysdep.cc:102:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/sysdep.cc:102:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../network -I../bin -I../filesys -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DNETWORK -DHOST_i386 -DCHANGED -DEBUG -c ../machine/timer.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/timer.cc:24:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/timer.cc:24:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../network -I../bin -I../filesys -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DNETWORK -DHOST_i386 -DCHANGED -DEBUG -c ../userprog/addrspace.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../userprog/addrspace.cc:19:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../userprog/addrspace.cc:19:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+../userprog/addrspace.cc: In constructor `AddrSpace::AddrSpace(OpenFile*, bool, char*)':
+../userprog/addrspace.cc:98: warning: comparison between signed and unsigned integer expressions
+../userprog/addrspace.cc: In member function `void AddrSpace::sendToMem(int)':
+../userprog/addrspace.cc:252: warning: unused variable 'pOffset'
+../userprog/addrspace.cc:270: warning: unused variable 'result'
+../userprog/addrspace.cc: In constructor `AddrSpace::AddrSpace()':
+../userprog/addrspace.cc:518: warning: converting of negative value `-0x000000001' to `unsigned int'
+../userprog/addrspace.cc: In member function `void AddrSpace::Fork(AddrSpace*)':
+../userprog/addrspace.cc:526: warning: comparison between signed and unsigned integer expressions
+../userprog/addrspace.cc:549: warning: unused variable 'totalSize'
+g++ -g -Wall -Wshadow -fwritable-strings -I../network -I../bin -I../filesys -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DNETWORK -DHOST_i386 -DCHANGED -DEBUG -c ../userprog/bitmap.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+g++ -g -Wall -Wshadow -fwritable-strings -I../network -I../bin -I../filesys -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DNETWORK -DHOST_i386 -DCHANGED -DEBUG -c ../userprog/pcb.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/pcb.cc:1:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/pcb.cc:1:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../network -I../bin -I../filesys -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DNETWORK -DHOST_i386 -DCHANGED -DEBUG -c ../userprog/memorymanager.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../userprog/memorymanager.cc:2:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../userprog/memorymanager.cc:2:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../network -I../bin -I../filesys -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DNETWORK -DHOST_i386 -DCHANGED -DEBUG -c ../userprog/processmanager.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/processmanager.h:7,
+                 from ../userprog/processmanager.cc:1:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/processmanager.h:7,
+                 from ../userprog/processmanager.cc:1:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../network -I../bin -I../filesys -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DNETWORK -DHOST_i386 -DCHANGED -DEBUG -c ../userprog/exception.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../userprog/exception.cc:25:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../userprog/exception.cc:25:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../network -I../bin -I../filesys -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DNETWORK -DHOST_i386 -DCHANGED -DEBUG -c ../userprog/progtest.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../userprog/progtest.cc:12:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../userprog/progtest.cc:12:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../network -I../bin -I../filesys -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DNETWORK -DHOST_i386 -DCHANGED -DEBUG -c ../machine/console.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/console.cc:18:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/console.cc:18:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../network -I../bin -I../filesys -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DNETWORK -DHOST_i386 -DCHANGED -DEBUG -c ../machine/machine.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/machine.cc:12:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/machine.cc:12:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../network -I../bin -I../filesys -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DNETWORK -DHOST_i386 -DCHANGED -DEBUG -c ../machine/mipssim.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/mipssim.cc:17:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/mipssim.cc:17:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+../machine/mipssim.cc: In member function `void Machine::OneInstruction(Instruction*)':
+../machine/mipssim.cc:119: warning: array subscript has type `char'
+../machine/mipssim.cc:138: warning: array subscript has type `char'
+../machine/mipssim.cc:138: warning: array subscript has type `char'
+../machine/mipssim.cc:139: warning: array subscript has type `char'
+../machine/mipssim.cc:139: warning: array subscript has type `char'
+../machine/mipssim.cc:140: warning: array subscript has type `char'
+../machine/mipssim.cc:144: warning: array subscript has type `char'
+../machine/mipssim.cc:148: warning: array subscript has type `char'
+../machine/mipssim.cc:149: warning: array subscript has type `char'
+../machine/mipssim.cc:154: warning: array subscript has type `char'
+../machine/mipssim.cc:158: warning: array subscript has type `char'
+../machine/mipssim.cc:158: warning: array subscript has type `char'
+../machine/mipssim.cc:162: warning: array subscript has type `char'
+../machine/mipssim.cc:162: warning: array subscript has type `char'
+../machine/mipssim.cc:162: warning: array subscript has type `char'
+../machine/mipssim.cc:166: warning: array subscript has type `char'
+../machine/mipssim.cc:166: warning: array subscript has type `char'
+../machine/mipssim.cc:166: warning: array subscript has type `char'
+../machine/mipssim.cc:170: warning: array subscript has type `char'
+../machine/mipssim.cc:170: warning: array subscript has type `char'
+../machine/mipssim.cc:174: warning: array subscript has type `char'
+../machine/mipssim.cc:174: warning: array subscript has type `char'
+../machine/mipssim.cc:182: warning: array subscript has type `char'
+../machine/mipssim.cc:187: warning: array subscript has type `char'
+../machine/mipssim.cc:192: warning: array subscript has type `char'
+../machine/mipssim.cc:199: warning: array subscript has type `char'
+../machine/mipssim.cc:204: warning: array subscript has type `char'
+../machine/mipssim.cc:204: warning: array subscript has type `char'
+../machine/mipssim.cc:209: warning: array subscript has type `char'
+../machine/mipssim.cc:213: warning: array subscript has type `char'
+../machine/mipssim.cc:213: warning: array subscript has type `char'
+../machine/mipssim.cc:214: warning: array subscript has type `char'
+../machine/mipssim.cc:214: warning: array subscript has type `char'
+../machine/mipssim.cc:219: warning: array subscript has type `char'
+../machine/mipssim.cc:220: warning: array subscript has type `char'
+../machine/mipssim.cc:239: warning: array subscript has type `char'
+../machine/mipssim.cc:241: warning: array subscript has type `char'
+../machine/mipssim.cc:246: warning: array subscript has type `char'
+../machine/mipssim.cc:260: warning: array subscript has type `char'
+../machine/mipssim.cc:278: warning: array subscript has type `char'
+../machine/mipssim.cc:282: warning: array subscript has type `char'
+../machine/mipssim.cc:294: warning: array subscript has type `char'
+../machine/mipssim.cc:306: warning: array subscript has type `char'
+../machine/mipssim.cc:325: warning: array subscript has type `char'
+../machine/mipssim.cc:337: warning: array subscript has type `char'
+../machine/mipssim.cc:359: warning: array subscript has type `char'
+../machine/mipssim.cc:363: warning: array subscript has type `char'
+../machine/mipssim.cc:367: warning: array subscript has type `char'
+../machine/mipssim.cc:371: warning: array subscript has type `char'
+../machine/mipssim.cc:375: warning: array subscript has type `char'
+../machine/mipssim.cc:375: warning: array subscript has type `char'
+../machine/mipssim.cc:380: warning: array subscript has type `char'
+../machine/mipssim.cc:380: warning: array subscript has type `char'
+../machine/mipssim.cc:385: warning: array subscript has type `char'
+../machine/mipssim.cc:385: warning: array subscript has type `char'
+../machine/mipssim.cc:385: warning: array subscript has type `char'
+../machine/mipssim.cc:389: warning: array subscript has type `char'
+../machine/mipssim.cc:389: warning: array subscript has type `char'
+../machine/mipssim.cc:389: warning: array subscript has type `char'
+../machine/mipssim.cc:393: warning: array subscript has type `char'
+../machine/mipssim.cc:393: warning: array subscript has type `char'
+../machine/mipssim.cc:398: warning: array subscript has type `char'
+../machine/mipssim.cc:398: warning: array subscript has type `char'
+../machine/mipssim.cc:404: warning: array subscript has type `char'
+../machine/mipssim.cc:404: warning: array subscript has type `char'
+../machine/mipssim.cc:409: warning: array subscript has type `char'
+../machine/mipssim.cc:409: warning: array subscript has type `char'
+../machine/mipssim.cc:413: warning: array subscript has type `char'
+../machine/mipssim.cc:413: warning: array subscript has type `char'
+../machine/mipssim.cc:414: warning: array subscript has type `char'
+../machine/mipssim.cc:418: warning: array subscript has type `char'
+../machine/mipssim.cc:418: warning: array subscript has type `char'
+../machine/mipssim.cc:419: warning: array subscript has type `char'
+../machine/mipssim.cc:421: warning: array subscript has type `char'
+../machine/mipssim.cc:425: warning: array subscript has type `char'
+../machine/mipssim.cc:426: warning: array subscript has type `char'
+../machine/mipssim.cc:428: warning: array subscript has type `char'
+../machine/mipssim.cc:432: warning: array subscript has type `char'
+../machine/mipssim.cc:435: warning: array subscript has type `char'
+../machine/mipssim.cc:437: warning: array subscript has type `char'
+../machine/mipssim.cc:441: warning: array subscript has type `char'
+../machine/mipssim.cc:442: warning: array subscript has type `char'
+../machine/mipssim.cc:444: warning: array subscript has type `char'
+../machine/mipssim.cc:446: warning: array subscript has type `char'
+../machine/mipssim.cc:450: warning: array subscript has type `char'
+../machine/mipssim.cc:450: warning: array subscript has type `char'
+../machine/mipssim.cc:454: warning: array subscript has type `char'
+../machine/mipssim.cc:454: warning: array subscript has type `char'
+../machine/mipssim.cc:455: warning: array subscript has type `char'
+../machine/mipssim.cc:459: warning: array subscript has type `char'
+../machine/mipssim.cc:461: warning: array subscript has type `char'
+../machine/mipssim.cc:465: warning: array subscript has type `char'
+../machine/mipssim.cc:466: warning: array subscript has type `char'
+../machine/mipssim.cc:467: warning: array subscript has type `char'
+../machine/mipssim.cc:471: warning: array subscript has type `char'
+../machine/mipssim.cc:471: warning: array subscript has type `char'
+../machine/mipssim.cc:472: warning: array subscript has type `char'
+../machine/mipssim.cc:472: warning: array subscript has type `char'
+../machine/mipssim.cc:473: warning: array subscript has type `char'
+../machine/mipssim.cc:477: warning: array subscript has type `char'
+../machine/mipssim.cc:481: warning: array subscript has type `char'
+../machine/mipssim.cc:481: warning: array subscript has type `char'
+../machine/mipssim.cc:481: warning: array subscript has type `char'
+../machine/mipssim.cc:486: warning: array subscript has type `char'
+../machine/mipssim.cc:486: warning: array subscript has type `char'
+../machine/mipssim.cc:491: warning: array subscript has type `char'
+../machine/mipssim.cc:501: warning: array subscript has type `char'
+../machine/mipssim.cc:504: warning: array subscript has type `char'
+../machine/mipssim.cc:508: warning: array subscript has type `char'
+../machine/mipssim.cc:512: warning: array subscript has type `char'
+../machine/mipssim.cc:521: warning: array subscript has type `char'
+../machine/mipssim.cc:531: warning: array subscript has type `char'
+../machine/mipssim.cc:534: warning: array subscript has type `char'
+../machine/mipssim.cc:537: warning: array subscript has type `char'
+../machine/mipssim.cc:540: warning: array subscript has type `char'
+../machine/mipssim.cc:552: warning: array subscript has type `char'
+../machine/mipssim.cc:552: warning: array subscript has type `char'
+../machine/mipssim.cc:552: warning: array subscript has type `char'
+../machine/mipssim.cc:556: warning: array subscript has type `char'
+../machine/mipssim.cc:556: warning: array subscript has type `char'
+g++ -g -Wall -Wshadow -fwritable-strings -I../network -I../bin -I../filesys -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DNETWORK -DHOST_i386 -DCHANGED -DEBUG -c ../machine/translate.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../machine/translate.cc:34:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../machine/translate.cc:34:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+../machine/translate.cc: In member function `ExceptionType Machine::Translate(int, int*, int, bool)':
+../machine/translate.cc:262: warning: comparison between signed and unsigned integer expressions
+g++ -g -Wall -Wshadow -fwritable-strings -I../network -I../bin -I../filesys -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DNETWORK -DHOST_i386 -DCHANGED -DEBUG -c ../userprog/mysyscall.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../userprog/mysyscall.cc:2:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../userprog/mysyscall.cc:2:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+../userprog/mysyscall.cc: In function `void MyWrite()':
+../userprog/mysyscall.cc:285: warning: unused variable 'newOffset'
+g++ -g -Wall -Wshadow -fwritable-strings -I../network -I../bin -I../filesys -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DNETWORK -DHOST_i386 -DCHANGED -DEBUG -c ../filesys/useropenfile.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/useropenfile.cc:1:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../filesys/useropenfile.cc:2:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../network -I../bin -I../filesys -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DNETWORK -DHOST_i386 -DCHANGED -DEBUG -c ../filesys/sysopenfile.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../filesys/sysopenfile.cc:2:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../filesys/sysopenfile.cc:2:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../network -I../bin -I../filesys -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DNETWORK -DHOST_i386 -DCHANGED -DEBUG -c ../filesys/filemanager.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../filesys/filemanager.cc:1:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../filesys/filemanager.cc:2:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../network -I../bin -I../filesys -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DNETWORK -DHOST_i386 -DCHANGED -DEBUG -c ../filesys/directory.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+g++ -g -Wall -Wshadow -fwritable-strings -I../network -I../bin -I../filesys -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DNETWORK -DHOST_i386 -DCHANGED -DEBUG -c ../filesys/filehdr.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../filesys/filehdr.cc:27:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../filesys/filehdr.cc:27:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../network -I../bin -I../filesys -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DNETWORK -DHOST_i386 -DCHANGED -DEBUG -c ../filesys/filesys.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+g++ -g -Wall -Wshadow -fwritable-strings -I../network -I../bin -I../filesys -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DNETWORK -DHOST_i386 -DCHANGED -DEBUG -c ../filesys/fstest.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../filesys/fstest.cc:19:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../filesys/fstest.cc:19:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../network -I../bin -I../filesys -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DNETWORK -DHOST_i386 -DCHANGED -DEBUG -c ../filesys/openfile.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../filesys/openfile.cc:17:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../filesys/openfile.cc:17:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../network -I../bin -I../filesys -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DNETWORK -DHOST_i386 -DCHANGED -DEBUG -c ../filesys/synchdisk.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/synch.h:21,
+                 from ../filesys/synchdisk.h:15,
+                 from ../filesys/synchdisk.cc:18:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/synch.h:21,
+                 from ../filesys/synchdisk.h:15,
+                 from ../filesys/synchdisk.cc:18:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../network -I../bin -I../filesys -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DNETWORK -DHOST_i386 -DCHANGED -DEBUG -c ../machine/disk.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/disk.cc:18:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/disk.cc:18:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../network -I../bin -I../filesys -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DNETWORK -DHOST_i386 -DCHANGED -DEBUG -c ../network/nettest.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../network/nettest.cc:21:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../network/nettest.cc:21:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../network -I../bin -I../filesys -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DNETWORK -DHOST_i386 -DCHANGED -DEBUG -c ../network/post.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/synch.h:21,
+                 from ../threads/synchlist.h:16,
+                 from ../network/post.h:32,
+                 from ../network/post.cc:20:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/synch.h:21,
+                 from ../threads/synchlist.h:16,
+                 from ../network/post.h:32,
+                 from ../network/post.cc:20:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+g++ -g -Wall -Wshadow -fwritable-strings -I../network -I../bin -I../filesys -I../vm -I../userprog -I../threads -I../machine -DUSER_PROGRAM -DVM -DFILESYS_NEEDED -DFILESYS -DNETWORK -DHOST_i386 -DCHANGED -DEBUG -c ../machine/network.cc
+cc1plus: note: -fwritable-strings is deprecated; see documentation for details
+In file included from ../filesys/filemanager.h:8,
+                 from ../userprog/pcb.h:8,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/network.cc:12:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+In file included from ../userprog/pcb.h:10,
+                 from ../userprog/addrspace.h:19,
+                 from ../threads/thread.h:45,
+                 from ../threads/system.h:13,
+                 from ../machine/network.cc:12:
+../filesys/useropenfile.h:20:8: warning: extra tokens at end of #endif directive
+gcc -E -P -I../network -I../bin -I../filesys -I../vm -I../userprog -I../threads -I../machine -DHOST_i386 ../threads/switch.c > swtch.s
+../threads/switch.c:109:8: warning: extra tokens at end of #endif directive
+../threads/switch.c:185:8: warning: extra tokens at end of #endif directive
+as -o switch.o swtch.s
+g++ main.o list.o scheduler.o synch.o synchlist.o system.o thread.o utility.o threadtest.o interrupt.o stats.o sysdep.o timer.o addrspace.o bitmap.o pcb.o memorymanager.o processmanager.o exception.o progtest.o console.o machine.o mipssim.o translate.o mysyscall.o useropenfile.o sysopenfile.o filemanager.o   directory.o filehdr.o filesys.o fstest.o openfile.o synchdisk.o disk.o nettest.o post.o network.o switch.o  -o nachos
+gmake[1]: Leaving directory `/a/bear.cs.fiu.edu./disk/bear-b/users/ntorr054/NACHOSTESTING/nachosdir/nachos-3.4/code/network'
+cd bin; make all
+make[1]: Entering directory `/a/bear.cs.fiu.edu./disk/bear-b/users/ntorr054/NACHOSTESTING/nachosdir/nachos-3.4/code/bin'
+gcc -I./ -I../threads -g   -c -o coff2noff.o coff2noff.c
+coff2noff.c:69: warning: conflicting types for built-in function 'malloc'
+gcc coff2noff.o -o coff2noff
+make[1]: Leaving directory `/a/bear.cs.fiu.edu./disk/bear-b/users/ntorr054/NACHOSTESTING/nachosdir/nachos-3.4/code/bin'
+cd test; make all
+make[1]: Entering directory `/a/bear.cs.fiu.edu./disk/bear-b/users/ntorr054/NACHOSTESTING/nachosdir/nachos-3.4/code/test'
+../../../gnu-decstation-ultrix/decstation-ultrix/2.95.3/gcc -B../../../gnu-decstation-ultrix/ -G 0 -c -I../userprog -I../threads -c halt.c
+gcc -E -I../userprog -I../threads start.c > strt.s
+../../../gnu-decstation-ultrix/decstation-ultrix/2.95.3/as -mips2 -o start.o strt.s
+rm strt.s
+../../../gnu-decstation-ultrix/decstation-ultrix/2.95.3/ld -T script -N start.o halt.o -o halt.coff
+../bin/coff2noff halt.coff halt
+numsections 3 
+Loading 3 sections:
+	".text", filepos 0xd0, mempos 0x0, size 0x110
+	".data", filepos 0x1e0, mempos 0x110, size 0x0
+	".bss", filepos 0x0, mempos 0x110, size 0x0
+../../../gnu-decstation-ultrix/decstation-ultrix/2.95.3/gcc -B../../../gnu-decstation-ultrix/ -G 0 -c -I../userprog -I../threads -c shell.c
+../../../gnu-decstation-ultrix/decstation-ultrix/2.95.3/ld -T script -N start.o shell.o -o shell.coff
+../bin/coff2noff shell.coff shell
+numsections 3 
+Loading 3 sections:
+	".text", filepos 0xd0, mempos 0x0, size 0x210
+	".data", filepos 0x2e0, mempos 0x210, size 0x0
+	".bss", filepos 0x0, mempos 0x210, size 0x0
+../../../gnu-decstation-ultrix/decstation-ultrix/2.95.3/gcc -B../../../gnu-decstation-ultrix/ -G 0 -c -I../userprog -I../threads -c matmult.c
+../../../gnu-decstation-ultrix/decstation-ultrix/2.95.3/ld -T script -N start.o matmult.o -o matmult.coff
+../bin/coff2noff matmult.coff matmult
+numsections 3 
+Loading 3 sections:
+	".text", filepos 0xd0, mempos 0x0, size 0x400
+	".data", filepos 0x4d0, mempos 0x400, size 0x0
+	".bss", filepos 0x0, mempos 0x400, size 0x12c0
+../../../gnu-decstation-ultrix/decstation-ultrix/2.95.3/gcc -B../../../gnu-decstation-ultrix/ -G 0 -c -I../userprog -I../threads -c sort.c
+../../../gnu-decstation-ultrix/decstation-ultrix/2.95.3/ld -T script -N start.o sort.o -o sort.coff
+../bin/coff2noff sort.coff sort
+numsections 3 
+Loading 3 sections:
+	".text", filepos 0xd0, mempos 0x0, size 0x300
+	".data", filepos 0x3d0, mempos 0x300, size 0x0
+	".bss", filepos 0x0, mempos 0x300, size 0x1000
+../../../gnu-decstation-ultrix/decstation-ultrix/2.95.3/gcc -B../../../gnu-decstation-ultrix/ -G 0 -c -I../userprog -I../threads -c fork.c
+../../../gnu-decstation-ultrix/decstation-ultrix/2.95.3/ld -T script -N start.o fork.o -o fork.coff
+../bin/coff2noff fork.coff fork
+numsections 3 
+Loading 3 sections:
+	".text", filepos 0xd0, mempos 0x0, size 0x240
+	".data", filepos 0x310, mempos 0x240, size 0x10
+	".bss", filepos 0x0, mempos 0x250, size 0x0
+../../../gnu-decstation-ultrix/decstation-ultrix/2.95.3/gcc -B../../../gnu-decstation-ultrix/ -G 0 -c -I../userprog -I../threads -c exec.c
+../../../gnu-decstation-ultrix/decstation-ultrix/2.95.3/ld -T script -N start.o exec.o -o exec.coff
+../bin/coff2noff exec.coff exec
+numsections 4 
+Loading 4 sections:
+	".text", filepos 0xf0, mempos 0x0, size 0x190
+	".rdata", filepos 0x280, mempos 0x190, size 0x10
+	".data", filepos 0x290, mempos 0x1a0, size 0x0
+	".bss", filepos 0x0, mempos 0x1a0, size 0x0
+../../../gnu-decstation-ultrix/decstation-ultrix/2.95.3/gcc -B../../../gnu-decstation-ultrix/ -G 0 -c -I../userprog -I../threads -c memory.c
+../../../gnu-decstation-ultrix/decstation-ultrix/2.95.3/ld -T script -N start.o memory.o -o memory.coff
+../bin/coff2noff memory.coff memory
+numsections 3 
+Loading 3 sections:
+	".text", filepos 0xd0, mempos 0x0, size 0x170
+	".data", filepos 0x240, mempos 0x170, size 0x0
+	".bss", filepos 0x0, mempos 0x170, size 0x200
+../../../gnu-decstation-ultrix/decstation-ultrix/2.95.3/gcc -B../../../gnu-decstation-ultrix/ -G 0 -c -I../userprog -I../threads -c kill.c
+../../../gnu-decstation-ultrix/decstation-ultrix/2.95.3/ld -T script -N start.o kill.o -o kill.coff
+../bin/coff2noff kill.coff kill
+numsections 3 
+Loading 3 sections:
+	".text", filepos 0xd0, mempos 0x0, size 0x180
+	".data", filepos 0x250, mempos 0x180, size 0x0
+	".bss", filepos 0x0, mempos 0x180, size 0x0
+../../../gnu-decstation-ultrix/decstation-ultrix/2.95.3/gcc -B../../../gnu-decstation-ultrix/ -G 0 -c -I../userprog -I../threads -c join.c
+../../../gnu-decstation-ultrix/decstation-ultrix/2.95.3/ld -T script -N start.o join.o -o join.coff
+../bin/coff2noff join.coff join
+numsections 3 
+Loading 3 sections:
+	".text", filepos 0xd0, mempos 0x0, size 0x220
+	".data", filepos 0x2f0, mempos 0x220, size 0x10
+	".bss", filepos 0x0, mempos 0x230, size 0x0
+../../../gnu-decstation-ultrix/decstation-ultrix/2.95.3/gcc -B../../../gnu-decstation-ultrix/ -G 0 -c -I../userprog -I../threads -c create.c
+../../../gnu-decstation-ultrix/decstation-ultrix/2.95.3/ld -T script -N start.o create.o -o create.coff
+../bin/coff2noff create.coff create
+numsections 4 
+Loading 4 sections:
+	".text", filepos 0xf0, mempos 0x0, size 0x330
+	".rdata", filepos 0x420, mempos 0x330, size 0x90
+	".data", filepos 0x4b0, mempos 0x3c0, size 0x0
+	".bss", filepos 0x0, mempos 0x3c0, size 0x0
+../../../gnu-decstation-ultrix/decstation-ultrix/2.95.3/gcc -B../../../gnu-decstation-ultrix/ -G 0 -c -I../userprog -I../threads -c open.c
+../../../gnu-decstation-ultrix/decstation-ultrix/2.95.3/ld -T script -N start.o open.o -o open.coff
+../bin/coff2noff open.coff open
+numsections 4 
+Loading 4 sections:
+	".text", filepos 0xf0, mempos 0x0, size 0x170
+	".rdata", filepos 0x260, mempos 0x170, size 0x20
+	".data", filepos 0x280, mempos 0x190, size 0x0
+	".bss", filepos 0x0, mempos 0x190, size 0x0
+../../../gnu-decstation-ultrix/decstation-ultrix/2.95.3/gcc -B../../../gnu-decstation-ultrix/ -G 0 -c -I../userprog -I../threads -c simple.c
+../../../gnu-decstation-ultrix/decstation-ultrix/2.95.3/ld -T script -N start.o simple.o -o simple.coff
+../bin/coff2noff simple.coff simple
+numsections 4 
+Loading 4 sections:
+	".text", filepos 0xf0, mempos 0x0, size 0x260
+	".rdata", filepos 0x350, mempos 0x260, size 0x30
+	".data", filepos 0x380, mempos 0x290, size 0x0
+	".bss", filepos 0x0, mempos 0x290, size 0x0
+../../../gnu-decstation-ultrix/decstation-ultrix/2.95.3/gcc -B../../../gnu-decstation-ultrix/ -G 0 -c -I../userprog -I../threads -c concurrentRead.c
+../../../gnu-decstation-ultrix/decstation-ultrix/2.95.3/ld -T script -N start.o concurrentRead.o -o concurrentRead.coff
+../bin/coff2noff concurrentRead.coff concurrentRead
+numsections 4 
+Loading 4 sections:
+	".text", filepos 0xf0, mempos 0x0, size 0x2a0
+	".rdata", filepos 0x390, mempos 0x2a0, size 0x30
+	".data", filepos 0x3c0, mempos 0x2d0, size 0x0
+	".bss", filepos 0x0, mempos 0x2d0, size 0x0
+../../../gnu-decstation-ultrix/decstation-ultrix/2.95.3/gcc -B../../../gnu-decstation-ultrix/ -G 0 -c -I../userprog -I../threads -c cp.c
+../../../gnu-decstation-ultrix/decstation-ultrix/2.95.3/ld -T script -N start.o cp.o -o cp.coff
+../bin/coff2noff cp.coff cp 
+numsections 4 
+Loading 4 sections:
+	".text", filepos 0xf0, mempos 0x0, size 0x2b0
+	".rdata", filepos 0x3a0, mempos 0x2b0, size 0x60
+	".data", filepos 0x400, mempos 0x310, size 0x0
+	".bss", filepos 0x0, mempos 0x310, size 0x0
+make[1]: Leaving directory `/a/bear.cs.fiu.edu./disk/bear-b/users/ntorr054/NACHOSTESTING/nachosdir/nachos-3.4/code/test'

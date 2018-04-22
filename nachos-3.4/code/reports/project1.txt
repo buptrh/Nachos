@@ -1,0 +1,52 @@
+###################################################################
+  TITLE:          Project1 Report                
+                                                            
+  AUTHORS:                                          
+  Nicholas Torres, Panther ID: 3744798 
+  Hao Ren,         Panther ID: 6045446
+  Xu Li,           Panther ID: 6034311
+###################################################################
+
+Exercise I. Simple Threads Programming (Analyze and explain results)
+
+	 After making the changes appropriate changes in "threadtest.cc" and
+	 "main.cc" we were able to execute the newly created thread test in
+	 Nachos. The test was run with 0, 1, 2, 3 and 4 as the argument for
+	 the function ThreadTest(). The results were as follows:
+
+	  1. Argument 0:   No threads ready or runnable the machine halts.
+          2. Argument 1-4: 1-5 (dependent on the argument) threads run.
+	     	      	   as 1-4 are forked and the original runs the
+			   function as well. All of these arguments
+			   resulted in a final value of 5.
+
+          After this the Semaphores were intoduced into the code as
+          directed by the instructions. Resulting in syncrhonized results.
+
+
+Exercise Status
+
+Exercise I.
+	 Complete with proper synchronization for the final part
+	 which still holds when the -rs flag is set (tested with
+	 several seeds).
+
+Exercise II.
+	 Complete with proper Lock synchronization that still holds
+	 when the -rs flag is set (tested with several seeds).
+
+Exercise III.
+	 Completed, tested and verified in the SimpleThread function
+	 with the -rs flag and several seeds (tests removed as they
+	 were not specifed by the instructions).
+
+Exercise IV.
+	 Completed, tested and verified with the -rs flag with several
+	 seeds, varying passernger amounts (above and below max capacity),
+	 varying floors and with random generation of threads. 
+	   
+	 	                        
+
+
+		       
+ 

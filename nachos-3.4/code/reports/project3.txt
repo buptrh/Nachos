@@ -1,0 +1,61 @@
+###################################################################
+  TITLE:          Project3 Report                
+                                                            
+  AUTHORS:                                          
+  Nicholas Torres, Panther ID: 3744798 
+  Hao Ren,         Panther ID: 6045446
+  Xu Li            Panther ID: 6034311
+###################################################################
+
+Exercise Summary
+	This project was a simple concept to implement but actual
+	implementation was more difficult than first considered.
+	The project was difficult because of how we needed to track
+	an OpenFile object through a SysOpenFile object to a
+	UserOpenFile object. Thankfully we had over-engineered parts
+	of the process manager from project2 which meant we were
+	able to more readily accommodate the facilities required by the
+	various file object decencies. Once we had a handle on the
+	ideas the project was mostly smooth sailing. All of the test
+	files such as cp.c and concurrentRead.c function as specified
+	by the output given. 
+
+Test File Status
+
+File:		  | Status:	
+cp.c              | Completely operational.
+concurrentRead.c  | Completely operational.
+
+Exercise Status
+
+Create
+	Create is fully operational and able to create new empty files
+	into the file system. This was the easiest system-call to
+	implement.
+
+Open
+	The Open system-call is completely operational. This system call
+	was still among the simplest but did necessitate the creation
+	of the file manager which manages system open files as well as
+	modifications to the process manager and PCB to allow the
+	addition of user open file tracking and file modifications such
+	as read and write. 
+
+Write
+	This system-call is completely working and was fairly simple to
+	create based on the implementation guide. 
+
+Read
+	This system-call is completely working and was fairly simple to
+	create. We went a step further with this system-call based on
+	our understanding of how the system call should work. We ended
+	up protecting the user-space developer from reading garbage by default.
+	We did this by ensuring we would cease reading if we reached a '\0'
+	character. This prevents the developer from reading a size larger
+	than the amount of available characters. 
+
+Close
+	This system-call is completely working. Initially there was a
+	misunderstanding of how the syscall should work and we were
+	removing files from the filesystem. This was a quick fix
+	and afterwards resulted in a fully functional syscall.

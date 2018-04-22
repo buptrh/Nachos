@@ -1,0 +1,57 @@
+##############################################
+Title: Project0 Report
+Authors: Nicholas Torres |  PantherID: 3744798
+	 Hao Ren         |  PantherID: 6045446
+ 	 Xu Li           |  PantherID: 6034311	
+##############################################
+
+I. Installing Nachos
+  
+   The intial attempt to install Nachos was on a local Linux host (Arch Linux w/ kernel 4.14) and was unsuccessful. After reading 
+   some of the documentation and realizing the age of the utilities needed to build Nachos it was decided it would be much easier
+   to install Nachos on nachos.cs.fiu.edu. After this, there was a failed attempt connect to nachos.cs.fiu.edu externally, but it 
+   was quickly realized that it had to be accessed from within the internal FIU network. Following the remaining instructions led 
+   to a working Nachos installation. All work will continue on this server since it is already properly configured to work with a
+   Nachos installation. 
+
+II. Demos
+    
+   A. Threads
+
+      Threads seems to increment a counter for each thread in unison until each thread reaches 4 after which the demo terminates. 
+      After termination statistics about I/O where displayed along with the number of page faults and ticks. Looking at the code,
+      we can verify this by seeing that each thread runs a loop from zero to five. At each iteration the thread prints the value
+      of its counter, a thread id and then yields to another thread. After termination statistics about I/O were displayed along
+      with the number of page faults and ticks. Looking at the source These statistics are not printed by the thread program but
+      by Nachos. 
+
+   B. Userprog 
+
+      Userprog seems to run a specified user program and then terminate once complete. The first program is halt which halts 
+      the machine which prints diagnostic information right before termination. Running the same program with -s enables the
+      single step mode which makes the simulation execute a trap after every instruction in order to show the contents every
+      register in the system at the time of the trap. This information will be useful in debugging future work.
+
+III. Thread Source Code
+          
+   Thread.cc is made to manage threads using four main operations and those are:
+
+       1. Fork
+       2. Finish
+       3. Yield
+       4. Sleep
+
+   Fork creates a thread similar to how fork would create a child process on another system. Finish cleanly and
+   safely closes a thread. Yield, relinquishes the selected thread's resources in order to allow another thread
+   access and resume when possible. Sleep relinquishes resources similar to Yield but does not allow the thread
+   to continue operation until it is manually selected to resume. The other relevant file "thread.h" contains a
+   set of data structures for managing threads. It specifies that a thread represents a sequential execution of
+   code in a program. Also it states that the state of a thread is composed of the following:
+
+       1. Program Counter
+       2. Processor Register
+       3. Execution Stack
+
+   Finally, there is an explicit warning about not overflowing the stack. The header file contains defines some
+   enumerations and constants used through out threads.cc. For example the thread's status is defined inside of
+   an enumeration called ThreadStatus which allows for four status' JUST_CREATED, RUNNING, READY and BLOCKED. 

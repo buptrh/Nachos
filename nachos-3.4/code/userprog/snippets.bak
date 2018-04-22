@@ -1,0 +1,81 @@
+  int size = noffH.code.size;
+  
+  // if (inSwapFileAddr < noffH.code.size) {
+    
+
+  //   readSize = min (size - inSwapFileAddr, PageSize);
+  //   // printf("---+ readSize is %d\n", readSize);    
+  //   ReadFile(inSwapFileAddr, swapFile, readSize, inSwapFileAddr);
+
+  // } else if (inSwapFileAddr < noffH.code.size + noffH.initData.size) {
+
+  //   size += noffH.initData.size;
+  //   readSize = min (size - inSwapFileAddr, PageSize);
+  //   // printf("---= readSize is %d\n", readSize);    
+  //   ReadFile(inSwapFileAddr, swapFile, readSize, inSwapFileAddr);
+    
+  // } else if (inSwapFileAddr < noffH.code.size + noffH.initData.size
+  // 	     + noffH.uninitData.size) {
+
+  //   size += noffH.uninitData.size;
+  //   readSize = min (size - inSwapFileAddr, PageSize);
+  //   // printf("---% readSize is %d\n", readSize);    
+  //   ReadFile(inSwapFileAddr, swapFile, readSize, inSwapFileAddr);
+    
+    
+  // } else if (inSwapFileAddr < noffH.code.size + noffH.initData.size
+  // 	     + noffH.uninitData.size + UserStackSize) {
+
+  //   size += UserStackSize;
+  //   readSize = min (size - inSwapFileAddr, PageSize);
+  //   // printf("---@ readSize is %d\n", readSize);    
+  //   ReadFile(inSwapFileAddr, swapFile, readSize, inSwapFileAddr);
+  //   // bzero(machine->mainMemory + (ptIndex * PageSize), PageSize);
+  // }
+
+  //ASSERT(result == 0);
+
+  // printf("pageTable[pageCount] frame is %d\n", pageTable[ptIndex].physicalPage);
+  // printf("pageSize is %d\n", PageSize);
+  // printf("pOffset is %d\n", pOffset);
+
+
+void
+AddrSpace::cpySwap(OpenFile * file, OpenFile * swap, int size, int fileAddr)
+{
+  char swapName[255];
+  int r = Random();
+  
+  sprintf(swapName, "swap_%d" /*pcb->getMyPid() */, r);
+  
+  bool bytesRemaining = (size > 0) ? true : false;
+  int bytesToCopy;
+  char * buf = new char[PageSize];
+
+  fileSystem->Remove(swapName);
+
+  if (fileSystem->Create(swapName, 0))
+    swap = fileSystem->Open(swapName);
+  
+  while (bytesRemaining) {
+    bytesToCopy = (size < PageSize) ? size : PageSize;
+    printf("bytesToCopy is %d\n", bytesToCopy);
+    printf("fileAddr is %d\n", fileAddr);
+    
+
+    
+    file->ReadAt(buf, bytesToCopy, fileAddr);
+    swap->WriteAt(buf, bytesToCopy, fileAddr);
+    DEBUG('a', "Bytes that will be read %d\n", bytesToCopy);
+        
+    size      -= bytesToCopy;
+    fileAddr  += bytesToCopy;
+    
+    bytesRemaining = (size > 0) ? true : false; 
+    // DEBUG('a', "size %d, fileAddr %d bytesRemaining %s\n"
+    // 	  ,size, fileAddr, bytesRemaining ? "true" : "false");
+  }
+
+}
+
+

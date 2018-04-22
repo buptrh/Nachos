@@ -1,0 +1,51 @@
+#include "syscall.h"
+
+int global_cnt=0;
+
+void sum(){
+	int i;
+
+	for (i=0;i<100;i++)
+	{
+	    global_cnt++;
+	}
+	Yield();
+	for (i=0;i<100;i++)
+	{
+	    global_cnt++;
+	}
+	
+	Exit(i);
+}
+
+void more()
+{
+  Fork(sum);
+  Exit(5);
+}
+
+int main()
+{
+	int i=0;
+	
+	global_cnt++;
+
+	for (i = 0 ; i < 2 ; i++ ) {
+	  Fork(sum);
+	  Yield();
+	}
+	/*
+	global_cnt++;
+	Fork(more);
+
+	Yield();
+	
+	global_cnt++;
+	Fork(more);
+
+	Yield();
+	
+	global_cnt++;
+	*/
+	Exit(global_cnt); 
+}

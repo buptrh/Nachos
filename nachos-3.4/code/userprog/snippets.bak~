@@ -1,0 +1,35 @@
+  int size = noffH.code.size;
+  
+  // if (inSwapFileAddr < noffH.code.size) {
+    
+
+  //   readSize = min (size - inSwapFileAddr, PageSize);
+  //   // printf("---+ readSize is %d\n", readSize);    
+  //   ReadFile(inSwapFileAddr, swapFile, readSize, inSwapFileAddr);
+
+  // } else if (inSwapFileAddr < noffH.code.size + noffH.initData.size) {
+
+  //   size += noffH.initData.size;
+  //   readSize = min (size - inSwapFileAddr, PageSize);
+  //   // printf("---= readSize is %d\n", readSize);    
+  //   ReadFile(inSwapFileAddr, swapFile, readSize, inSwapFileAddr);
+    
+  // } else if (inSwapFileAddr < noffH.code.size + noffH.initData.size
+  // 	     + noffH.uninitData.size) {
+
+  //   size += noffH.uninitData.size;
+  //   readSize = min (size - inSwapFileAddr, PageSize);
+  //   // printf("---% readSize is %d\n", readSize);    
+  //   ReadFile(inSwapFileAddr, swapFile, readSize, inSwapFileAddr);
+    
+    
+  // } else if (inSwapFileAddr < noffH.code.size + noffH.initData.size
+  // 	     + noffH.uninitData.size + UserStackSize) {
+
+  //   size += UserStackSize;
+  //   readSize = min (size - inSwapFileAddr, PageSize);
+  //   // printf("---@ readSize is %d\n", readSize);    
+  //   ReadFile(inSwapFileAddr, swapFile, readSize, inSwapFileAddr);
+  //   // bzero(machine->mainMemory + (ptIndex * PageSize), PageSize);
+  // }
+

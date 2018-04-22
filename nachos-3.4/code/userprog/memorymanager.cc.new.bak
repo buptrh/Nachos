@@ -1,0 +1,133 @@
+#include "memorymanager.h"
+#include "system.h"
+#define NO_FREE_PAGE -1
+
+MemoryManager::MemoryManager()
+{
+  pageMap = new BitMap (NumPhysPages);
+  coreRecord = new CoreMapEntry*[NumPhysPages];
+  fifoTracker = 0;
+}
+
+MemoryManager::~MemoryManager()
+{
+  delete pageMap;
+  delete [] coreRecord;
+}
+
+int
+MemoryManager::getPage(int vPgNum)
+{
+  int candidatePage = -1;
+
+  // Ensure Atomic Operations on memory manager
+  IntStatus oldLevel = interrupt->SetLevel(IntOff);
+    
+  candidatePage = pageMap->Find();
+
+  /* Check if candidatePage is invalid and if not alloc and record */
+  /* Otherwise select a victim ! */
+
+  /* Construct our new frame */
+  CoreMapEntry * entry = new CoreMapEntry;
+
+  entry->allocated = true;
+  entry->vPageNum = vPgNum; // Need to get virt page num here
+  entry->a = (void *) currentThread->space;
+  // bcopy(currentThread->space->name, entry->addrName, 255);
+  entry->fifoNum = fifoTracker; 
+
+
+
+
+  
+  if (candidatePage != NO_FREE_PAGE) {
+    
+    if (coreRecord[candidatePage] == NULL) 
+      coreRecord[candidatePage] = entry;
+    else 
+      DEBUG('a', "Our map is incorrect execution should never flow here");
+
+    bzero(machine->mainMemory + (candidatePage * PageSize), PageSize);   
+  } else {
+    if (fifoTracker == NumPhysPages) 
+          fifoTracker = 0;
+          
+    int victim = fifoTracker; 
+      
+    /* Move the victim to the backing store */
+    printf("S [%d]: [%d]\n",
+	   currentThread->space->pcb->getMyPid(),
+	   victim);
+    
+    sendToSwap(coreRecord[victim]->vPageNum, coreRecord[victim]->a);
+
+    
+    /* Clear entry */
+    pageMap->Clear(victim);
+    coreRecord[victim] = NULL;
+
+    // Delete the old record
+    //    delete coreRecord[victim];
+
+    /* Load entry */
+    pageMap->Mark(victim);
+    coreRecord[victim] = entry;
+    
+    bzero(machine->mainMemory + (victim * PageSize), PageSize);
+    candidatePage = victim; // Clean this up later
+
+    /* Increment the tracker for the next page */        
+    fifoTracker++;
+  }
+  (void) interrupt->SetLevel(oldLevel);
+  return candidatePage;
+}
+
+void
+MemoryManager::clearPage(int i)
+{
+  // Ensure Atomic Operations on memory manager
+  IntStatus oldLevel = interrupt->SetLevel(IntOff);
+  if(pageMap->Test(i) && coreRecord[i] != NULL) {
+
+    printf("E [%d]: [%d]\n",
+	   currentThread->space->pcb->getMyPid(), i);
+    
+    
+    pageMap->Clear(i);
+    ((AddrSpace *) coreRecord[i]->a)->invalidatePage(i);    
+    coreRecord[i] = NULL;
+    bzero(machine->mainMemory + (i * PageSize), PageSize);
+
+  } else {
+    DEBUG('p', "clearPage failed page %d\n", i );
+  }
+  (void) interrupt->SetLevel(oldLevel);
+}
+
+int
+MemoryManager::availablePages()
+{
+  return pageMap->NumClear();
+}
+
+void
+MemoryManager::sendToSwap(int vPageNum, void * ad)
+{
+  IntStatus oldLevel = interrupt->SetLevel(IntOff);
+  
+  int offset = vPageNum * PageSize;
+  char * buf = new char[PageSize];
+  int physAddr = -1;
+  AddrSpace * a = (AddrSpace *) ad;
+  
+  if (a->Translate(offset, &physAddr)) {
+    bcopy (machine->mainMemory + physAddr, buf, PageSize);
+    a->invalidatePage(vPageNum);    
+    a->swapFile->WriteAt(buf, PageSize, offset);
+  }
+
+  //  delete buf;
+  (void) interrupt->SetLevel(oldLevel);
+}
