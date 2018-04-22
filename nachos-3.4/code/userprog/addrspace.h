@@ -71,8 +71,6 @@ class AddrSpace {
     bool initial;
     int inSwapFileAddr;
     int inSwapStackAddr;
-    NoffHeader noffH;
     int pageCount;
-    OpenFile * exec;
 };
 #endif // ADDRSPACE_H

@@ -353,7 +353,6 @@ AddrSpace::sendToMem(int virtAddr)
 				pageTable[ptIndex].stackOffset);
     pageTable[ptIndex].valid = TRUE;
     pageTable[ptIndex].inMem = TRUE;
-=======
   printf("L [%d]: [%d] -> [%d]\n", pcb->getMyPid(),
 	 pageTable[ptIndex].virtualPage, pageTable[ptIndex].physicalPage); 
 
@@ -362,7 +361,6 @@ AddrSpace::sendToMem(int virtAddr)
     pageTable[ptIndex].readOnly = TRUE;
     SendSharedToMem(ptIndex);
   }
->>>>>>> master
 
     ReadFile(inSwapFileAddr, swapFile, PageSize, inSwapFileAddr);
     printf("GetPage assigned %d\n",  pageTable[ptIndex].physicalPage);
@@ -702,9 +700,9 @@ void AddrSpace::RemoveFromSharedList(TranslationEntry* entry) {
   }
   if(entry->sharedEntry->sharedList->IsEmpty()) {
     printf("delete sharedEntry: %d\n", entry->sharedEntry);
-    if(entry->sharedEntry->physicalPage >= 0) {
-      memoryManager->clearPage(entry->sharedEntry->physicalPage);
-    }
+    // if(entry->sharedEntry->physicalPage >= 0 && entry->inMem && entry->valid ) {
+      // memoryManager->clearPage(entry->sharedEntry->physicalPage);
+    // }
     delete entry->sharedEntry;
   } else if(entry->sharedEntry->sharedList->isSingleton()) {
     //delete shared entry
