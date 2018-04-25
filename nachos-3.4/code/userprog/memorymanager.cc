@@ -16,7 +16,7 @@ MemoryManager::~MemoryManager()
 }
 
 int
-MemoryManager::getPage(int vPgNum, int offset)
+MemoryManager::getPage(int vPgNum)
 {
   int candidatePage = -1;
 
@@ -34,8 +34,7 @@ MemoryManager::getPage(int vPgNum, int offset)
   entry->allocated = true;
   entry->vPageNum = vPgNum; // Need to get virt page num here
   entry->a = (void *) currentThread->space;
-  entry->fifoNum = fifoTracker;
-  entry->stackOffset = offset;
+  entry->fifoNum = fifoTracker; 
 
   /* Increment the tracker for the next page */
   if (candidatePage != NO_FREE_PAGE) {
@@ -137,14 +136,8 @@ MemoryManager::writeToSwap(int vPageNum, void * ad)
   AddrSpace * a = (AddrSpace *) ad;
 
   if (a->Translate(offset, &physAddr)) {
-    int i = 0;
-    for ( ; i < NumPhysPages ; i++) {
-      if (coreRecord[i] != NULL)
-	if (coreRecord[i]->vPageNum == vPageNum
-	    && coreRecord[i]->stackOffset != -1) 
-	  offset = coreRecord[i]->stackOffset;
-    }
     a->swapFile->WriteAt(buf, PageSize, offset);
+    
   }
   (void) interrupt->SetLevel(oldLevel);
 }
@@ -159,24 +152,20 @@ MemoryManager::sendToSwap(int vPageNum, void * ad)
   int physAddr = -1;
   AddrSpace * a = (AddrSpace *) ad;
 
-  // printf("!@#@#@%Before if we are trying to translate vpn %d\n", vPageNum);
+  printf("!@#@#@%Before if we are trying to translate vpn %d\n", vPageNum);
   if (a->Translate(offset, &physAddr)) {
-    int i = 0;
-    for ( ; i < NumPhysPages ; i++) {
-      if (coreRecord[i] != NULL)
-	if (coreRecord[i]->vPageNum == vPageNum
-	    && coreRecord[i]->stackOffset != -1) 
-	  offset = coreRecord[i]->stackOffset;
-    }
     
-
     bcopy (machine->mainMemory + physAddr, buf, PageSize);
     a->invalidateByVPage(vPageNum);    
     a->swapFile->WriteAt(buf, PageSize, offset);
     a->swapFile->ReadAt(buf, PageSize, offset);
+
+    printf("&&&&&&&&\n");
   }
     pageMap->Clear(physAddr / PageSize);
-    delete coreRecord[physAddr / PageSize];
+    //    delete coreRecord[victim];
     coreRecord[physAddr / PageSize] = NULL;
+
+
   (void) interrupt->SetLevel(oldLevel);
 }

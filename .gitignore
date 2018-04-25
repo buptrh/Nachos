@@ -25,3 +25,7 @@ nachos-3.4/code/userprog/.swap_0_1804289383
 *.cc~
 
 nachos-3.4/code/machine/translate.cc~
+
+*.o
+
+*.o

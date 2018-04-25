@@ -10,7 +10,7 @@ class MemoryManager {
  public:
   MemoryManager();
   ~MemoryManager();
-  int getPage(int vPgNum, int offset = -1);
+  int getPage(int vPgNum);
   void clearPage(int i);
   int availablePages();
   int findOldestEntry();
@@ -24,7 +24,6 @@ class MemoryManager {
     unsigned int vPageNum;
     void * a; 
     unsigned int fifoNum;
-    int stackOffset;
     bool lockedInIO;     // Come back to this later
   };
   CoreMapEntry ** coreRecord;

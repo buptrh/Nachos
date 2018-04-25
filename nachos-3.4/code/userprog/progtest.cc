@@ -38,7 +38,7 @@ StartProcess(char *filename)
     PCB* pcb = processManager->createPCB(-1, -1);
     currentThread->space->pcb = pcb;
     */
-    //delete executable;			// close file
+    delete executable;			// close file
 
     space->InitRegisters();		// set the initial register values
     space->RestoreState();		// load page table register

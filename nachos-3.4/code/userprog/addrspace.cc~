@@ -63,25 +63,9 @@ SwapHeader (NoffHeader *noffH)
 //	"executable" is the file containing the object code to load into memory
 //----------------------------------------------------------------------
 
-<<<<<<< HEAD
-AddrSpace::AddrSpace(PCB * p) {
-  numPages = -1;
-  pcb = p;
-  pageTable = NULL;
-  child = true;
-  inSwapStackAddr = noffH.code.size + noffH.initData.size
-    + noffH.uninitData.size;
-}
-
 AddrSpace::AddrSpace(OpenFile *executable, bool createPCB, char * fileName, PCB * p)
 {
   unsigned int i, size;
-  child = false;
-=======
-AddrSpace::AddrSpace(OpenFile *executable, bool createPCB, char * fileName, PCB * p)
-{
-  unsigned int i, size;
->>>>>>> master
   
   executable->ReadAt((char *)&noffH, sizeof(noffH), 0);
   if ((noffH.noffMagic != NOFFMAGIC) && 
@@ -125,20 +109,11 @@ AddrSpace::AddrSpace(OpenFile *executable, bool createPCB, char * fileName, PCB 
     pageTable[i].dirty = FALSE;
     pageTable[i].readOnly = FALSE; 
     pageTable[i].inMem = FALSE;
-    pageTable[i].stackOffset = -1;
   }
 
-<<<<<<< HEAD
-  // if (createPCB) 
-  //   bzero(machine->mainMemory, NumPhysPages * PageSize);
-  inSwapStackAddr = noffH.code.size + noffH.initData.size
-    + noffH.uninitData.size;
-  
-=======
   if (createPCB) 
     bzero(machine->mainMemory, NumPhysPages * PageSize);
 
->>>>>>> master
   if (p != NULL)
     pcb = p;
 
@@ -148,7 +123,6 @@ AddrSpace::AddrSpace(OpenFile *executable, bool createPCB, char * fileName, PCB 
     initSwap(exec, &swapFile, true, noffH.code.inFileAddr);
   } else {
     // printf ("File is %s\n", fileName);
-    exec = executable;
     initSwap(executable, &swapFile, true, noffH.code.inFileAddr);
   }
   printf("Loaded Program: [%d] code | [%d] data | [%d] bss\n",
@@ -187,13 +161,8 @@ AddrSpace::~AddrSpace()
   if (pcb != NULL)
     processManager->clearPid(pcb->getMyPid());  
   
-<<<<<<< HEAD
-  delete exec;
-  fileSystem->Remove(name);
-=======
   //delete exec;
   //  fileSystem->Remove(name);
->>>>>>> master
   delete swapFile;
 
 }
@@ -275,46 +244,9 @@ AddrSpace::sendToMem(int virtAddr)
   ptIndex = (unsigned) virtAddr / PageSize; 
 
   inSwapFileAddr = ptIndex * PageSize;
+  int totalSize = noffH.code.size + noffH.initData.size
+    + noffH.uninitData.size + UserStackSize;
 
-<<<<<<< HEAD
-
-  if (virtAddr > noffH.code.size
-      + noffH.initData.size + noffH.uninitData.size) {
-    char * emptyStack = new char[PageSize];
-    bzero(emptyStack, PageSize);
-    printf("+=+ code + data size %d\n",  noffH.code.size
-	   + noffH.initData.size + noffH.uninitData.size);
-    
-    if (pageTable[ptIndex].stackOffset == -1) {
-      if (child) {
-	printf("addr we write at for stack %d\n", inSwapStackAddr);
-	inSwapStackAddr = mkSwap(exec, swapFile, PageSize,
-				 inSwapStackAddr, inSwapStackAddr);
-      } else {
-	printf("addr we write at for stack %d\n", inSwapStackAddr);
-	swapFile->WriteAt(emptyStack, PageSize, inSwapStackAddr);
-	inSwapStackAddr += PageSize;
-      }
-
-      pageTable[ptIndex].stackOffset = inSwapStackAddr;
-      pageTable[ptIndex].physicalPage
-	=  memoryManager->getPage(pageTable[ptIndex].virtualPage,
-				  pageTable[ptIndex].stackOffset);
-      pageTable[ptIndex].valid = TRUE;
-      pageTable[ptIndex].inMem = TRUE;
-      printf("Z [%d]: [%d]\n",
-	     pcb->getMyPid(), pageTable[ptIndex].virtualPage); 
-    } else {
-      ReadFile(inSwapStackAddr, swapFile, PageSize, inSwapStackAddr);
-      pageTable[ptIndex].physicalPage
-	=  memoryManager->getPage(pageTable[ptIndex].virtualPage,
-				  pageTable[ptIndex].stackOffset);
-      pageTable[ptIndex].valid = TRUE;
-      pageTable[ptIndex].inMem = TRUE;
-      printf("L [%d]: [%d] -> [%d]\n", pcb->getMyPid(),
-	     pageTable[ptIndex].virtualPage, pageTable[ptIndex].physicalPage); 
-    }
-=======
   printf ("^^ We are putting data in %d ^^ \n", ptIndex);
   pageTable[ptIndex].physicalPage
     =  memoryManager->getPage(pageTable[ptIndex].virtualPage);
@@ -326,21 +258,7 @@ AddrSpace::sendToMem(int virtAddr)
   
   printf("L [%d]: [%d] -> [%d]\n", pcb->getMyPid(),
 	 pageTable[ptIndex].virtualPage, pageTable[ptIndex].physicalPage); 
->>>>>>> master
 
-    delete emptyStack;
-  } else {
-  
-    // int readSize = min (totalSize - inSwapFileAddr, PageSize);
-    ReadFile(inSwapFileAddr, swapFile, PageSize, inSwapFileAddr);
-    pageTable[ptIndex].physicalPage
-      =  memoryManager->getPage(pageTable[ptIndex].virtualPage,
-				pageTable[ptIndex].stackOffset);
-    pageTable[ptIndex].valid = TRUE;
-    pageTable[ptIndex].inMem = TRUE;
-    printf("L [%d]: [%d] -> [%d]\n", pcb->getMyPid(),
-	 pageTable[ptIndex].virtualPage, pageTable[ptIndex].physicalPage); 
-  }
   RestoreState();
 }
 
@@ -437,10 +355,6 @@ AddrSpace::initSwap(OpenFile * file, OpenFile ** swap, bool empty, int offset)
   if (empty)
     bzero (emptyStack, UserStackSize*2);
 
-<<<<<<< HEAD
-  
-  sprintf(swapName, "swap_%d_%d", pcb->getMyPid(), r);
-=======
   //  if (empty)
   sprintf(swapName, "swap_%d_%d", pcb->getMyPid(), r);
 
@@ -449,68 +363,69 @@ AddrSpace::initSwap(OpenFile * file, OpenFile ** swap, bool empty, int offset)
   
   numPages  = divRoundUp(size, PageSize);  
   size = numPages * PageSize;
->>>>>>> master
   
-  int size = noffH.code.size + noffH.initData.size
-    + noffH.uninitData.size;
   fileSystem->Remove(swapName);
 
   if (fileSystem->Create(swapName, 0))
     *swap = fileSystem->Open(swapName);
   
   if (swap != NULL) {
+    // printf("noffH.code.size is %d\n",  noffH.code.size);
     writeAddr = mkSwap(file, *swap,
-		       size, offset,
+		       noffH.code.size, offset,
 		       writeAddr);
-    offset += size;
-    /*
-    if(empty) {
-<<<<<<< HEAD
-      int stacksize = size + UserStackSize;
-      numPages  = divRoundUp(stacksize, PageSize);  
-      size = numPages * PageSize - size;
+    offset += noffH.code.size;
+    // printf("noffH.initData.size is %d\n",  noffH.initData.size);
+    
+    writeAddr = mkSwap(file, *swap,
+		       noffH.initData.size, offset,
+		       writeAddr);
+    offset += noffH.initData.size;
+    // printf("noffH.uninitData.size is %d\n",  noffH.uninitData.size);
+    
+    writeAddr = mkSwap(file, *swap,
+		       noffH.uninitData.size, offset,
+		       writeAddr);
+    offset += noffH.uninitData.size;
 
-      (*swap)->WriteAt(emptyStack, size, writeAddr);
-      writeAddr += size;
-=======
+    if(empty) {
       (*swap)->WriteAt(emptyStack, UserStackSize, writeAddr);
       writeAddr += UserStackSize;
->>>>>>> master
 
     } else {
        writeAddr = mkSwap(file, *swap, UserStackSize,
 			  offset, writeAddr);
 
 
-<<<<<<< HEAD
-      int stacksize = size + UserStackSize;
-      numPages  = divRoundUp(stacksize, PageSize);  
-      size = numPages * PageSize - size;
-      (*swap)->WriteAt(emptyStack, size - UserStackSize, writeAddr);
-      writeAddr += size;
-
-=======
->>>>>>> master
     }
-    */
   }
+
   bcopy(swapName, name, strlen(swapName));
 }
 
 int
 AddrSpace::mkSwap(OpenFile * file, OpenFile * swap, int size, int fileAddr, int writeAddr)
 {
-  if(size <= 0) {
-    return writeAddr;
-  }
-  
+  bool bytesRemaining = (size > 0) ? true : false;
   int bytesToCopy;
-  char * buf = new char[size];
+  char * buf = new char[PageSize];
 
-  file->ReadAt(buf, size, fileAddr);
-  swap->WriteAt(buf, size, writeAddr);
-  writeAddr += size;
   
+  while (bytesRemaining) {
+    bytesToCopy = (size < PageSize) ? size : PageSize;
+    file->ReadAt(buf, bytesToCopy, fileAddr);
+    swap->WriteAt(buf, bytesToCopy, writeAddr);
+    DEBUG('a', "Bytes that will be read %d\n", bytesToCopy);
+        
+    size      -= bytesToCopy;
+    fileAddr  += bytesToCopy;
+    writeAddr += bytesToCopy;
+    
+    bytesRemaining = (size > 0) ? true : false; 
+    DEBUG('a', "size %d, fileAddr %d bytesRemaining %s\n"
+	  ,size, fileAddr, bytesRemaining ? "true" : "false");
+  }
+
   delete [] buf;
   return writeAddr;
 }
@@ -551,15 +466,12 @@ AddrSpace::ReadFile(int virtAddr, OpenFile * file, int size, int fileAddr)
   return bytesRemaining;
 }
 
-<<<<<<< HEAD
-=======
 AddrSpace::AddrSpace(PCB * p) {
   numPages = -1;
   pcb = p;
   pageTable = NULL;
 }
 
->>>>>>> master
 void
 AddrSpace::Fork(AddrSpace * a)
 {
@@ -588,8 +500,7 @@ AddrSpace::Fork(AddrSpace * a)
     fpageTable[i].dirty    = pageTable[i].dirty; //FALSE;
     fpageTable[i].readOnly = FALSE;
     fpageTable[i].inMem    = FALSE;
-    fpageTable[i].stackOffset = -1;
-    
+
     DEBUG('a', "Page table attributes:\n");
     DEBUG('a', "POPULATE ATTRIBUTES HERE\n");
   }

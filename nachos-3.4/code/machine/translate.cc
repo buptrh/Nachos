@@ -111,13 +111,14 @@ Machine::ReadMem(int addr, int size, int *value)
     
 
     exception = Translate(addr, &physicalAddress, size, FALSE);
+
+    /* This has been altered check later */
     while (exception != NoException) {
     	machine->RaiseException(exception, addr);
     	if(exception != PageFaultException)
     	  return FALSE;
     	exception = Translate(addr, &physicalAddress, size, FALSE);
     }
-    
     switch (size) {
       case 1:
 	data = machine->mainMemory[physicalAddress];
@@ -162,20 +163,20 @@ Machine::WriteMem(int addr, int size, int value)
      
     DEBUG('a', "Writing VA 0x%x, size %d, value 0x%x\n", addr, size, value);
 
-    exception = Translate(addr, &physicalAddress, size, FALSE);
-    while (exception != NoException) {
-    	machine->RaiseException(exception, addr);
-    	if(exception != PageFaultException)
-    	  return FALSE;
-    	exception = Translate(addr, &physicalAddress, size, FALSE);
-    }
+    // exception = Translate(addr, &physicalAddress, size, FALSE);
+    // while (exception != NoException) {
+    // 	machine->RaiseException(exception, addr);
+    // 	if(exception != PageFaultException)
+    // 	  return FALSE;
+    // 	exception = Translate(addr, &physicalAddress, size, FALSE);
+    // }
 
     
-    // exception = Translate(addr, &physicalAddress, size, TRUE);
-    // if (exception != NoException) {
-    // 	machine->RaiseException(exception, addr);
-    // 	return FALSE;
-    // }
+    exception = Translate(addr, &physicalAddress, size, TRUE);
+    if (exception != NoException) {
+    	machine->RaiseException(exception, addr);
+    	return FALSE;
+    }
     
     
     switch (size) {
@@ -243,8 +244,7 @@ Machine::Translate(int virtAddr, int* physAddr, int size, bool writing)
 	if (vpn >= pageTableSize) {
 	    DEBUG('a', "virtual page # %d too large for page table size %d!\n", 
 			virtAddr, pageTableSize);
-	    // printf("===== vAddr %d vpn is %d too large for table size %d\n",
-		   // virtAddr, vpn, pageTableSize);
+	    printf("===== vAddr %d vpn is %d too large for table size %d\n", virtAddr, vpn, pageTableSize);
 	    
 	    return AddressErrorException;
 	} else if (!pageTable[vpn].valid) {
@@ -252,7 +252,7 @@ Machine::Translate(int virtAddr, int* physAddr, int size, bool writing)
 			virtAddr, pageTableSize);
 	    
 	    /* Our interest is here - Nick */
-	    // printf("vpn %d is causing the fault\n", vpn);
+	    printf("vpn %d is causing the fault\n", vpn);
 	    return PageFaultException; 
 	}
 	entry = &pageTable[vpn];
@@ -282,7 +282,7 @@ Machine::Translate(int virtAddr, int* physAddr, int size, bool writing)
     // An invalid translation was loaded into the page table or TLB. 
     if (pageFrame >= NumPhysPages) { 
 	DEBUG('a', "*** frame %d > %d!\n", pageFrame, NumPhysPages);
-	// printf("*** frame %d > %d!\n", pageFrame, NumPhysPages);
+	printf("*** frame %d > %d!\n", pageFrame, NumPhysPages);
 	return BusErrorException;
     }
     entry->use = TRUE;		// set the use, dirty bits

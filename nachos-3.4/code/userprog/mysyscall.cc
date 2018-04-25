@@ -146,17 +146,17 @@ void MyExec() {
   //bzero(fileName, 255);
   
   machine->ReadMem(addr, 1, (int *) (fileName + 100));
-  // printf("filename 100 %c\n", fileName[100]);
+  printf("filename 100 %c\n", fileName[100]);
   int i = 0;
   for (i = 0 ; true ; i++) {
     LoadExecFromMem(addr + i, 1, (int*)(fileName + i),
 		    currentThread->space);
-    // printf("filename i %d is %c\n", i, fileName[i]);
+    printf("filename i %d is %c\n", i, fileName[i]);
     if(fileName[i] == '\0') 
       break;
   }
 
-  // printf(">> Successfully arrived here\n");
+  printf(">> Successfully arrived here\n");
   
   OpenFile *executable = fileSystem->Open(fileName);
   if(executable == NULL) {
