@@ -124,13 +124,7 @@ void LoadExecFromMem (int addr, int size, int *value, AddrSpace * a)
 {
   int data;
   int physAddr = -1;
-  // if( a->Translate(addr, &physAddr) ) {
-  //   DEBUG ('a', " addr is %d with physAddr %d\n"
-  // 	   , addr, physAddr);
-  //     data = machine->mainMemory[physAddr];
-  //     *value = data;
-  //   }
-  
+ 
   machine->ReadMem(addr, size, value);
 }
 
@@ -146,17 +140,17 @@ void MyExec() {
   //bzero(fileName, 255);
   
   machine->ReadMem(addr, 1, (int *) (fileName + 100));
-  printf("filename 100 %c\n", fileName[100]);
+  // printf("filename 100 %c\n", fileName[100]);
   int i = 0;
   for (i = 0 ; true ; i++) {
     LoadExecFromMem(addr + i, 1, (int*)(fileName + i),
 		    currentThread->space);
-    printf("filename i %d is %c\n", i, fileName[i]);
+    // printf("filename i %d is %c\n", i, fileName[i]);
     if(fileName[i] == '\0') 
       break;
   }
 
-  printf(">> Successfully arrived here\n");
+  // printf(">> Successfully arrived here\n");
   
   OpenFile *executable = fileSystem->Open(fileName);
   if(executable == NULL) {
@@ -175,8 +169,6 @@ void MyExec() {
   //currentThread->space->swapFile = temp;
   printf("Exec Program: [%d] loading [%s]\n",
 	 currentThread->space->pcb->getMyPid(), fileName);
-
-
   
   currentThread->space->InitRegisters();
   currentThread->space->RestoreState();
@@ -198,6 +190,7 @@ void MyCreate()
   char fileName[255];
   
   int i = 0;
+  machine->ReadMem(addr, 1, (int *) (fileName + 100));
   for (i = 0 ; true ; i++) {
     LoadExecFromMem(addr + i, 1, (int*)(fileName + i),
 		    currentThread->space);
@@ -222,8 +215,9 @@ void MyOpen()
   char fileName[255];
 
   int i = 0;
+  machine->ReadMem(addr, 1, (int *) (fileName + 100));
   for (i = 0 ; true ; i++) {
-    LoadExecFromMem(addr + i, 0, (int*)(fileName + i), currentThread->space);
+    LoadExecFromMem(addr + i, 1, (int*)(fileName + i), currentThread->space);
     if(fileName[i] == '\0') 
       break;
   }
@@ -269,8 +263,9 @@ void MyWrite()
   char * suppliedBuf = new char[size + 1];
 
   int i = 0;
+  machine->ReadMem(bufAddr, 1, (int *) (suppliedBuf + 100));
   for (i = 0 ; true ; i++) {
-    LoadExecFromMem(bufAddr + i, 0, (int*)(suppliedBuf + i),
+    LoadExecFromMem(bufAddr + i, 1, (int*)(suppliedBuf + i),
 		    currentThread->space);
     if(suppliedBuf[i] == '\0') 
       break;

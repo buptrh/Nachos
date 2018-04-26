@@ -49,6 +49,8 @@ class TranslationEntry {
     bool dirty;         // This bit is set by the hardware every time the
 			// page is modified.
     bool inMem;         // Is the page in physical memory? - Nick 
+    int stackOffset;
+    bool init;
     SharedTranslationEntry* sharedEntry;
 };
 

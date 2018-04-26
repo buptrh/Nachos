@@ -24,6 +24,8 @@ int main() {
 
 	while ( (count = Read(buf, 5, src)) > 0 ) 
 	{
+	    Write("In for loop", 11, ConsoleOutput);
+	    Write("\n", 2, ConsoleOutput);
 	    Write(buf, count, dst);
 	}
 

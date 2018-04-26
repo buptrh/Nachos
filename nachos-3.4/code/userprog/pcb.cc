@@ -103,8 +103,9 @@ PCB::isMultiThreaded()
 bool
 PCB::hasChild(int i)
 {
-  if (!hasChildren())
-    printf("No children\n");
+  // if (!hasChildren())
+  // printf("No children\n");
+  
   
   return children->SearchByKey(i);
 }
@@ -126,8 +127,8 @@ listThread(int tAddr)
 {
   Thread * t = (Thread *) tAddr;
   
-  printf("I am a thread in the list my name is %s and pid is %d\n"
-	 , t->getName(), t->space->pcb->getMyPid());
+  // printf("I am a thread in the list my name is %s and pid is %d\n"
+  // 	 , t->getName(), t->space->pcb->getMyPid());
 }
 
 void
